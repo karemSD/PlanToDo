@@ -7,6 +7,7 @@ import 'package:mytest/Screens/Auth/email_address.dart';
 import 'package:mytest/Screens/Auth/resetPassword.dart';
 import 'package:mytest/Screens/Auth/verify_email_address.dart';
 import 'package:mytest/Screens/Dashboard/timeline.dart';
+import 'package:mytest/constants/app_constans.dart';
 import 'package:mytest/controllers/statusController.dart';
 import 'package:mytest/models/statusmodel.dart';
 import 'package:mytest/services/auth_service.dart';
@@ -58,7 +59,8 @@ class _LoginState extends State<Login> {
                         Column(
                           children: [
                             Text(
-                              'Login',
+                              AppConstants.login_key.tr,
+                              //'Login',
                               style: GoogleFonts.lato(
                                   color: Colors.white,
                                   fontSize: 40,
@@ -67,7 +69,8 @@ class _LoginState extends State<Login> {
                             //say Hi
                             AppSpaces.verticalSpace20,
                             Text(
-                              'Nice to see You!',
+                              AppConstants.nice_to_see_you_key.tr,
+                              // 'Nice to see You!',
                               style: GoogleFonts.pacifico(
                                 fontSize: 30,
                                 color: Colors.white,
@@ -79,57 +82,65 @@ class _LoginState extends State<Login> {
                     ),
                     const SizedBox(height: 30),
                     LabelledFormInput(
-                        autovalidateMode: AutovalidateMode.disabled,
-                        validator: (value) {
-                          if (!EmailValidator.validate(value!)) {
-                            return "Enter Valid Email";
-                          } else {
-                            return null;
-                          }
-                        },
-                        onClear: () {
-                          setState(() {
-                            email = "";
-                            _emailController.text = "";
-                          });
-                        },
-                        onChanged: (value) {
-                          setState(() {
-                            email = value;
-                          });
-                        },
-                        readOnly: false,
-                        placeholder: "Email",
-                        keyboardType: "text",
-                        controller: _emailController,
-                        obscureText: false,
-                        label: "Your Email"),
-                    LabelledFormInput(
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "Password Can not be Empty";
-                          }
+                      autovalidateMode: AutovalidateMode.disabled,
+                      validator: (value) {
+                        if (!EmailValidator.validate(value!)) {
+                          return AppConstants.Please_Enter_Valid_Email_key.tr;
+                          // "Enter Valid Email";
+                        } else {
                           return null;
-                        },
-                        onClear: () {
-                          setState(() {
-                            obscureText = !obscureText;
-                            // password = "";
-                            // _passController.text = "";
-                          });
-                        },
-                        onChanged: (value) {
-                          setState(() {
-                            password = value;
-                          });
-                        },
-                        autovalidateMode: AutovalidateMode.disabled,
-                        readOnly: false,
-                        placeholder: "Password",
-                        keyboardType: "text",
-                        controller: _passController,
-                        obscureText: obscureText,
-                        label: "Your Password"),
+                        }
+                      },
+                      onClear: () {
+                        setState(() {
+                          email = "";
+                          _emailController.text = "";
+                        });
+                      },
+                      onChanged: (value) {
+                        setState(() {
+                          email = value;
+                        });
+                      },
+                      readOnly: false,
+                      placeholder: AppConstants.email_key.tr,
+                      //"Email",
+                      keyboardType: "text",
+                      controller: _emailController,
+                      obscureText: false,
+                      label: AppConstants.your_email_key.tr,
+                      //"Your Email"
+                    ),
+                    LabelledFormInput(
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return AppConstants.password_can_not_be_empty_key.tr;
+                          // "Password Can not be Empty";
+                        }
+                        return null;
+                      },
+                      onClear: () {
+                        setState(() {
+                          obscureText = !obscureText;
+                          // password = "";
+                          // _passController.text = "";
+                        });
+                      },
+                      onChanged: (value) {
+                        setState(() {
+                          password = value;
+                        });
+                      },
+                      autovalidateMode: AutovalidateMode.disabled,
+                      readOnly: false,
+                      placeholder: AppConstants.password_key.tr,
+                      //"Password",
+                      keyboardType: "text",
+                      controller: _passController,
+                      obscureText: obscureText,
+                      label: AppConstants.your_password_key.tr,
+                      //"Your Password"
+                    ),
                     AppSpaces.verticalSpace20,
                     GestureDetector(
                       onTap: () {
@@ -141,7 +152,8 @@ class _LoginState extends State<Login> {
                           Padding(
                             padding: const EdgeInsets.only(right: 20),
                             child: Text(
-                              'Forget Password?',
+                              AppConstants.forget_Password_key.tr,
+                              // 'Forget Password?',
                               style: TextStyle(
                                 color: Colors.grey[600],
                               ),
@@ -181,18 +193,23 @@ class _LoginState extends State<Login> {
                               }
                             } on FirebaseAuthException catch (e) {
                               if (e.code == 'user-not-found') {
-                                CustomSnackBar.showError(
-                                    "No user found for that email");
+                                CustomSnackBar.showError(AppConstants
+                                        .no_user_found_for_that_email_key.tr
+                                    // "No user found for that email"
+                                    );
                               }
                               if (e.code == 'wrong-password') {
-                                CustomSnackBar.showError(
-                                    "Wrong password provided for that user");
+                                CustomSnackBar.showError(AppConstants
+                                        .wrong_password_provided_for_that_user_key
+                                        .tr
+                                    //  "Wrong password provided for that user"
+                                    );
                               }
                               Navigator.of(context).pop();
 
-                              CustomSnackBar.showError(
-                                  e.code.replaceAll(RegExp(r'-'), " "));
-                              return;
+                              // CustomSnackBar.showError(
+                              //     e.code.replaceAll(RegExp(r'-'), " "));
+                              // return;
                             } catch (e) {
                               Navigator.of(context).pop();
 
@@ -202,7 +219,8 @@ class _LoginState extends State<Login> {
                         },
                         style: ButtonStyles.blueRounded,
                         child: Text(
-                          'Sign In',
+                          AppConstants.sign_in_key.tr,
+//                          'Sign In',
                           style: GoogleFonts.lato(
                               fontSize: 20, color: Colors.white),
                         ),
@@ -212,9 +230,10 @@ class _LoginState extends State<Login> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(
-                          'Don\'t have an account? ',
-                          style: TextStyle(color: Colors.white),
+                        Text(
+                          AppConstants.dont_have_an_account_key.tr,
+                          //     'Don\'t have an account? ',
+                          style: const TextStyle(color: Colors.white),
                         ),
                         GestureDetector(
                           //onTap: widget.onTap,
@@ -222,7 +241,8 @@ class _LoginState extends State<Login> {
                             Get.to(() => const EmailAddressScreen());
                           },
                           child: Text(
-                            'Make One!',
+                            AppConstants.make_one_key.tr,
+                            // 'Make One!',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: AppColors.primaryAccentColor,

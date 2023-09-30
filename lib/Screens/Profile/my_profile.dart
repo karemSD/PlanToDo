@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mytest/Screens/Dashboard/projects.dart';
 import 'package:mytest/Screens/Dashboard/selectMyTeams.dart';
 import 'package:mytest/Screens/Dashboard/select_team.dart';
+import 'package:mytest/constants/app_constans.dart';
 import 'package:mytest/controllers/manger_controller.dart';
 import 'package:mytest/models/User/User_model.dart';
 import 'package:mytest/models/team/Manger_model.dart';
@@ -48,7 +49,7 @@ class _ProfilePageState extends State<ProfilePage> {
               children: [
                 DefaultNav(
                     userModel: widget.user,
-                    title: "$tabSpace Profile",
+                    title: "$tabSpace ${AppConstants.profile_key.tr}",
                     type: ProfileDummyType.Button),
                 const SizedBox(height: 30),
                 StreamBuilder<DocumentSnapshot<UserModel>>(
@@ -77,7 +78,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           Text(
                               AuthService.instance.firebaseAuth.currentUser!
                                       .isAnonymous
-                                  ? "Sign in Anonmouslly"
+                                  ? AppConstants.sign_in_anonmouslly_key.tr
                                   : snapshot.data!.data()!.email!,
                               style: GoogleFonts.lato(
                                   color: HexColor.fromHex("B0FFE1"),
@@ -86,7 +87,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             padding: const EdgeInsets.all(15.0),
                             child: OutlinedButtonWithText(
                                 width: 75,
-                                content: "Edit",
+                                content: AppConstants.edit_key.tr,
                                 onPressed: () {
                                   Get.to(() => EditProfilePage(
                                       user: snapshot.data?.data()));
@@ -124,7 +125,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               body: ProjectScreen(),
                             ));
                       },
-                      label: '$tabSpace My Projects',
+                      label: '$tabSpace ${AppConstants.my_projects_key.tr}',
                       icon: Icons.cast,
                       margin: 5.0,
                     ),
@@ -140,19 +141,20 @@ class _ProfilePageState extends State<ProfilePage> {
                           Navigator.of(context).pop();
                         }
                         Get.to(() => SelectTeamScreen(
-                            title: "My Teams", managerModel: userAsManger));
+                            title: AppConstants.my_teams_key.tr,
+                            managerModel: userAsManger));
                       },
-                      label: '$tabSpace My Teams',
+                      label: '$tabSpace ${AppConstants.my_teams_key.tr}',
                       icon: Icons.group,
                       margin: 5.0,
                     ),
                     AppSpaces.verticalSpace10,
                     ProfileTextOption(
                       inTap: () {
-                        Get.to(
-                            () => SelectMyTeamScreen(title: "Manager Teams"));
+                        Get.to(() => SelectMyTeamScreen(
+                            title: AppConstants.manager_teams_key.tr));
                       },
-                      label: '$tabSpace Manager Teams',
+                      label: '$tabSpace ${AppConstants.manager_teams_key.tr}',
                       icon: FeatherIcons.share2,
                       margin: 5.0,
                     ),
@@ -161,7 +163,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       inTap: () {
                         print("to nour");
                       },
-                      label: '$tabSpace All My Task',
+                      label: '$tabSpace ${AppConstants.all_task_key.tr}',
                       icon: Icons.check_circle_outline,
                       margin: 5.0,
                     ),

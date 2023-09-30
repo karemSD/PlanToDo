@@ -690,5 +690,23 @@ class AppConstants {
       "the_password_should_be_more_then_7_character";
   static const String please_enter_at_least_one_small_character_key =
       "please_enter_at_least_one_small_character";
+  static const String Checking_Email_if_exsit_before_key =
+      "Checking_Email_if_exsit_before";
+  static const String Sorry_But_Email_Already_In_Use_key =
+      "Sorry_But_Email_Already_In_Use";
+  static const String SomeThing_Wrong_happened_key = "SomeThing_Wrong_happened";
+  static const String forget_Password_key = "forget_password";
+  static const String please_try_again_key = "Please_Try_Again";
+  static const String enter_email_password_key = "Enter_Email_&_Password";
+  static const String upgrade_account_key = "Upgrade_Account";
+  static const String my_projects_key = "My_Projects";
+  static const String my_teams_key = "My_Teams";
+  static const String edit_profile_key = "Edit_Profile";
+  static const String email_updated_successfully_key =
+      "Email_updated_successfully";
+  static const String change_password_key = "Change_Password";  
+
+  static const String manager_teams_key = "Manager_Teams";
+
 // ignore_for_file: constant_identifier_names
 }

@@ -305,7 +305,7 @@ void showPasswordAndEmailDialog(BuildContext context) {
   final RxBool obscureText = false.obs;
   Get.defaultDialog(
       backgroundColor: AppColors.primaryBackgroundColor,
-      title: 'Enter Email & Password',
+      title: AppConstants.enter_email_password_key.tr,
       titleStyle: const TextStyle(color: Colors.white),
       content: Form(
         key: formKey,
@@ -337,16 +337,19 @@ void showPasswordAndEmailDialog(BuildContext context) {
             LabelledFormInput(
                 validator: (value) {
                   if (value!.isEmpty) {
-                    return "The password should be more then 7 character";
+                    return AppConstants
+                        .the_password_should_be_more_then_7_character_key.tr;
                   }
                   if (regExletters.hasMatch(value) == false) {
-                    return "please enter at least one small character";
+                    return AppConstants
+                        .please_enter_at_least_one_small_character_key.tr;
                   }
                   if (regExnumbers.hasMatch(value) == false) {
-                    return "please enter at least one Number";
+                    return AppConstants.please_enter_at_least_one_number_key.tr;
                   }
                   if (regExbigletters.hasMatch(value) == false) {
-                    return "please enter at least one big character";
+                    return AppConstants
+                        .please_enter_at_least_one_big_character_key.tr;
                   }
                   return null;
                 },
@@ -387,7 +390,7 @@ void showPasswordAndEmailDialog(BuildContext context) {
                 CustomSnackBar.showError(e.toString());
               }
             },
-            buttonText: "Upgrade Account",
+            buttonText: AppConstants.upgrade_account_key.tr,
             buttonHeight: 40,
             buttonWidth: 100),
       ));

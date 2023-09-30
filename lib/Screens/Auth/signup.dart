@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mytest/Screens/Auth/verify_email_address.dart';
+import 'package:mytest/constants/app_constans.dart';
 import 'package:mytest/constants/back_constants.dart';
 import 'package:mytest/controllers/topController.dart';
 import 'package:mytest/models/User/User_model.dart';
@@ -69,7 +70,8 @@ class _SignUpState extends State<SignUp> {
                       const NavigationBack(),
                       const SizedBox(height: 40),
                       Text(
-                        'Sign Up',
+                        AppConstants.sign_up_key.tr,
+                        //  'Sign Up',
                         style: GoogleFonts.lato(
                             color: Colors.white,
                             fontSize: 40,
@@ -78,19 +80,21 @@ class _SignUpState extends State<SignUp> {
                       AppSpaces.verticalSpace20,
                       RichText(
                         text: TextSpan(
-                          text: 'Using  ',
+                          text: AppConstants.using_key.tr,
+                          //'Using  ',
                           style: GoogleFonts.lato(
                             color: HexColor.fromHex("676979"),
                           ),
                           children: <TextSpan>[
                             TextSpan(
-                              text: widget.email,
+                              text: " ${widget.email} ",
                               style: const TextStyle(
                                   color: Colors.white70,
                                   fontWeight: FontWeight.bold),
                             ),
                             TextSpan(
-                              text: "  to login.",
+                              text: AppConstants.to_login_key.tr,
+                              // "  to login.",
                               style: GoogleFonts.lato(
                                 color: HexColor.fromHex("676979"),
                               ),
@@ -145,11 +149,16 @@ class _SignUpState extends State<SignUp> {
                       LabelledFormInput(
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return "The name can not be Empty";
+                              return AppConstants
+                                  .the_name_can_not_be_empty_key.tr;
+                              //"The name can not be Empty";
                             }
                             if (regExnumbers.hasMatch(value) ||
                                 regEx2.hasMatch(value)) {
-                              return "The name can not contain Numbers Or Symbols ";
+                              return AppConstants
+                                  .the_name_can_not_contain_numbers_or_symbols_key
+                                  .tr;
+                              //"The name can not contain Numbers Or Symbols ";
                             }
                             return null;
                           },
@@ -166,17 +175,19 @@ class _SignUpState extends State<SignUp> {
                           },
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           readOnly: false,
-                          placeholder: "Name",
+                          placeholder: AppConstants.name_key.tr,
                           keyboardType: "text",
                           controller: _nameController,
-                          obscureText: obscureText,
-                          label: "Your Name"),
+                          obscureText: false,
+                          label: AppConstants.your_name_key.tr),
                       const SizedBox(height: 15),
                       LabelledFormInput(
                           validator: (value) {
                             if (value!.isNotEmpty) {
                               if (isTakean) {
-                                return "Please use another userName";
+                                return AppConstants
+                                    .please_use_another_userName_key.tr;
+                                //"Please use another userName";
                               }
                             }
                             return null;
@@ -209,25 +220,35 @@ class _SignUpState extends State<SignUp> {
                           },
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           readOnly: false,
-                          placeholder: "UserName",
+                          placeholder: AppConstants.user_name_key.tr,
                           keyboardType: "text",
                           controller: _userNameController,
-                          obscureText: obscureText,
-                          label: "Your UserName"),
+                          obscureText: false,
+                          label: AppConstants.your_username_key.tr),
                       const SizedBox(height: 15),
                       LabelledFormInput(
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return "The password should be more then 7 character";
+                              return AppConstants
+                                  .the_password_should_be_more_then_7_character_key
+                                  .tr;
+                              //"The password should be more then 7 character";
                             }
                             if (regExletters.hasMatch(value) == false) {
-                              return "please enter at least one small character";
+                              return AppConstants
+                                  .please_enter_at_least_one_small_character_key
+                                  .tr;
+                              //"please enter at least one small character";
                             }
                             if (regExnumbers.hasMatch(value) == false) {
-                              return "please enter at least one Number";
+                              return AppConstants
+                                  .please_enter_at_least_one_number_key.tr;
+                              //"please enter at least one Number";
                             }
                             if (regExbigletters.hasMatch(value) == false) {
-                              return "please enter at least one big character";
+                              return AppConstants
+                                  .please_enter_at_least_one_big_character_key
+                                  .tr;
                             }
                             return null;
                           },
@@ -243,24 +264,29 @@ class _SignUpState extends State<SignUp> {
                           },
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           readOnly: false,
-                          placeholder: "Password",
+                          placeholder: AppConstants.password_key.tr,
                           keyboardType: "text",
                           controller: _passController,
                           obscureText: obscureText,
-                          label: "Your Password"),
+                          label: AppConstants.your_password_key.tr),
                       const SizedBox(height: 15),
                       LabelledFormInput(
                           validator: (value) {
                             if (password.isNotEmpty && confirm != password) {
-                              return "the password did not match";
+                              return AppConstants
+                                  .the_password_did_not_match_key.tr;
+                              // "the password did not match";
                             }
                             return null;
                           },
                           onClear: () {
                             setState(() {
-                              confirm = "";
-                              _confirmPassController.text = "";
+                              obscureText = !obscureText;
                             });
+                            // setState(() {
+                            //   confirm = "";
+                            //   _confirmPassController.text = "";
+                            // });
                           },
                           onChanged: (value) {
                             setState(() {
@@ -269,11 +295,11 @@ class _SignUpState extends State<SignUp> {
                           },
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           readOnly: false,
-                          placeholder: "Confirm",
+                          placeholder: AppConstants.confirm_key.tr,
                           keyboardType: "text",
                           controller: _confirmPassController,
                           obscureText: obscureText,
-                          label: "confirm Password"),
+                          label: AppConstants.confirm_assword_key.tr),
                       const SizedBox(height: 40),
                       SizedBox(
                         width: double.infinity,
@@ -347,7 +373,11 @@ class _SignUpState extends State<SignUp> {
                                       (right) => {
                                             Navigator.of(context).pop(),
                                             CustomSnackBar.showSuccess(
-                                                "Welcome in our team \n Plans to do team happy in you ")
+                                              AppConstants
+                                                  .welcome_in_our_team_Plans_to_do_team_happy_in_you_key
+                                                  .tr,
+                                              // "Welcome in our team \n Plans to do team happy in you "
+                                            )
                                           });
                                 }
                                 Get.to(() => const VerifyEmailAddressScreen());
@@ -360,7 +390,8 @@ class _SignUpState extends State<SignUp> {
                           },
                           style: ButtonStyles.blueRounded,
                           child: Text(
-                            'Sign Up',
+                            AppConstants.sign_up_key.tr,
+                            //'Sign Up',
                             style: GoogleFonts.lato(
                                 fontSize: 20, color: Colors.white),
                           ),
@@ -381,12 +412,15 @@ class _SignUpState extends State<SignUp> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Choose an Image'),
+          title: Text(
+            AppConstants.choose_an_image_key.tr,
+            //'Choose an Image'
+          ),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
                 GestureDetector(
-                  child: const Text('Camera'),
+                  child: Text(AppConstants.camera_key.tr),
                   onTap: () {
                     _getImage(ImageSource.camera);
                     Navigator.of(context).pop();
@@ -394,7 +428,7 @@ class _SignUpState extends State<SignUp> {
                 ),
                 const Padding(padding: EdgeInsets.all(8.0)),
                 GestureDetector(
-                  child: const Text('Gallery'),
+                  child: Text(AppConstants.gallery_key.tr),
                   onTap: () {
                     _getImage(ImageSource.gallery);
                     Navigator.of(context).pop();
@@ -402,7 +436,7 @@ class _SignUpState extends State<SignUp> {
                 ),
                 const Padding(padding: EdgeInsets.all(8.0)),
                 GestureDetector(
-                  child: const Text('Cancel'),
+                  child: Text(AppConstants.cancel_key.tr),
                   onTap: () {
                     Navigator.of(context).pop();
                   },

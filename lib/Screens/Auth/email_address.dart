@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:math' as math;
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mytest/constants/app_constans.dart';
 import 'package:mytest/constants/back_constants.dart';
 import 'package:mytest/controllers/topController.dart';
 import 'package:mytest/controllers/userController.dart';
@@ -61,7 +62,8 @@ class _EmailAddressScreenState extends State<EmailAddressScreen> {
                     children: [
                       const NavigationBack(),
                       const SizedBox(height: 40),
-                      Text("What's your\nemail\naddress?",
+                      Text(AppConstants.whats_your_email_address_key.tr,
+                          //"What's your\nemail\naddress?",
                           style: GoogleFonts.lato(
                               color: Colors.white,
                               fontSize: 40,
@@ -71,7 +73,8 @@ class _EmailAddressScreenState extends State<EmailAddressScreen> {
                           autovalidateMode: AutovalidateMode.disabled,
                           validator: (value) {
                             if (!EmailValidator.validate(value!)) {
-                              return "Enter Valid Email";
+                              return AppConstants.enter_valid_email_key.tr;
+                              //"Enter Valid Email";
                             } else {
                               return null;
                             }
@@ -88,11 +91,11 @@ class _EmailAddressScreenState extends State<EmailAddressScreen> {
                             });
                           },
                           readOnly: false,
-                          placeholder: "Email",
+                          placeholder: AppConstants.email_key.tr,
                           keyboardType: "text",
                           controller: _emailController,
                           obscureText: obscureText,
-                          label: "Your Email"),
+                          label: AppConstants.your_email_key.tr),
                       AppSpaces.verticalSpace40,
                       SizedBox(
                         //width: 180,
@@ -112,14 +115,17 @@ class _EmailAddressScreenState extends State<EmailAddressScreen> {
                                         color: Colors.white,
                                         borderRadius: BorderRadius.circular(25),
                                       ),
-                                      child: const Column(
+                                      child: Column(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
-                                          CircularProgressIndicator(),
-                                          SizedBox(height: 16),
+                                          const CircularProgressIndicator(),
+                                          const SizedBox(height: 16),
                                           Text(
-                                            'Checking Email if exsit before',
-                                            style: TextStyle(
+                                            AppConstants
+                                                .Checking_Email_if_exsit_before_key
+                                                .tr,
+                                            //  'Checking Email if exsit before',
+                                            style: const TextStyle(
                                               fontSize: 18,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.black,
@@ -137,7 +143,10 @@ class _EmailAddressScreenState extends State<EmailAddressScreen> {
                                   value: email)) {
                                 Navigator.of(context).pop();
                                 CustomSnackBar.showError(
-                                    "Sorry But Email Already In Use");
+                                  AppConstants
+                                      .Sorry_But_Email_Already_In_Use_key.tr,
+                                  //  "Sorry But Email Already In Use"
+                                );
                               } else {
                                 Navigator.of(context).pop();
                                 print("sign up");
@@ -153,7 +162,8 @@ class _EmailAddressScreenState extends State<EmailAddressScreen> {
                             children: [
                               const Icon(Icons.email, color: Colors.white),
                               Text(
-                                '   Continue with Email',
+                                AppConstants.continue_with_email_key.tr,
+                                // '   Continue with Email',
                                 style: GoogleFonts.lato(
                                     fontSize: 20, color: Colors.white),
                               ),

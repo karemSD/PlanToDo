@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mytest/constants/app_constans.dart';
 import '../../Values/values.dart';
 
 class LabelledFormInput extends StatelessWidget {
@@ -70,9 +72,9 @@ class LabelledFormInput extends StatelessWidget {
             ),
             suffixIcon: controller.text.isEmpty
                 ? null
-                : placeholder == 'Password' ||
+                : placeholder == AppConstants.password_key.tr ||
                         placeholder == 'Choose a password' ||
-                        placeholder == "Confirm"
+                        placeholder == AppConstants.confirm_key.tr
                     ? InkWell(
                         onTap: onClear,
                         child: obscureText

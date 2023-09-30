@@ -9,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mytest/Screens/Onboarding/onboarding_carousel.dart';
 import 'package:mytest/Screens/Profile/my_profile.dart';
+import 'package:mytest/constants/app_constans.dart';
 import 'package:mytest/constants/back_constants.dart';
 import 'package:mytest/controllers/userController.dart';
 import 'package:mytest/models/User/User_model.dart';
@@ -83,7 +84,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   child: Column(
                     children: [
                       TaskezAppHeader(
-                        title: "$tabSpace Edit Profile",
+                        title: "$tabSpace ${AppConstants.edit_profile_key.tr}",
                         widget: PrimaryProgressButton(
                           callback: () async {
                             try {
@@ -162,8 +163,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                     print("email2");
                                     pop = true;
                                     Navigator.of(context).pop();
-                                    CustomSnackBar.showSuccess(
-                                        "Email updated successfully ..Please Login and verify the new Email ");
+                                    CustomSnackBar.showSuccess(AppConstants
+                                            .email_updated_successfully_key.tr
+                                        //"Email updated successfully ..Please Login adgin and verify the new Email "
+                                        );
                                     AuthService.instance.logOut();
                                     changes = true;
                                     Get.offAll(
@@ -181,7 +184,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 }
                                 if (changes) {
                                   CustomSnackBar.showSuccess(
-                                      "Update completed successfully");
+                                      AppConstants.updated_successfully_key.tr);
                                 }
                                 // else {
                                 //   CustomSnackBar.showError(
@@ -195,7 +198,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           },
                           width: 80,
                           height: 40,
-                          label: "Save",
+                          label: AppConstants.save_key.tr,
                           textStyle: GoogleFonts.lato(
                               color: Colors.white, fontWeight: FontWeight.bold),
                         ),
@@ -252,11 +255,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           LabelledFormInput(
                               validator: (value) {
                                 if (value!.isEmpty) {
-                                  return "The name can not be Empty";
+                                  return AppConstants
+                                      .name_can_not_be_empty_key.tr;
                                 }
                                 if (regExnumbers.hasMatch(value) ||
                                     regEx2.hasMatch(value)) {
-                                  return "The name can not contain Numbers Or Symbols ";
+                                  return AppConstants
+                                      .the_name_can_not_contain_numbers_or_symbols_key
+                                      .tr;
                                 }
                                 return null;
                               },
@@ -277,7 +283,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               keyboardType: "text",
                               controller: nameController,
                               obscureText: false,
-                              label: "Your Name"),
+                              label: AppConstants.your_name_key.tr),
                           AppSpaces.verticalSpace20,
                           LabelledFormInput(
                               onChanged: (value) {
@@ -300,7 +306,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               keyboardType: "text",
                               controller: userNameController,
                               obscureText: false,
-                              label: "Your UserName"),
+                              label: AppConstants.your_username_key.tr),
                           AppSpaces.verticalSpace20,
                           Visibility(
                             visible: !AuthService
@@ -308,7 +314,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             child: LabelledFormInput(
                                 validator: (value) {
                                   if (!EmailValidator.validate(value!)) {
-                                    return "Enter Valid Email";
+                                    return AppConstants
+                                        .enter_valid_email_key.tr;
                                   } else {
                                     return null;
                                   }
@@ -333,7 +340,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 keyboardType: "text",
                                 controller: emailController,
                                 obscureText: false,
-                                label: "Your Email"),
+                                label: AppConstants.your_email_key.tr),
                           ),
                           AppSpaces.verticalSpace20,
                           LabelledFormInput(
@@ -353,7 +360,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               keyboardType: "text",
                               controller: bioController,
                               obscureText: true,
-                              label: "Bio"),
+                              label: bioK),
                         ],
                       ),
                       Visibility(
@@ -365,7 +372,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               callback: () {
                                 showPasswordDialog(context);
                               },
-                              buttonText: "Change Password",
+                              buttonText: AppConstants.change_password_key.tr,
                               buttonHeight: 50,
                               buttonWidth: 175),
                         ),
@@ -382,18 +389,20 @@ class _EditProfilePageState extends State<EditProfilePage> {
   }
 
   String? selectedImagePath;
-
   void _showImagePickerDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Choose an Image'),
+          title: Text(
+            AppConstants.choose_an_image_key.tr,
+            //'Choose an Image'
+          ),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
                 GestureDetector(
-                  child: const Text('Camera'),
+                  child: Text(AppConstants.camera_key.tr),
                   onTap: () {
                     _getImage(ImageSource.camera);
                     Navigator.of(context).pop();
@@ -401,7 +410,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 ),
                 const Padding(padding: EdgeInsets.all(8.0)),
                 GestureDetector(
-                  child: const Text('Gallery'),
+                  child: Text(AppConstants.gallery_key.tr),
                   onTap: () {
                     _getImage(ImageSource.gallery);
                     Navigator.of(context).pop();
@@ -409,7 +418,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 ),
                 const Padding(padding: EdgeInsets.all(8.0)),
                 GestureDetector(
-                  child: const Text('Cancel'),
+                  child: Text(AppConstants.cancel_key.tr),
                   onTap: () {
                     Navigator.of(context).pop();
                   },
@@ -438,6 +447,63 @@ class _EditProfilePageState extends State<EditProfilePage> {
     }
   }
 }
+//   String? selectedImagePath;
+
+//   void _showImagePickerDialog(BuildContext context) {
+//     showDialog(
+//       context: context,
+//       builder: (BuildContext context) {
+//         return AlertDialog(
+//           title: const Text('Choose an Image'),
+//           content: SingleChildScrollView(
+//             child: ListBody(
+//               children: <Widget>[
+//                 GestureDetector(
+//                   child: const Text('Camera'),
+//                   onTap: () {
+//                     _getImage(ImageSource.camera);
+//                     Navigator.of(context).pop();
+//                   },
+//                 ),
+//                 const Padding(padding: EdgeInsets.all(8.0)),
+//                 GestureDetector(
+//                   child: const Text('Gallery'),
+//                   onTap: () {
+//                     _getImage(ImageSource.gallery);
+//                     Navigator.of(context).pop();
+//                   },
+//                 ),
+//                 const Padding(padding: EdgeInsets.all(8.0)),
+//                 GestureDetector(
+//                   child: const Text('Cancel'),
+//                   onTap: () {
+//                     Navigator.of(context).pop();
+//                   },
+//                 ),
+//               ],
+//             ),
+//           ),
+//         );
+//       },
+//     ).then((value) {
+//       if (value == null) {
+//         // Handle the case where the user did not choose a photo
+//         // Display a message or perform any required actions
+//       }
+//     });
+//   }
+
+//   void _getImage(ImageSource source) async {
+//     final picker = ImagePicker();
+//     final pickedFile = await picker.pickImage(source: source);
+
+//     if (pickedFile != null) {
+//       setState(() {
+//         selectedImagePath = pickedFile.path;
+//       });
+//     }
+//   }
+// }
 
 void showPasswordDialog(BuildContext context) {
   final Rx<TextEditingController> passController = TextEditingController().obs;
