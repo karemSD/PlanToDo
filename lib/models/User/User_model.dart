@@ -380,7 +380,7 @@ class UserModel extends VarTopModel {
       exception = Exception(AppConstants.username_not_empty_key.tr);
       throw exception;
     }
-    if (userName.length <= 3) {
+    if (userName.length < 3) {
       //لايمكن ان يكون اليوزرنيم مألف من اقل من ثلاث محارف
       exception = Exception(AppConstants.username_min_length_key.tr);
       throw exception;

@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'dart:math' as math;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:mytest/constants/app_constans.dart';
 
 import 'package:mytest/services/auth_service.dart';
 import 'package:mytest/widgets/Snackbar/custom_snackber.dart';
@@ -66,7 +67,9 @@ class _VerifyEmailAddressScreenState extends State<VerifyEmailAddressScreen> {
                     ),
                     const SizedBox(height: 40),
                     Text(
-                        "Check your an\nemail messages we have send the link to email to verify ",
+                        AppConstants
+                            .check_your_an_email_messages_we_have_send_the_link_to_email_to_verify_key
+                            .tr,
                         style: GoogleFonts.lato(
                             color: Colors.white,
                             fontSize: 40,
@@ -85,8 +88,8 @@ class _VerifyEmailAddressScreenState extends State<VerifyEmailAddressScreen> {
                               (right) => {
                                     if (right == true)
                                       {
-                                        CustomSnackBar.showSuccess(
-                                            "the Email is verifed"),
+                                        CustomSnackBar.showSuccess(AppConstants
+                                            .the_mail_is_verifed_key.tr),
                                         Get.offAll(() => const Timeline()),
                                       }
                                   });
@@ -96,7 +99,7 @@ class _VerifyEmailAddressScreenState extends State<VerifyEmailAddressScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             const Icon(Iconsax.link, color: Colors.white),
-                            Text('  Send Verify Link',
+                            Text(AppConstants.send_verify_link_key.tr,
                                 style: GoogleFonts.lato(
                                     fontSize: 20, color: Colors.white)),
                           ],
@@ -107,9 +110,10 @@ class _VerifyEmailAddressScreenState extends State<VerifyEmailAddressScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(
-                          "Verifed ? ",
-                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        Text(
+                          AppConstants.verifed_key.tr,
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 20),
                         ),
                         GestureDetector(
                           onTap: () {
@@ -118,17 +122,19 @@ class _VerifyEmailAddressScreenState extends State<VerifyEmailAddressScreen> {
                               CustomSnackBar.showError(left.toString());
                             }, (right) {
                               if (right == true) {
-                                CustomSnackBar.showSuccess("Sucess baby");
+                                CustomSnackBar.showSuccess(
+                                    AppConstants.sucess_baby_key.tr);
                                 Get.offAll(() => const Timeline());
                               } else {
-                                CustomSnackBar.showError(
-                                    "Plese Verify your Email before continue ");
+                                CustomSnackBar.showError(AppConstants
+                                    .plese_verify_your_email_before_continue_key
+                                    .tr);
                               }
                             });
                           },
-                          child: const Text(
-                            "Continue",
-                            style: TextStyle(
+                          child: Text(
+                            AppConstants.continue_key.tr,
+                            style: const TextStyle(
                                 color: Colors.blueAccent,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold),

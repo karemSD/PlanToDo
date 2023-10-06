@@ -114,10 +114,10 @@ class AppConstants {
 
   static const String there_is_no_user_logging_in_or_sign_up_key =
       "There_is_No_user_in_the_App";
-  static const String there_is_no_user_in_the_app_key =
-      "There_is_No_user_in_the_App";
-  static const String the_email_in_its_way_to_you =
-      "The_email_in_its_way_to_you";
+  // static const String there_is_no_user_in_the_app_key =
+  //     "There_is_No_user_in_the_App";
+  static const String the_email_in_its_way_to_you_key =
+      "the_email_in_its_way_to_you";
   static const String There_is_No_User_Logging_in_Or_Sign_Up_key =
       "There_is_No_User_Logging_in_Or_Sign_Up";
   static const String
@@ -135,6 +135,11 @@ class AppConstants {
   static const String project_sub_tasks_key = "project_sub_tasks";
   static const String project_members_key = "project_members";
   static const String project_manager_key = "project_manager";
+  static const String team_manager_key = "Team_Manager";
+  static const String no_invitation_key = "There_Is_No_Invitation";
+  static const String manager_key = "Manager";
+  static const String loading_key = "Loading";
+
   static const String project_start_time_key = "project_start_time";
   static const String updated_Date_key = "updated_date";
   static const String created_date_key = "created_date";
@@ -406,11 +411,17 @@ class AppConstants {
   static const String userId_update_error_key = "userId_update_error";
   static const String team_project_overlap_error_key =
       "team_project_overlap_error";
+  static const String join_requests_in_box_key = "Join_Requests_In_Box";
+  static const String invitations_key = "Invitations";
+  static const String no_invitations_for_tasks_key = "No_Invitations_For_Tasks";
   static const String make_project_first_error_key = "make_project_first_error";
   static const String not_member_no_projects_error_key =
       "not_member_no_projects_error";
   static const String user_task_name_empty_error_key =
       "user_task_name_empty_error";
+  static const String task_in_box_key = "Task_In_Box";
+  static const String not_member_to_get_tasks_key =
+      "You_Are_Not_Member_In_Any_Team_Yet_To_Get_Tasks";
   static const String user_task_id_empty_error_key = "user_task_id_empty_error";
   static const String task_status_id_empty_error_key =
       "task_status_id_empty_error";
@@ -576,7 +587,7 @@ class AppConstants {
   static const String is_completed_key = "is_completed";
   static const String daily_goal_key = "daily_goal";
   static const String you_marked_key = "you_marked";
-  static const String are_done_key = "are_done 🎉";
+  static const String are_done_key = "are_done";
   static const String all_task_key = "all_task";
   static const String completed_key = "completed";
   static const String in_the_last_7_days_key = "in_the_last_7_days";
@@ -704,7 +715,16 @@ class AppConstants {
   static const String edit_profile_key = "Edit_Profile";
   static const String email_updated_successfully_key =
       "Email_updated_successfully";
-  static const String change_password_key = "Change_Password";  
+  static const String change_password_key = "Change_Password";
+  static const String enter_new_password_key = "Enter_The_New_Password";
+  static const String password_updated_successfully_key =
+      "Password_updated_successfully";
+  static const String send_reset_password_link_key = "Send_Reset_Password_Link";
+  static const Whats_your_email_address_to_send_reset_password_Link_key =
+      "What's_your_email_address_to_send_reset_password_Link";
+
+  static const String sensitive_change_password_process_key =
+      "This_process_is_sensitive_so_you_should_log_in_again_before_trying_to_change_your_password_again";
 
   static const String manager_teams_key = "Manager_Teams";
 

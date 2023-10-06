@@ -102,6 +102,13 @@ class AuthService extends GetxController {
       await user?.updatePassword(newPassword);
       return const Right(true);
     } on Exception catch (e) {
+      if (e.toString() ==
+          "[firebase_auth/requires-recent-login] This operation is sensitive and requires recent authentication. Log in again before retrying this request.") {
+        print(202);
+        return Left(
+            Exception(AppConstants.sensitive_change_password_process_key.tr));
+      }
+      print(e.toString());
       return Left(e);
     }
   }
@@ -132,7 +139,7 @@ class AuthService extends GetxController {
         if (!user.emailVerified) {
           await user.sendEmailVerification();
           CustomSnackBar.showSuccess(
-              AppConstants.the_email_in_its_way_to_you.tr);
+              AppConstants.the_email_in_its_way_to_you_key.tr);
           return const Right(false);
         }
         return const Right(true);
@@ -158,7 +165,8 @@ class AuthService extends GetxController {
         }
         return const Right(false);
       }
-      throw Exception(AppConstants.there_is_no_user_in_the_app_key.tr);
+      throw Exception(
+          AppConstants.there_is_no_user_logging_in_or_sign_up_key.tr);
     } on Exception catch (e) {
       dev.log(e.toString());
       return Left(e);

@@ -38,10 +38,12 @@ class _DailyGoalCardState extends State<DailyGoalCard> {
       0,
       0,
     );
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(20.0),
-      height: 220,
+      height: screenHeight * 0.3, // Adjust percentage as needed,
       decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(20.0)),
           color: AppColors.primaryBackgroundColor),
@@ -114,8 +116,11 @@ class dailygoal extends StatelessWidget {
   final int second;
   final double percent;
   String message;
+
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -124,105 +129,126 @@ class dailygoal extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(AppConstants.daily_goal_key.tr,
-                style: GoogleFonts.lato(
-                    color: HexColor.fromHex("616575"),
-                    fontSize: 17,
-                    fontWeight: FontWeight.w500)),
+            Text(
+              AppConstants.daily_goal_key.tr,
+              style: GoogleFonts.lato(
+                  color: HexColor.fromHex("616575"),
+                  fontSize: screenWidth * 0.05,
+                  fontWeight: FontWeight.w500),
+            ),
             AppSpaces.verticalSpace10,
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Container(
-                    width: 50,
-                    height: 25,
-                    decoration: BoxDecoration(
-                        color: HexColor.fromHex("8ACA72"),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(20.0))),
-                    child: Center(
-                      child: Text('$first/$second',
-                          style: GoogleFonts.lato(
-                            color: Colors.white,
-                            fontSize: 16,
-                          )),
-                    )),
-                AppSpaces.horizontalSpace10,
-                Text('Tasks',
-                    style: GoogleFonts.lato(
+                  width: 50,
+                  height: 25,
+                  decoration: BoxDecoration(
+                      color: HexColor.fromHex("8ACA72"),
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(20.0),
+                      )),
+                  child: Center(
+                    child: Text(
+                      '$first/$second',
+                      style: GoogleFonts.lato(
                         color: Colors.white,
-                        fontSize: 17,
-                        fontWeight: FontWeight.w500)),
+                        fontSize: screenWidth * 0.05,
+                      ),
+                    ),
+                  ),
+                ),
+                AppSpaces.horizontalSpace10,
+                Text(
+                  AppConstants.tasks_key.tr,
+                  style: GoogleFonts.lato(
+                      color: Colors.white,
+                      fontSize: screenWidth * 0.05,
+                      fontWeight: FontWeight.w500),
+                ),
               ],
             ),
             AppSpaces.verticalSpace10,
             Text(
-                "${AppConstants.you_marked_key.tr}  $first $second $message  ${AppConstants.are_done_key.tr}  ",
-                style: GoogleFonts.lato(
-                    color: HexColor.fromHex("616575"),
-                    fontSize: 17,
-                    fontWeight: FontWeight.w500)),
+              "${AppConstants.you_marked_key.tr}  $first $second $message  ${AppConstants.are_done_key.tr}  ",
+              style: GoogleFonts.lato(
+                  color: HexColor.fromHex("616575"),
+                  fontSize: screenWidth * 0.047,
+                  fontWeight: FontWeight.w500),
+            ),
             AppSpaces.verticalSpace20,
             SizedBox(
-              width: 120,
-              height: 40,
+              width: screenWidth * 0.3, // Adjust the percentage as needed
+              height: screenHeight * 0.05, // Adjust the percentage as needed
               child: ElevatedButton(
-                  onPressed: () {},
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                          HexColor.fromHex("C25FFF")),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50.0),
-                              side: BorderSide(
-                                  color: HexColor.fromHex("C25FFF"))))),
-                  child: Text(AppConstants.all_task_key.tr,
-                      style: GoogleFonts.lato(
-                          fontSize: 17,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white))),
+                onPressed: () {},
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      HexColor.fromHex("C25FFF")),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50.0),
+                      side: BorderSide(
+                        color: HexColor.fromHex("C25FFF"),
+                      ),
+                    ),
+                  ),
+                ),
+                child: Text(
+                  AppConstants.all_task_key.tr,
+                  style: GoogleFonts.lato(
+                      fontSize: screenHeight * 0.021,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
+                ),
+              ),
             )
           ],
         ),
         Stack(
           children: [
             Container(
-                width: 100,
-                height: 100,
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                        width: 8, color: HexColor.fromHex("434552"))),
-                child: Center(
-                  child: Container(
-                    width: 50,
-                    height: 50,
-                    decoration: const BoxDecoration(shape: BoxShape.circle),
-                    child: const ClipOval(
-                      child: Image(
-                        fit: BoxFit.contain,
-                        image: AssetImage(
-                          "assets/small-logo.png",
-                        ),
+              width: 100,
+              height: 100,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  width: screenWidth * 0.02,
+                  color: HexColor.fromHex("434552"),
+                ),
+              ),
+              child: Center(
+                child: Container(
+                  width: screenWidth * 0.05, // Adjust the percentage as needed
+                  height: screenWidth * 0.05,
+                  decoration: const BoxDecoration(shape: BoxShape.circle),
+                  child: const ClipOval(
+                    child: Image(
+                      fit: BoxFit.contain,
+                      image: AssetImage(
+                        "assets/small-logo.png",
                       ),
                     ),
                   ),
-                )),
+                ),
+              ),
+            ),
             Positioned(
-              top: 5,
-              left: 5,
+              top: screenHeight * 0.01, // Adjust the percentage as needed
+              left: screenWidth * 0.01, // Adjust the percentage as needed
               child: RotatedBox(
                 quarterTurns: 4,
                 child: TweenAnimationBuilder<double>(
                   tween: Tween<double>(begin: 0.0, end: 0.80),
                   duration: const Duration(milliseconds: 1000),
                   builder: (context, value, _) => SizedBox(
-                    width: 90,
-                    height: 90,
+                    width: screenWidth * 0.1, // Adjust the percentage as needed
+                    height: screenWidth * 0.1,
                     child: CircularProgressIndicator(
-                        strokeWidth: 8,
-                        value: percent,
-                        color: HexColor.fromHex("8FFFCF")),
+                      strokeWidth: screenWidth * 0.02,
+                      value: percent,
+                      color: HexColor.fromHex("8FFFCF"),
+                    ),
                   ),
                 ),
               ),

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:math' as math;
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mytest/constants/app_constans.dart';
 import 'package:mytest/constants/back_constants.dart';
 import 'package:mytest/controllers/topController.dart';
 import 'package:mytest/controllers/userController.dart';
@@ -62,7 +63,9 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                       const NavigationBack(),
                       const SizedBox(height: 40),
                       Text(
-                        "What's your\nemail\naddress? to send reset password Link",
+                        AppConstants
+                            .Whats_your_email_address_to_send_reset_password_Link_key
+                            .tr,
                         style: GoogleFonts.lato(
                             color: Colors.white,
                             fontSize: 40,
@@ -73,7 +76,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                           autovalidateMode: AutovalidateMode.disabled,
                           validator: (value) {
                             if (!EmailValidator.validate(value!)) {
-                              return "Enter Valid Email";
+                              return AppConstants.enter_valid_email_key.tr;
                             } else {
                               return null;
                             }
@@ -90,11 +93,11 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                             });
                           },
                           readOnly: false,
-                          placeholder: "Email",
+                          placeholder: AppConstants.email_key.tr,
                           keyboardType: "text",
                           controller: _emailController,
                           obscureText: obscureText,
-                          label: "Your Email"),
+                          label: AppConstants.your_email_key.tr),
                       AppSpaces.verticalSpace40,
                       SizedBox(
                         //width: 180,
@@ -121,7 +124,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                             children: [
                               const Icon(Icons.email, color: Colors.white),
                               Text(
-                                '   Send Reset Password Link',
+                                AppConstants.send_reset_password_link_key.tr,
                                 style: GoogleFonts.lato(
                                     fontSize: 20, color: Colors.white),
                               ),

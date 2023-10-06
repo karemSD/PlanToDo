@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'dart:developer' as dev;
 import 'package:either_dart/either.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
@@ -359,7 +360,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                   : widget.user!.bio!,
                               keyboardType: "text",
                               controller: bioController,
-                              obscureText: true,
+                              obscureText: false,
                               label: bioK),
                         ],
                       ),
@@ -515,7 +516,7 @@ void showPasswordDialog(BuildContext context) {
   final RxBool obscureText = false.obs;
   Get.defaultDialog(
       backgroundColor: AppColors.primaryBackgroundColor,
-      title: 'Enter The New Password',
+      title: AppConstants.enter_new_password_key.tr,
       titleStyle: const TextStyle(color: Colors.white),
       content: Form(
         key: formKey,
@@ -523,17 +524,20 @@ void showPasswordDialog(BuildContext context) {
           children: [
             LabelledFormInput(
                 validator: (value) {
-                  if (value!.isEmpty) {
-                    return "The password should be more then 7 character";
+                  if (value!.isEmpty || value.length < 8) {
+                    return AppConstants
+                        .the_password_should_be_more_then_7_character_key.tr;
                   }
                   if (regExletters.hasMatch(value) == false) {
-                    return "please enter at least one small character";
+                    return AppConstants
+                        .please_enter_at_least_one_small_character_key.tr;
                   }
                   if (regExnumbers.hasMatch(value) == false) {
-                    return "please enter at least one Number";
+                    return AppConstants.please_enter_at_least_one_number_key.tr;
                   }
                   if (regExbigletters.hasMatch(value) == false) {
-                    return "please enter at least one big character";
+                    return AppConstants
+                        .please_enter_at_least_one_big_character_key.tr;
                   }
                   return null;
                 },
@@ -545,11 +549,11 @@ void showPasswordDialog(BuildContext context) {
                 },
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 readOnly: false,
-                placeholder: "Password",
+                placeholder: AppConstants.password_key.tr,
                 keyboardType: "text",
                 controller: passController.value,
                 obscureText: obscureText.value,
-                label: "Your Password"),
+                label: AppConstants.your_password_key.tr),
             const SizedBox(height: 15),
           ],
         ),
@@ -565,22 +569,24 @@ void showPasswordDialog(BuildContext context) {
                       .updatePassword(newPassword: password);
                   updatePassword.fold((left) {
                     Navigator.of(context).pop();
+
                     CustomSnackBar.showError(left.toString());
                   }, (right) {
                     Navigator.of(context).pop();
-
+                    dev.log("Password Updated ");
                     CustomSnackBar.showSuccess(
-                        "password updated successfully ");
+                        AppConstants.password_updated_successfully_key.tr);
                     Get.back();
                   });
                 }
               } on Exception catch (e) {
                 Navigator.of(context).pop();
+
                 CustomSnackBar.showError(e.toString());
               }
             },
-            buttonText: "Change Password",
-            buttonHeight: 40,
+            buttonText: AppConstants.change_password_key.tr,
+            buttonHeight: 50,
             buttonWidth: 110),
       ));
 }

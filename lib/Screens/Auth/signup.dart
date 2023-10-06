@@ -334,6 +334,7 @@ class _SignUpState extends State<SignUp> {
                                     right.then((value) async {
                                       imagePathNetWork = value;
                                       UserModel userModel = UserModel(
+                                        emailParameter: widget.email,
                                         userNameParameter:
                                             userName.isEmpty ? null : userName,
                                         nameParameter: name,

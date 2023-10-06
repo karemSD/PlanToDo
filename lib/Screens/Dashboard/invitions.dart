@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/src/intl/date_format.dart';
+import 'package:mytest/constants/app_constans.dart';
 import 'package:mytest/controllers/projectController.dart';
 import 'package:mytest/controllers/project_main_task_controller.dart';
 import 'package:mytest/controllers/teamController.dart';
@@ -51,7 +52,7 @@ class Invitions extends StatelessWidget {
             builder: (controller) {
               return Column(children: [
                 TaskezAppHeader(
-                  title: "Invitations",
+                  title: AppConstants.invitations_key.tr,
                   widget: GestureDetector(
                     onTap: () async {
                       bool fcmStutas =
@@ -66,7 +67,7 @@ class Invitions extends StatelessWidget {
                                 .instance.firebaseAuth.currentUser!.uid),
                         builder: (context, snapshot) {
                           if (snapshot.hasError) {
-                            return const Text("Loading");
+                            return Text(AppConstants.loading_key.tr);
                           }
                           if (snapshot.hasData) {
                             return ProfileDummy(
@@ -103,7 +104,7 @@ class Invitions extends StatelessWidget {
                                         controller.selectedTabIndex.value;
                                     print("0");
                                   },
-                                  buttonText: " Task In Box",
+                                  buttonText: AppConstants.task_in_box_key.tr,
                                   itemIndex: 0,
                                   notifier: settingsButtonTrigger),
                               PrimaryTabButton(
@@ -113,7 +114,8 @@ class Invitions extends StatelessWidget {
                                         controller.selectedTabIndex.value;
                                     print(1);
                                   },
-                                  buttonText: "Join requests In Box",
+                                  buttonText:
+                                      AppConstants.join_requests_in_box_key.tr,
                                   itemIndex: 1,
                                   notifier: settingsButtonTrigger),
                             ],
@@ -171,7 +173,7 @@ class Invitions extends StatelessWidget {
                                         horizontal: 50, vertical: 40),
                                     child: Center(
                                       child: Text(
-                                        "Loading..",
+                                        AppConstants.loading_key.tr,
                                         style: GoogleFonts.fjallaOne(
                                           color: Colors.white,
                                           fontSize: 40,
@@ -199,7 +201,8 @@ class Invitions extends StatelessWidget {
                                           horizontal: 50, vertical: 40),
                                       child: Center(
                                         child: Text(
-                                          "You Are Not Member In Any Team yet",
+                                          AppConstants
+                                              .not_member_to_get_tasks_key.tr,
                                           style: GoogleFonts.fjallaOne(
                                             color: Colors.white,
                                             fontSize: 40,
@@ -282,7 +285,9 @@ class Invitions extends StatelessWidget {
                                                         vertical: 40),
                                                 child: Center(
                                                   child: Text(
-                                                    "No Invitions for Tasks ",
+                                                    AppConstants
+                                                        .no_invitations_for_tasks_key
+                                                        .tr,
                                                     style:
                                                         GoogleFonts.fjallaOne(
                                                       color: Colors.white,
@@ -363,9 +368,11 @@ class Invitions extends StatelessWidget {
                                                           imageUrl:
                                                               projectModel!
                                                                   .imageUrl,
-                                                          header: "Team Name",
-                                                          subHeader:
-                                                              "Manager Team Name",
+                                                          header: AppConstants
+                                                              .team_name_key.tr,
+                                                          subHeader: AppConstants
+                                                              .team_manager_key
+                                                              .tr,
                                                           date:
                                                               " ${formatFromDate(dateTime: DateTime.now(), fromat: "MMM")}  ${DateTime.now().day}"),
                                                       AppSpaces.verticalSpace10
@@ -406,7 +413,7 @@ class Invitions extends StatelessWidget {
                                         horizontal: 50, vertical: 40),
                                     child: Center(
                                       child: Text(
-                                        "Loading..",
+                                        AppConstants.loading_key.tr,
                                         style: GoogleFonts.fjallaOne(
                                           color: Colors.white,
                                           fontSize: 40,
@@ -439,7 +446,7 @@ class Invitions extends StatelessWidget {
                                           horizontal: 50, vertical: 40),
                                       child: Center(
                                         child: Text(
-                                          "There Is No Invitation",
+                                          AppConstants.no_invitation_key.tr,
                                           style: GoogleFonts.fjallaOne(
                                             color: Colors.white,
                                             fontSize: 40,
@@ -476,7 +483,7 @@ class Invitions extends StatelessWidget {
                                                       vertical: 40),
                                               child: Center(
                                                 child: Text(
-                                                  "loading..",
+                                                  AppConstants.loading_key.tr,
                                                   style: GoogleFonts.fjallaOne(
                                                     color: Colors.white,
                                                     fontSize: 40,
@@ -512,12 +519,13 @@ class Invitions extends StatelessWidget {
                                                     ),
                                                     Padding(
                                                       padding: const EdgeInsets
-                                                              .symmetric(
+                                                          .symmetric(
                                                           horizontal: 50,
                                                           vertical: 40),
                                                       child: Center(
                                                         child: Text(
-                                                          "loading...",
+                                                          AppConstants
+                                                              .loading_key.tr,
                                                           style: GoogleFonts
                                                               .fjallaOne(
                                                             color: Colors.white,
@@ -562,7 +570,7 @@ class Invitions extends StatelessWidget {
                                                     header: teamModel.name!,
                                                     //  header: "Team Name",
                                                     subHeader:
-                                                        "Manager:  ${userModel!.name!}",
+                                                        "${AppConstants.manager_key.tr}  ${userModel!.name!}",
                                                     //subHeader: "Manager Team Name",
                                                     imageUrl:
                                                         teamModel.imageUrl,
