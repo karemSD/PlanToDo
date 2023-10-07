@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mytest/constants/app_constans.dart';
 
 import 'package:mytest/widgets/Dashboard/select_color_dialog.dart';
 import '../../Values/values.dart';
@@ -115,7 +116,8 @@ class _CreateUserCategoryState extends State<CreateUserCategory> {
                     validator: (value) {
                       if (value!.isNotEmpty) {
                         if (isTaked) {
-                          return "Please use another CategoryName";
+                          return AppConstants
+                              .please_use_another_categoryName_key.tr;
                         }
                       }
                       return null;
@@ -130,7 +132,7 @@ class _CreateUserCategoryState extends State<CreateUserCategory> {
                     label: "",
                     readOnly: false,
                     autovalidateMode: AutovalidateMode.always,
-                    placeholder: "Category Name ....",
+                    placeholder: AppConstants.category_name_key.tr,
                     keyboardType: "text",
                     controller: _taskNameController,
                     obscureText: false,
@@ -176,7 +178,7 @@ class _CreateUserCategoryState extends State<CreateUserCategory> {
         fontfamilyParameter: icon.fontFamily,
         iconCodePointParameter: icon.codePoint,
         hexColorParameter: color,
-        userIdParameter:AuthService.instance. firebaseAuth.currentUser!.uid,
+        userIdParameter: AuthService.instance.firebaseAuth.currentUser!.uid,
         idParameter: usersTasksRef.doc().id,
         nameParameter: name,
         createdAtParameter: DateTime.now(),

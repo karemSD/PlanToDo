@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mytest/Screens/Dashboard/search_bar_animation.dart';
+import 'package:mytest/constants/app_constans.dart';
 import 'package:mytest/controllers/user_task_controller.dart';
 
 import '../../BottomSheets/bottom_sheets.dart';
@@ -42,11 +43,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
   String _getSortOptionText(CategorySortOption option) {
     switch (option) {
       case CategorySortOption.name:
-        return 'Name';
+        return AppConstants.name_key.tr;
       case CategorySortOption.updatedDate:
-        return 'Updated Date';
+        return AppConstants.updated_Date_key.tr;
       case CategorySortOption.createDate:
-        return 'Created Date';
+        return AppConstants.created_date_key.tr;
       // Add cases for more sorting options if needed
       default:
         return '';
@@ -73,7 +74,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
       children: [
         SafeArea(
           child: TaskezAppHeader(
-            title: "Categories",
+            title: AppConstants.categories_key.tr,
             widget: MySearchBarWidget(
               editingController: editingController,
               onChanged: (String value) {
@@ -131,7 +132,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
               onPressed: toggleSortOrder, // Toggle the sort order
             ),
             IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.grid_view,
                 color: Colors.white,
               ),
@@ -214,10 +215,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 }
                 return Center(
                   child: Text(
-                    "No categories found",
+                    AppConstants.no_categories_found_key.tr,
                     style: GoogleFonts.lato(
                       color: Colors.white,
-                      fontSize: 20,
+                      fontSize: Utils.screenWidth * 0.095,
                     ),
                   ),
                 );

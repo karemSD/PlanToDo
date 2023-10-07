@@ -297,15 +297,18 @@ class _ProjectScreenState extends State<ProjectScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
 //
-                                const Icon(
+                                Icon(
                                   Icons.search_off,
                                   //   Icons.heart_broken_outlined,
                                   color: Colors.red,
-                                  size: 120,
+                                  size: Utils.screenWidth * 0.28,
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 50, vertical: 40),
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: Utils.screenWidth *
+                                        0.1, // Adjust the percentage as needed
+                                    vertical: Utils.screenHeight * 0.05,
+                                  ),
                                   child: Center(
                                     child: Text(
                                       snapshotProject.error
@@ -313,7 +316,7 @@ class _ProjectScreenState extends State<ProjectScreen> {
                                           .substring(11),
                                       style: GoogleFonts.fjallaOne(
                                         color: Colors.white,
-                                        fontSize: 40,
+                                        fontSize: Utils.screenWidth * 0.1,
                                       ),
                                     ),
                                   ),
@@ -403,9 +406,9 @@ class _ProjectScreenState extends State<ProjectScreen> {
                                     return Center(
                                       child: Text(
                                         'Error: ${snapshotTeam.error}',
-                                        style: const TextStyle(
+                                        style: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 39,
+                                          fontSize: Utils.screenWidth * 0.1,
                                         ),
                                       ),
                                     );
@@ -431,9 +434,9 @@ class _ProjectScreenState extends State<ProjectScreen> {
                                         return Center(
                                           child: Text(
                                             'Error: ${snapshotStatus.error}',
-                                            style: const TextStyle(
+                                            style: TextStyle(
                                               color: Colors.white,
-                                              fontSize: 39,
+                                              fontSize: Utils.screenWidth * 0.1,
                                             ),
                                           ),
                                         );

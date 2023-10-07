@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mytest/constants/app_constans.dart';
 import 'package:mytest/widgets/Onboarding/gradient_color_ball.dart';
 
 import '../../Values/values.dart';
@@ -46,7 +47,8 @@ class _ColorSelectionDialogState extends State<ColorSelectionDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: HexColor.fromHex("#181a1f"),
-      title: Text('Choose Color', style: AppTextStyles.header2),
+      title:
+          Text(AppConstants.choose_color_key.tr, style: AppTextStyles.header2),
       content: Wrap(
         alignment: WrapAlignment.start,
         children: List.generate(
@@ -69,7 +71,7 @@ class _ColorSelectionDialogState extends State<ColorSelectionDialog> {
                 Get.back();
               },
               child: Text(
-                'Close',
+                AppConstants.close_key.tr,
                 style: GoogleFonts.lato(
                   color: HexColor.fromHex("616575"),
                   fontSize: 16,
@@ -78,8 +80,8 @@ class _ColorSelectionDialogState extends State<ColorSelectionDialog> {
               ),
             ),
             PrimaryProgressButton(
-              width: 120,
-              label: 'OK',
+              width: Utils.screenWidth * 0.2,
+              label: AppConstants.oK_key.tr,
               callback: () {
                 // Do something with the selected color
                 String selectedColor = getSelectedColor();

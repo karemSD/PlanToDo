@@ -42,7 +42,7 @@ class _DashboardProductivityState extends State<DashboardProductivity> {
 
     return Column(
       children: [
-        AppSpaces.verticalSpace10,
+        // AppSpaces.verticalSpace10,
         DailyGoalCard(
           message: AppConstants.task_key.tr,
           allStream: userTaskController.getUserTasksStartInADayForAStatusStream(

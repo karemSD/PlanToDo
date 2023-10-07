@@ -371,6 +371,7 @@ class AppConstants {
   static const String team_name_empty_error_key = "team_name_empty_error";
   static const String team_name_min_length_error_key =
       "team_name_min_length_error";
+   static const String    choose_member_for_team_key = "Please_choose_one_member_at_least_to_make_a_Team";
   static const String team_creating_time_future_error_key =
       "team_creating_time_future_error";
   static const String team_creating_time_past_error_key =
@@ -503,6 +504,9 @@ class AppConstants {
       "sorry_but_make_a_team_then_get_startedsorry_but_make_a_team_then_get_startedsorry_but_make_a_team_then_get_started";
   static const String sorry_you_are_not_a_member_in_any_team_key =
       "sorry_you_are_not_a_member_in_any_team";
+  static const String no_categories_found_key = "No_categories_found";
+  static const String team_name_not_empty_key = "Team_Name_Should_be_not_Empty";
+
   static const String
       sorry_you_are_not_a_member_in_any_team_click_here_to_join_or_create_team_key =
       "sorry_you_are_not_a_member_in_any_team_click_here_to_join_or_create_team";
@@ -570,6 +574,9 @@ class AppConstants {
   static const String create_new_team_key = "create_new_team";
   static const String upload_complete_key = "upload_complete";
   static const String image_upload_failed_key = "image_upload_failed";
+  static const String completed_last_7_days_key =
+      "Completed_in_the_last_7_Days";
+
   static const String please_use_another_categoryName_key =
       "please_use_another_categoryName";
   static const String category_key = "category";

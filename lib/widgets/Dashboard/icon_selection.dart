@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mytest/constants/app_constans.dart';
 
 import '../../Values/values.dart';
 import '../Buttons/primary_progress_button.dart';
@@ -52,7 +53,7 @@ class _IconSelectionDialogState extends State<IconSelectionDialog> {
     return AlertDialog(
       backgroundColor: HexColor.fromHex("#181a1f"),
       title: Text(
-        'Choose Icon',
+        AppConstants.choose_icon_key.tr,
         style: AppTextStyles.header2,
       ),
       content: SingleChildScrollView(
@@ -96,7 +97,7 @@ class _IconSelectionDialogState extends State<IconSelectionDialog> {
                 Get.back();
               },
               child: Text(
-                'Close',
+                AppConstants.close_key.tr,
                 style: GoogleFonts.lato(
                   color: HexColor.fromHex("616575"),
                   fontSize: 16,
@@ -105,8 +106,8 @@ class _IconSelectionDialogState extends State<IconSelectionDialog> {
               ),
             ),
             PrimaryProgressButton(
-              width: 110,
-              label: 'OK',
+              width: Utils.screenWidth * 0.25,
+              label: AppConstants.oK_key.tr,
               callback: () {
                 // Do something with the selected icon
                 widget.onSelectedIconChanged(getSelectedIcon());

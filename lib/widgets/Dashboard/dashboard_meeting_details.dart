@@ -15,6 +15,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:mytest/Screens/Projects/searchForMembers.dart';
+import 'package:mytest/constants/app_constans.dart';
 import 'package:mytest/controllers/manger_controller.dart';
 import 'package:mytest/controllers/teamController.dart';
 import 'package:mytest/controllers/waitingMamberController.dart';
@@ -57,12 +58,12 @@ class _DashboardMeetingDetailsState extends State<DashboardMeetingDetails> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Choose an Image'),
+          title: Text(AppConstants.choose_an_image_key.tr),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
                 GestureDetector(
-                  child: const Text('Camera'),
+                  child: Text(AppConstants.camera_key.tr),
                   onTap: () {
                     _getImage(ImageSource.camera);
                     Navigator.of(context).pop();
@@ -70,7 +71,7 @@ class _DashboardMeetingDetailsState extends State<DashboardMeetingDetails> {
                 ),
                 const Padding(padding: EdgeInsets.all(8.0)),
                 GestureDetector(
-                  child: const Text('Gallery'),
+                  child: Text(AppConstants.gallery_key.tr),
                   onTap: () {
                     _getImage(ImageSource.gallery);
                     Navigator.of(context).pop();
@@ -78,7 +79,9 @@ class _DashboardMeetingDetailsState extends State<DashboardMeetingDetails> {
                 ),
                 const Padding(padding: EdgeInsets.all(8.0)),
                 GestureDetector(
-                  child: const Text('Cancel'),
+                  child: Text(
+                    AppConstants.cancel_key.tr,
+                  ),
                   onTap: () {
                     Navigator.of(context).pop();
                   },
@@ -176,7 +179,9 @@ class _DashboardMeetingDetailsState extends State<DashboardMeetingDetails> {
                       }),
                       AppSpaces.verticalSpace10,
                       InBottomSheetSubtitle(
-                        title: teamName.isEmpty ? "Team Name" : teamName,
+                        title: teamName.isEmpty
+                            ? AppConstants.team_name_key.tr
+                            : teamName,
                         alignment: Alignment.center,
                         textStyle: GoogleFonts.lato(
                           fontWeight: FontWeight.w600,
@@ -185,8 +190,9 @@ class _DashboardMeetingDetailsState extends State<DashboardMeetingDetails> {
                         ),
                       ),
                       AppSpaces.verticalSpace10,
-                      const InBottomSheetSubtitle(
-                        title: "Tap the logo to upload new file",
+                      InBottomSheetSubtitle(
+                        title:
+                            AppConstants.tap_the_logo_to_upload_new_file_key.tr,
                         alignment: Alignment.center,
                       ),
                       AppSpaces.verticalSpace20,
@@ -195,7 +201,7 @@ class _DashboardMeetingDetailsState extends State<DashboardMeetingDetails> {
                         child: LabelledFormInput(
                             validator: (value) {
                               if (value!.isEmpty) {
-                                return "Team Name Should be not Empty";
+                                return AppConstants.team_name_not_empty_key.tr;
                               }
                               return null;
                             },
@@ -214,11 +220,12 @@ class _DashboardMeetingDetailsState extends State<DashboardMeetingDetails> {
                                 // teamNameCobtroller.text = value;
                               });
                             },
-                            placeholder: "Enter the Name of Team",
+                            placeholder:
+                                AppConstants.enter_the_name_of_team_key.tr,
                             keyboardType: "text",
                             controller: teamNameCobtroller,
                             obscureText: false,
-                            label: "Team  Name"),
+                            label: AppConstants.team_name_key.tr),
                       ),
                       AppSpaces.verticalSpace20,
                       Padding(
@@ -232,8 +239,8 @@ class _DashboardMeetingDetailsState extends State<DashboardMeetingDetails> {
                                 ));
                           },
                           child: LabelledSelectableContainer(
-                            label: "Member",
-                            value: "Select Members",
+                            label: AppConstants.members_key.tr,
+                            value: AppConstants.select_members_key.tr,
                             icon: Icons.add,
                             valueColor: AppColors.primaryAccentColor,
                           ),
@@ -247,14 +254,14 @@ class _DashboardMeetingDetailsState extends State<DashboardMeetingDetails> {
                       AppPrimaryButton(
                         buttonHeight: 50,
                         buttonWidth: 180,
-                        buttonText: "Create New Team",
+                        buttonText: AppConstants.create_new_team_key.tr,
                         callback: () async {
                           teamName = teamName.trim();
                           if (formKey.currentState!.validate()) {
                             try {
                               if (userController.users.isEmpty) {
                                 CustomSnackBar.showError(
-                                    "Please choose one member at leaset to make a Team ");
+                                    AppConstants.choose_member_for_team_key.tr);
                               } else {
                                 showDialogMethod(context);
                                 ManagerModel managerModel =

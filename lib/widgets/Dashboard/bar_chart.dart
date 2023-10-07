@@ -3,7 +3,9 @@ import 'dart:math';
 import 'package:flutter/gestures.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mytest/constants/app_constans.dart';
 import '../../Values/values.dart';
 import 'package:intl/intl.dart';
 
@@ -48,9 +50,13 @@ class BarChartSample1State extends State<BarChartSample1> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Completed ${widget.message} in the last 7 Days",
-                      style: GoogleFonts.lato(
-                          color: HexColor.fromHex("616575"), fontSize: 13)),
+                  Text(
+                    AppConstants.completed_last_7_days_key.tr,
+                    style: GoogleFonts.lato(
+                      color: HexColor.fromHex("616575"),
+                      fontSize: Utils.screenWidth * 0.04,
+                    ),
+                  ),
                   IconButton(
                     icon: Icon(
                       isPlaying ? Icons.pause : Icons.play_arrow,
@@ -178,9 +184,9 @@ class BarChartSample1State extends State<BarChartSample1> {
                 children: <TextSpan>[
                   TextSpan(
                     text: (rod.toY - 1).toString(),
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: Colors.yellow,
-                      fontSize: 12,
+                      fontSize: Utils.screenWidth * 0.03,
                       fontWeight: FontWeight.w500,
                     ),
                   ),

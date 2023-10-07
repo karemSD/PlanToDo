@@ -168,9 +168,10 @@ class dailygoal extends StatelessWidget {
                 ),
               ],
             ),
-            AppSpaces.verticalSpace10,
+            AppSpaces.verticalSpace20,
             Text(
-              "${AppConstants.you_marked_key.tr}  $first $second $message  ${AppConstants.are_done_key.tr}  ",
+              //    "${AppConstants.you_marked_key.tr}  $first $second $message  ${AppConstants.are_done_key.tr}  ",
+              "  $first  $message  ${AppConstants.are_done_key.tr}  ",
               style: GoogleFonts.lato(
                   color: HexColor.fromHex("616575"),
                   fontSize: screenWidth * 0.047,
@@ -219,8 +220,8 @@ class dailygoal extends StatelessWidget {
               ),
               child: Center(
                 child: Container(
-                  width: screenWidth * 0.05, // Adjust the percentage as needed
-                  height: screenWidth * 0.05,
+                  width: screenWidth * 0.1, // Adjust the percentage as needed
+                  height: screenWidth * 0.08,
                   decoration: const BoxDecoration(shape: BoxShape.circle),
                   child: const ClipOval(
                     child: Image(

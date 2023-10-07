@@ -136,21 +136,24 @@ class Invitions extends StatelessWidget {
                               return Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  const Icon(
+                                  Icon(
                                     Icons.search_off,
                                     //   Icons.heart_broken_outlined,
                                     color: Colors.red,
-                                    size: 120,
+                                    size: Utils.screenWidth * 0.27,
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 50, vertical: 40),
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: Utils.screenWidth *
+                                          0.1, // Adjust the percentage as needed
+                                      vertical: Utils.screenHeight * 0.05,
+                                    ),
                                     child: Center(
                                       child: Text(
                                         "  ${snapshotMembersforUser.error}",
                                         style: GoogleFonts.fjallaOne(
                                           color: Colors.white,
-                                          fontSize: 40,
+                                          fontSize: Utils.screenWidth * 0.1,
                                         ),
                                       ),
                                     ),
@@ -162,21 +165,24 @@ class Invitions extends StatelessWidget {
                               return Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  const Icon(
+                                  Icon(
                                     Icons.search,
                                     //   Icons.heart_broken_outlined,
                                     color: Colors.lightBlue,
-                                    size: 120,
+                                    size: Utils.screenWidth * 0.27,
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 50, vertical: 40),
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: Utils.screenWidth *
+                                          0.1, // Adjust the percentage as needed
+                                      vertical: Utils.screenHeight * 0.05,
+                                    ),
                                     child: Center(
                                       child: Text(
                                         AppConstants.loading_key.tr,
                                         style: GoogleFonts.fjallaOne(
                                           color: Colors.white,
-                                          fontSize: 40,
+                                          fontSize: Utils.screenWidth * 0.1,
                                         ),
                                       ),
                                     ),
@@ -190,22 +196,25 @@ class Invitions extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     //
-                                    const Icon(
+                                    Icon(
                                       Icons.search_off,
                                       //   Icons.heart_broken_outlined,
                                       color: Colors.red,
-                                      size: 120,
+                                      size: Utils.screenWidth * 0.27,
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 50, vertical: 40),
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: Utils.screenWidth *
+                                            0.1, // Adjust the percentage as needed
+                                        vertical: Utils.screenHeight * 0.05,
+                                      ),
                                       child: Center(
                                         child: Text(
                                           AppConstants
                                               .not_member_to_get_tasks_key.tr,
                                           style: GoogleFonts.fjallaOne(
                                             color: Colors.white,
-                                            fontSize: 40,
+                                            fontSize: Utils.screenWidth * 0.1,
                                           ),
                                         ),
                                       ),
@@ -235,11 +244,11 @@ class Invitions extends StatelessWidget {
                                               MainAxisAlignment.center,
                                           children: [
                                             //
-                                            const Icon(
+                                            Icon(
                                               Icons.search_off,
                                               //   Icons.heart_broken_outlined,
                                               color: Colors.red,
-                                              size: 120,
+                                              size: Utils.screenWidth * 0.27,
                                             ),
                                             Padding(
                                               padding:
@@ -252,7 +261,8 @@ class Invitions extends StatelessWidget {
                                                       .toString(),
                                                   style: GoogleFonts.fjallaOne(
                                                     color: Colors.white,
-                                                    fontSize: 40,
+                                                    fontSize:
+                                                        Utils.screenWidth * 0.1,
                                                   ),
                                                 ),
                                               ),
@@ -272,17 +282,20 @@ class Invitions extends StatelessWidget {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
                                             children: [
-                                              const Icon(
+                                              Icon(
                                                 Icons.search_off,
                                                 //   Icons.heart_broken_outlined,
                                                 color: Colors.red,
-                                                size: 120,
+                                                size: Utils.screenWidth * 0.27,
                                               ),
                                               Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 50,
-                                                        vertical: 40),
+                                                padding: EdgeInsets.symmetric(
+                                                  horizontal: Utils
+                                                          .screenWidth *
+                                                      0.1, // Adjust the percentage as needed
+                                                  vertical:
+                                                      Utils.screenHeight * 0.05,
+                                                ),
                                                 child: Center(
                                                   child: Text(
                                                     AppConstants
@@ -291,7 +304,9 @@ class Invitions extends StatelessWidget {
                                                     style:
                                                         GoogleFonts.fjallaOne(
                                                       color: Colors.white,
-                                                      fontSize: 40,
+                                                      fontSize:
+                                                          Utils.screenWidth *
+                                                              0.1,
                                                     ),
                                                   ),
                                                 ),
@@ -402,11 +417,11 @@ class Invitions extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   //
-                                  const Icon(
+                                  Icon(
                                     Icons.search_off,
                                     //   Icons.heart_broken_outlined,
                                     color: Colors.lightBlue,
-                                    size: 120,
+                                    size: Utils.screenWidth * 0.27,
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.symmetric(
@@ -416,7 +431,7 @@ class Invitions extends StatelessWidget {
                                         AppConstants.loading_key.tr,
                                         style: GoogleFonts.fjallaOne(
                                           color: Colors.white,
-                                          fontSize: 40,
+                                          fontSize: Utils.screenWidth * 0.1,
                                         ),
                                       ),
                                     ),
@@ -435,11 +450,11 @@ class Invitions extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     //
-                                    const Icon(
+                                    Icon(
                                       Icons.search_off,
                                       //   Icons.heart_broken_outlined,
                                       color: Colors.red,
-                                      size: 120,
+                                      size: Utils.screenWidth * 0.27,
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.symmetric(
@@ -449,7 +464,7 @@ class Invitions extends StatelessWidget {
                                           AppConstants.no_invitation_key.tr,
                                           style: GoogleFonts.fjallaOne(
                                             color: Colors.white,
-                                            fontSize: 40,
+                                            fontSize: Utils.screenWidth * 0.1,
                                           ),
                                         ),
                                       ),
@@ -470,23 +485,26 @@ class Invitions extends StatelessWidget {
                                               MainAxisAlignment.center,
                                           children: [
                                             //
-                                            const Icon(
+                                            Icon(
                                               Icons.search,
                                               //   Icons.heart_broken_outlined,
                                               color: Colors.lightBlue,
-                                              size: 120,
+                                              size: Utils.screenWidth * 0.27,
                                             ),
                                             Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 50,
-                                                      vertical: 40),
+                                              padding: EdgeInsets.symmetric(
+                                                horizontal: Utils.screenWidth *
+                                                    0.1, // Adjust the percentage as needed
+                                                vertical:
+                                                    Utils.screenHeight * 0.05,
+                                              ),
                                               child: Center(
                                                 child: Text(
                                                   AppConstants.loading_key.tr,
                                                   style: GoogleFonts.fjallaOne(
                                                     color: Colors.white,
-                                                    fontSize: 40,
+                                                    fontSize:
+                                                        Utils.screenWidth * 0.1,
                                                   ),
                                                 ),
                                               ),
@@ -511,17 +529,23 @@ class Invitions extends StatelessWidget {
                                                       MainAxisAlignment.center,
                                                   children: [
                                                     //
-                                                    const Icon(
+                                                    Icon(
                                                       Icons.search,
                                                       //   Icons.heart_broken_outlined,
                                                       color: Colors.lightBlue,
-                                                      size: 120,
+                                                      size: Utils.screenWidth *
+                                                          0.27,
                                                     ),
                                                     Padding(
-                                                      padding: const EdgeInsets
-                                                          .symmetric(
-                                                          horizontal: 50,
-                                                          vertical: 40),
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                        horizontal: Utils
+                                                                .screenWidth *
+                                                            0.1, // Adjust the percentage as needed
+                                                        vertical:
+                                                            Utils.screenHeight *
+                                                                0.05,
+                                                      ),
                                                       child: Center(
                                                         child: Text(
                                                           AppConstants
@@ -529,7 +553,9 @@ class Invitions extends StatelessWidget {
                                                           style: GoogleFonts
                                                               .fjallaOne(
                                                             color: Colors.white,
-                                                            fontSize: 40,
+                                                            fontSize: Utils
+                                                                    .screenWidth *
+                                                                0.1,
                                                           ),
                                                         ),
                                                       ),
