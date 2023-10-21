@@ -32,9 +32,12 @@ class SetAssigneesScreen extends StatelessWidget {
       ),
       SafeArea(
         child: Column(children: [
-          const Padding(
-            padding: EdgeInsets.only(right: 20, left: 20),
-            child: TaskezAppHeader(
+           Padding(
+          padding: EdgeInsets.only(
+          left: Utils.screenWidth * 0.04, // Adjust the percentage as needed
+          right: Utils.screenWidth * 0.04,
+        ),
+            child: const TaskezAppHeader(
               title: "Set Assignees",
               widget: AppPrimaryButton(
                 buttonHeight: 40,

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mytest/constants/app_constans.dart';
 import 'package:mytest/controllers/team_member_controller.dart';
 import 'package:mytest/controllers/userController.dart';
 import 'package:mytest/models/User/User_model.dart';
@@ -90,6 +91,7 @@ class _SearchForMembersSubTaskState extends State<SearchForMembersSubTask> {
                     child: TaskezAppHeader2(
                       title: " search for members",
                       widget: MySearchBarWidget(
+                        searchWord: AppConstants.members_key.tr,
                         editingController: searchController,
                         onChanged: (String value) {
                           setState(() {

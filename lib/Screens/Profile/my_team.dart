@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mytest/constants/app_constans.dart';
 import 'package:mytest/constants/back_constants.dart';
 import 'package:mytest/models/User/User_model.dart';
 import 'package:mytest/models/team/Manger_model.dart';
@@ -171,12 +172,13 @@ class TeamStory extends StatelessWidget {
       children: [
         Text(teamTitle, style: AppTextStyles.header2.copyWith(fontSize: 35)),
         AppSpaces.verticalSpace10,
-        ContainerLabel(label: "$numberOfMembers Members"),
+        ContainerLabel(
+            label: "$numberOfMembers ${AppConstants.members_key.tr}"),
         AppSpaces.verticalSpace10,
         InkWell(
           onTap: () {
             Get.to(() => TeamDetails(
-              userAsManager: userAsManager,
+                  userAsManager: userAsManager,
                   title: teamTitle,
                   team: teamModel,
                 ));

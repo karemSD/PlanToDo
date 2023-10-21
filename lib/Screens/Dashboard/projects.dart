@@ -106,7 +106,14 @@ class _ProjectScreenState extends State<ProjectScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.only(right: 20, left: 20),
+              padding: EdgeInsets.only(
+                right:
+                    Utils.screenWidth * 0.04, // Adjust the percentage as needed
+                left:
+                    Utils.screenWidth * 0.03, // Adjust the percentage as needed
+                top: Utils.screenHeight *
+                    0.03, // Adjust the percentage as needed
+              ),
               child: SafeArea(
                 child: TaskezAppHeader(
                   title: AppConstants.projects_key.tr,
@@ -121,6 +128,9 @@ class _ProjectScreenState extends State<ProjectScreen> {
                     ),
                     child: IconButton(
                       icon: Icon(
+                        size: Utils.screenWidth *
+                            0.05, // Adjust the percentage as needed
+
                         sortAscending
                             ? Icons.arrow_upward
                             : Icons.arrow_downward,
@@ -134,7 +144,12 @@ class _ProjectScreenState extends State<ProjectScreen> {
             ),
             AppSpaces.verticalSpace20,
             Padding(
-              padding: const EdgeInsets.only(right: 20, left: 20),
+              padding: EdgeInsets.only(
+                right:
+                    Utils.screenWidth * 0.04, // Adjust the percentage as needed
+                left:
+                    Utils.screenWidth * 0.04, // Adjust the percentage as needed
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -145,10 +160,18 @@ class _ProjectScreenState extends State<ProjectScreen> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Container(
-                            margin:
-                                const EdgeInsets.only(right: 20.0, left: 20.0),
-                            padding:
-                                const EdgeInsets.only(right: 20.0, left: 20.0),
+                            margin: EdgeInsets.only(
+                              right: Utils.screenWidth *
+                                  0.05, // Adjust the percentage as needed
+                              left: Utils.screenWidth *
+                                  0.05, // Adjust the percentage as needed
+                            ),
+                            padding: EdgeInsets.only(
+                              right: Utils.screenWidth *
+                                  0.04, // Adjust the 0percentage as needed
+                              left: Utils.screenWidth *
+                                  0.02, // Adjust the percentage as needed
+                            ),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(10),
@@ -177,9 +200,9 @@ class _ProjectScreenState extends State<ProjectScreen> {
                               }).toList(),
 
                               // Add extra styling
-                              icon: const Icon(
+                              icon: Icon(
                                 Icons.arrow_drop_down,
-                                size: 35,
+                                size: Utils.screenWidth * 0.08,
                               ),
                               underline: const SizedBox(),
                             ),
@@ -260,15 +283,15 @@ class _ProjectScreenState extends State<ProjectScreen> {
                         valueListenable: switchGridLayout,
                         builder: (BuildContext context, _, __) {
                           return switchGridLayout.value
-                              ? const Icon(
+                              ? Icon(
                                   FeatherIcons.clipboard,
                                   color: Colors.white,
-                                  size: 30,
+                                  size: Utils.screenWidth * 0.07,
                                 )
-                              : const Icon(
+                              : Icon(
                                   FeatherIcons.grid,
                                   color: Colors.white,
-                                  size: 30,
+                                  size: Utils.screenWidth * 0.07,
                                 );
                         },
                       ),
@@ -280,7 +303,11 @@ class _ProjectScreenState extends State<ProjectScreen> {
             AppSpaces.verticalSpace20,
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.only(right: 20.0, left: 20.0),
+                padding: EdgeInsets.only(
+                  right: Utils.screenWidth *
+                      0.04, // Adjust the percentage as needed
+                  left: Utils.screenWidth * 0.04,
+                ),
                 child: MediaQuery.removePadding(
                   context: context,
                   removeTop: true,
@@ -341,7 +368,7 @@ class _ProjectScreenState extends State<ProjectScreen> {
                                   children: <Widget>[
                                     Icon(
                                       Iconsax.task,
-                                      size: 100,
+                                      size: Utils.screenWidth * 0.34,
                                       color: HexColor.fromHex("#999999"),
                                     ),
                                     AppSpaces.verticalSpace10,
@@ -351,7 +378,8 @@ class _ProjectScreenState extends State<ProjectScreen> {
                                       style: GoogleFonts.poppins(
                                         textStyle: TextStyle(
                                           color: HexColor.fromHex("#999999"),
-                                          fontSize: 16,
+                                          fontSize: Utils.screenWidth *
+                                              0.05, // Adjust the percentage as needed
                                           fontWeight: FontWeight.w500,
                                         ),
                                       ),
@@ -485,10 +513,9 @@ class _ProjectScreenState extends State<ProjectScreen> {
                                                             projects[index].id);
                                                     Navigator.of(context).pop();
                                                     CustomSnackBar.showSuccess(
-                                                      AppConstants
-                                                              .delete_project_key +
-                                                          "successfully".tr,
-                                                    );
+                                                        AppConstants
+                                                            .project_deleted_successfully_key
+                                                            .tr);
                                                   } on Exception catch (e) {
                                                     Navigator.of(context).pop();
                                                     CustomSnackBar.showError(

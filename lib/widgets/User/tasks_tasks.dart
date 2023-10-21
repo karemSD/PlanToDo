@@ -112,12 +112,17 @@ class _FatherTasksState extends State<FatherTasks> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.only(right: 20, left: 20),
+            padding: EdgeInsets.only(
+              left: Utils.screenWidth * 0.04, // Adjust the percentage as needed
+              right: Utils.screenWidth * 0.04,
+            ),
             child: SafeArea(
               child: TaskezAppHeader(
                 title:
-                    "Task:${widget.fatherTaskModel.name?.toUpperCase()} Tasks ",
+                    "${AppConstants.task_key.tr} :${widget.fatherTaskModel.name?.toUpperCase()}  ${AppConstants.tasks_key.tr}",
                 widget: MySearchBarWidget(
+                  searchWord:
+                      "${widget.fatherTaskModel.name?.toUpperCase()} ${AppConstants.tasks_key.tr}",
                   editingController: editingController,
                   onChanged: (String value) {
                     setState(() {
@@ -176,7 +181,7 @@ class _FatherTasksState extends State<FatherTasks> {
                 onPressed: toggleSortOrder, // Toggle the sort order
               ),
               IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.grid_view,
                   color: Colors.white,
                 ),
@@ -188,7 +193,11 @@ class _FatherTasksState extends State<FatherTasks> {
           AppSpaces.verticalSpace20,
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.only(right: 20.0, left: 20.0),
+              padding: EdgeInsets.only(
+                left:
+                    Utils.screenWidth * 0.04, // Adjust the percentage as needed
+                right: Utils.screenWidth * 0.04,
+              ),
               child: MediaQuery.removePadding(
                 context: context,
                 removeTop: true,
@@ -400,7 +409,8 @@ class _FatherTasksState extends State<FatherTasks> {
               }
               UserTaskModel userTaskModel = UserTaskModel(
                   hexColorParameter: color,
-                  userIdParameter: AuthService.instance.firebaseAuth.currentUser!.uid,
+                  userIdParameter:
+                      AuthService.instance.firebaseAuth.currentUser!.uid,
                   folderIdParameter: widget.categoryModel.id,
                   taskFatherIdParameter: taskfatherid,
                   descriptionParameter: desc!,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mytest/Screens/Profile/team_details.dart';
+import 'package:mytest/constants/app_constans.dart';
 import 'package:mytest/models/team/Team_model.dart';
 
 import '../../Values/values.dart';
@@ -68,29 +69,40 @@ class ActiveTeamCard extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(children: [
-                              Text(teamName,
-                                  style: GoogleFonts.lato(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 14.2)),
-                              const SizedBox(
-                                height: 4,
-                                width: 13,
+                              Text(
+                                teamName,
+                                style: GoogleFonts.lato(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: Utils.screenWidth * 0.04,
+                                ),
+                              ),
+                              SizedBox(
+                                height: Utils.screenHeight *
+                                    0.01, // Adjust the percentage as needed
+                                width: Utils.screenWidth *
+                                    0.03, // Adjust the percentage as needed
                               ),
                               Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 10, vertical: 5.0),
-                                  decoration: BoxDecoration(
-                                      //color: HexColor.fromHex(color),
-                                      border: Border.all(
-                                          color: Colors.blue, width: 1),
-                                      borderRadius:
-                                          BorderRadius.circular(50.0)),
-                                  child: Text("$numberOfMembers  members",
-                                      style: GoogleFonts.lato(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 12)))
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: Utils.screenWidth *
+                                      0.02, // Adjust the percentage as needed
+                                  vertical: Utils.screenHeight * 0.01,
+                                ),
+                                decoration: BoxDecoration(
+                                    //color: HexColor.fromHex(color),
+                                    border: Border.all(
+                                        color: Colors.blue, width: 1),
+                                    borderRadius: BorderRadius.circular(50.0)),
+                                child: Text(
+                                  "$numberOfMembers  ${AppConstants.members_key.tr}",
+                                  style: GoogleFonts.lato(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: Utils.screenWidth * 0.03,
+                                  ),
+                                ),
+                              )
                             ])
                           ])
                     ]),

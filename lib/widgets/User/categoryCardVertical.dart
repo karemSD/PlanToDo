@@ -37,14 +37,14 @@ class _CategoryCardVerticalState extends State<CategoryCardVertical> {
   int first = 0;
   int second = 0;
   double percento = 0;
-  Stream _streamZip = StreamZip([]);
+  //Stream _streamZip = StreamZip([]);
 
   @override
   void initState() {
     super.initState();
-    TaskCategoryController userTaskCategoryController =
+    //TaskCategoryController userTaskCategoryController =
         Get.put(TaskCategoryController());
-    UserTaskController userTaskController = Get.put(UserTaskController());
+    //UserTaskController userTaskController = Get.put(UserTaskController());
   }
 
   @override

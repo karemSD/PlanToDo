@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mytest/Screens/Dashboard/search_bar_animation.dart';
+import 'package:mytest/constants/app_constans.dart';
 import 'package:mytest/constants/back_constants.dart';
 import 'package:mytest/controllers/topController.dart';
 import 'package:mytest/controllers/user_task_controller.dart';
@@ -115,9 +116,11 @@ class _MainTaskScreenState extends State<MainTaskScreen> {
       userSubscription = userModelStream.listen((userSnapshot) {
         UserModel user = userSnapshot.data()!;
         bool updatedIsManager;
-        if (user.id != AuthService.instance. firebaseAuth.currentUser!.uid) {
+        if (user.id != AuthService.instance.firebaseAuth.currentUser!.uid) {
           updatedIsManager = false;
-          print(user.id + "/////" + AuthService.instance. firebaseAuth.currentUser!.uid);
+          print(user.id +
+              "/////" +
+              AuthService.instance.firebaseAuth.currentUser!.uid);
         } else {
           updatedIsManager = true;
         }
@@ -159,6 +162,7 @@ class _MainTaskScreenState extends State<MainTaskScreen> {
             child: TaskezAppHeader(
               title: "Main tasks",
               widget: MySearchBarWidget(
+                searchWord: AppConstants.main_tasks_key.tr,
                 editingController: editingController,
                 onChanged: (String value) {
                   setState(() {

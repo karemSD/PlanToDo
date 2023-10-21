@@ -145,6 +145,7 @@ class _CreateUserCategoryState extends State<CreateUserCategory> {
             AppSpaces.verticalSpace20,
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               AddSubIcon(
+                icon: const Icon(Icons.add, color: Colors.white),
                 scale: 1,
                 color: AppColors.primaryAccentColor,
                 callback: () async {
@@ -185,7 +186,8 @@ class _CreateUserCategoryState extends State<CreateUserCategory> {
         updatedAtParameter: DateTime.now(),
       );
       await taskCategoryController.addCategory(userTaskModel);
-      CustomSnackBar.showSuccess("Category $name added successfully");
+      CustomSnackBar.showSuccess(
+          "${AppConstants.category_key.tr} $name ${AppConstants.added_successfully_key.tr}");
 
       await Future.delayed(
           const Duration(seconds: 1)); // Delay closing the widget

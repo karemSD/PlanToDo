@@ -29,17 +29,20 @@ class DashboardDesignMeetingSheet extends StatelessWidget {
               Row(
                 children: [
                   Container(
-                      width: 20,
-                      height: 20,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          gradient: LinearGradient(
-                              begin: FractionalOffset.topLeft,
-                              end: FractionalOffset.bottomRight,
-                              colors: [
-                                HexColor.fromHex("8DCB73"),
-                                HexColor.fromHex("8DCB73"),
-                              ]))),
+                    width: 20,
+                    height: 20,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      gradient: LinearGradient(
+                        begin: FractionalOffset.topLeft,
+                        end: FractionalOffset.bottomRight,
+                        colors: [
+                          HexColor.fromHex("8DCB73"),
+                          HexColor.fromHex("8DCB73"),
+                        ],
+                      ),
+                    ),
+                  ),
                   AppSpaces.horizontalSpace20,
                   Expanded(
                     child: UnlabelledFormInput(
@@ -75,6 +78,7 @@ class DashboardDesignMeetingSheet extends StatelessWidget {
               Align(
                 alignment: Alignment.centerRight,
                 child: AddSubIcon(
+                  icon: const Icon(Icons.add, color: Colors.white),
                   scale: 0.8,
                   color: AppColors.primaryAccentColor,
                   callback: _addMeetingDetails,
@@ -87,9 +91,7 @@ class DashboardDesignMeetingSheet extends StatelessWidget {
 
   void _addMeetingDetails() {
     showAppBottomSheet(
-       DashboardMeetingDetails(
-      
-      ),
+      DashboardMeetingDetails(),
       isScrollControlled: true,
       popAndShow: true,
     );

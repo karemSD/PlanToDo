@@ -16,7 +16,8 @@ class ManagerController extends TopController {
         collectionReference: usersRef, field: idK, value: model.userId)) {
       addDoc(reference: managersRef, model: model);
     } else {
-      Exception exception = Exception(AppConstants.Sorry_the_user_id_cannot_be_found_key.tr);
+      Exception exception =
+          Exception(AppConstants.Sorry_the_user_id_cannot_be_found_key.tr);
       throw exception;
     }
   }
@@ -45,6 +46,7 @@ class ManagerController extends TopController {
     ManagerModel? managerModel;
     managerModel = await getMangerWhereUserIs(userId: userId);
     if (managerModel != null) {
+      print("find manger");
       return managerModel;
     }
     managerModel = ManagerModel(

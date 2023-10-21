@@ -119,8 +119,8 @@ class dailygoal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
+    //  final screenHeight = MediaQuery.of(context).size.height;
+    //final screenWidth = MediaQuery.of(context).size.width;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -133,7 +133,7 @@ class dailygoal extends StatelessWidget {
               AppConstants.daily_goal_key.tr,
               style: GoogleFonts.lato(
                   color: HexColor.fromHex("616575"),
-                  fontSize: screenWidth * 0.05,
+                  fontSize: Utils.screenWidth * 0.05,
                   fontWeight: FontWeight.w500),
             ),
             AppSpaces.verticalSpace10,
@@ -153,7 +153,7 @@ class dailygoal extends StatelessWidget {
                       '$first/$second',
                       style: GoogleFonts.lato(
                         color: Colors.white,
-                        fontSize: screenWidth * 0.05,
+                        fontSize: Utils.screenWidth * 0.05,
                       ),
                     ),
                   ),
@@ -163,24 +163,25 @@ class dailygoal extends StatelessWidget {
                   AppConstants.tasks_key.tr,
                   style: GoogleFonts.lato(
                       color: Colors.white,
-                      fontSize: screenWidth * 0.05,
+                      fontSize: Utils.screenWidth * 0.05,
                       fontWeight: FontWeight.w500),
                 ),
               ],
             ),
-            AppSpaces.verticalSpace20,
+            AppSpaces.verticalSpace10,
             Text(
               //    "${AppConstants.you_marked_key.tr}  $first $second $message  ${AppConstants.are_done_key.tr}  ",
               "  $first  $message  ${AppConstants.are_done_key.tr}  ",
               style: GoogleFonts.lato(
                   color: HexColor.fromHex("616575"),
-                  fontSize: screenWidth * 0.047,
+                  fontSize: Utils.screenWidth * 0.047,
                   fontWeight: FontWeight.w500),
             ),
             AppSpaces.verticalSpace20,
             SizedBox(
-              width: screenWidth * 0.3, // Adjust the percentage as needed
-              height: screenHeight * 0.05, // Adjust the percentage as needed
+              width: Utils.screenWidth * 0.3, // Adjust the percentage as needed
+              height:
+                  Utils.screenHeight * 0.08, // Adjust the percentage as needed
               child: ElevatedButton(
                 onPressed: () {},
                 style: ButtonStyle(
@@ -198,7 +199,7 @@ class dailygoal extends StatelessWidget {
                 child: Text(
                   AppConstants.all_task_key.tr,
                   style: GoogleFonts.lato(
-                      fontSize: screenHeight * 0.021,
+                      fontSize: Utils.screenHeight * 0.04,
                       fontWeight: FontWeight.bold,
                       color: Colors.white),
                 ),
@@ -209,19 +210,21 @@ class dailygoal extends StatelessWidget {
         Stack(
           children: [
             Container(
-              width: 100,
-              height: 100,
+              width:
+                  Utils.screenWidth * 0.27, // Adjust the percentage as needed
+              height: Utils.screenWidth * 0.27,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(
-                  width: screenWidth * 0.02,
+                  width: Utils.screenWidth * 0.02,
                   color: HexColor.fromHex("434552"),
                 ),
               ),
               child: Center(
                 child: Container(
-                  width: screenWidth * 0.1, // Adjust the percentage as needed
-                  height: screenWidth * 0.08,
+                  width: Utils.screenWidth *
+                      0.3, // Adjust the percentage as needed
+                  height: Utils.screenWidth * 0.1,
                   decoration: const BoxDecoration(shape: BoxShape.circle),
                   child: const ClipOval(
                     child: Image(
@@ -235,18 +238,19 @@ class dailygoal extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: screenHeight * 0.01, // Adjust the percentage as needed
-              left: screenWidth * 0.01, // Adjust the percentage as needed
+              top: Utils.screenHeight * 0.01, // Adjust the percentage as needed
+              left: Utils.screenWidth * 0.01, // Adjust the percentage as needed
               child: RotatedBox(
                 quarterTurns: 4,
                 child: TweenAnimationBuilder<double>(
                   tween: Tween<double>(begin: 0.0, end: 0.80),
                   duration: const Duration(milliseconds: 1000),
                   builder: (context, value, _) => SizedBox(
-                    width: screenWidth * 0.1, // Adjust the percentage as needed
-                    height: screenWidth * 0.1,
+                    width: Utils.screenWidth *
+                        0.1, // Adjust the percentage as needed
+                    height: Utils.screenWidth * 0.1,
                     child: CircularProgressIndicator(
-                      strokeWidth: screenWidth * 0.02,
+                      strokeWidth: Utils.screenWidth * 0.02,
                       value: percent,
                       color: HexColor.fromHex("8FFFCF"),
                     ),

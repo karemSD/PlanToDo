@@ -368,9 +368,12 @@ class Invitions extends StatelessWidget {
                                                                             index]
                                                                         .id,
                                                               );
-                                                              Navigator.of(
-                                                                      context)
+                                                              Get.key
+                                                                  .currentState!
                                                                   .pop();
+                                                              // Navigator.of(
+                                                              //         context)
+                                                              //     .pop();
                                                             } on Exception catch (e) {
                                                               Navigator.of(
                                                                       context)

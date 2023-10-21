@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mytest/Screens/Projects/searchForMemberController.dart';
+import 'package:mytest/constants/app_constans.dart';
 
 import 'package:mytest/controllers/userController.dart';
 import 'package:mytest/controllers/waitingMamberController.dart';
@@ -79,7 +80,7 @@ class _SearchForMembersState extends State<SearchForMembers> {
                 Padding(
                   padding: const EdgeInsets.only(right: 20, left: 20),
                   child: TaskezAppHeader(
-                    title: "Search for Members",
+                    title: AppConstants.search_members_key.tr,
                     widget: GestureDetector(
                       onTap: () async {
                         bool fcmStutas =
@@ -136,7 +137,7 @@ class _SearchForMembersState extends State<SearchForMembers> {
                                     // });
                                   },
                                   controller: controller.searchController,
-                                  placeholder: "Search ....",
+                                  placeholder: AppConstants.search_key.tr,
                                   onChanged: (value) {
                                     controller.searchQuery.value = value;
                                     controller.update();
@@ -168,7 +169,7 @@ class _SearchForMembersState extends State<SearchForMembers> {
 
                                         if (snapshot.connectionState ==
                                             ConnectionState.waiting) {
-                                          return const Column(
+                                          return Column(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               children: [
@@ -176,13 +177,14 @@ class _SearchForMembersState extends State<SearchForMembers> {
                                                   Icons.search,
                                                   //   Icons.heart_broken_outlined,
                                                   color: Colors.lightBlue,
-                                                  size: 120,
+                                                  size:
+                                                      Utils.screenWidth * 0.27,
                                                 ),
-                                                AppSpaces.verticalSpace10,
-                                                Center(
-                                                  child:
-                                                      CircularProgressIndicator(),
-                                                )
+                                                //  AppSpaces.verticalSpace10,
+                                                // const Center(
+                                                //   child:
+                                                //       CircularProgressIndicator(),
+                                                // )
                                               ]);
                                         }
 
@@ -195,10 +197,14 @@ class _SearchForMembersState extends State<SearchForMembers> {
                                                 .searchQuery.value.isEmpty ||
                                             controller.searchController.text
                                                 .isEmpty) {
-                                          return const Center(
+                                          return Center(
                                             child: Text(
-                                              "Please Enter Any Username To Search for",
+                                              AppConstants
+                                                  .please_enter_username_to_search_key
+                                                  .tr,
                                               style: TextStyle(
+                                                  fontSize:
+                                                      Utils.screenWidth * 0.06,
                                                   color: Colors.white),
                                             ),
                                           );
@@ -227,24 +233,33 @@ class _SearchForMembersState extends State<SearchForMembers> {
                                                   MainAxisAlignment.center,
                                               children: [
                                                 //
-                                                const Icon(
+                                                Icon(
                                                   Icons.search_off,
                                                   //   Icons.heart_broken_outlined,
                                                   color: Colors.red,
-                                                  size: 120,
+                                                  size:
+                                                      Utils.screenWidth * 0.27,
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsets
-                                                          .symmetric(
-                                                      horizontal: 50,
-                                                      vertical: 40),
+                                                  padding: EdgeInsets.symmetric(
+                                                    horizontal: Utils
+                                                            .screenWidth *
+                                                        0.1, // Adjust the percentage as needed
+                                                    vertical: Utils
+                                                            .screenHeight *
+                                                        0.05, // Adjust the percentage as needed
+                                                  ),
                                                   child: Center(
                                                     child: Text(
-                                                      "No User Found Wit UserName ",
+                                                      AppConstants
+                                                          .no_user_found_with_username_key
+                                                          .tr,
                                                       style:
                                                           GoogleFonts.fjallaOne(
                                                         color: Colors.white,
-                                                        fontSize: 40,
+                                                        fontSize:
+                                                            Utils.screenWidth *
+                                                                0.1,
                                                       ),
                                                     ),
                                                   ),

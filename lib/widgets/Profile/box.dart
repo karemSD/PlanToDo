@@ -51,10 +51,11 @@ class Box extends StatelessWidget {
               )),
           // AppSpaces.horizontalSpace20,
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 3),
+            padding: const EdgeInsets.symmetric(vertical: 2),
             child: Text(
               label,
-              style: const TextStyle(fontSize: 20, color: Colors.white),
+              style: TextStyle(
+                  fontSize: Utils.screenWidth * 0.05, color: Colors.white),
             ),
           )
         ]),

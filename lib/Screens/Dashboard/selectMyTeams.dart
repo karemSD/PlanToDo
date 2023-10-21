@@ -5,7 +5,9 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:mytest/Screens/Profile/team_details.dart';
+import 'package:mytest/constants/app_constans.dart';
 import 'package:mytest/controllers/projectController.dart';
 import 'package:mytest/controllers/teamController.dart';
 import 'package:mytest/controllers/team_member_controller.dart';
@@ -110,11 +112,11 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
   String _getSortOptionText(TeamSortOption option) {
     switch (option) {
       case TeamSortOption.name:
-        return 'Name';
+        return AppConstants.name_key.tr;
       case TeamSortOption.updatedDate:
-        return 'Updated Date';
+        return AppConstants.updated_Date_key.tr;
       case TeamSortOption.createDate:
-        return 'Created Date';
+        return AppConstants.created_date_key.tr;
 
       // Add cases for more sorting options if needed
       default:
@@ -144,7 +146,12 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(right: 20, left: 20),
+                  padding: EdgeInsets.only(
+                    right: Utils.screenWidth *
+                        0.05, // Adjust the percentage as needed
+                    left: Utils.screenWidth *
+                        0.05, // Adjust the percentage as needed
+                  ),
                   child: TaskezAppHeader(
                     title: widget.title,
                     widget: GestureDetector(
@@ -180,8 +187,18 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      margin: const EdgeInsets.only(right: 20.0, left: 20.0),
-                      padding: const EdgeInsets.only(right: 20.0, left: 20.0),
+                      margin: EdgeInsets.only(
+                        right: Utils.screenWidth *
+                            0.05, // Adjust the percentage as needed
+                        left: Utils.screenWidth *
+                            0.05, // Adjust the percentage as needed
+                      ),
+                      padding: EdgeInsets.only(
+                        right: Utils.screenWidth *
+                            0.04, // Adjust the percentage as needed
+                        left: Utils.screenWidth *
+                            0.02, // Adjust the percentage as needed
+                      ),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10),
@@ -208,20 +225,27 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
                         }).toList(),
 
                         // Add extra styling
-                        icon: const Icon(
+                        icon: Icon(
                           Icons.arrow_drop_down,
-                          size: 35,
+                          size: Utils.screenWidth *
+                              0.08, // Adjust the percentage as needed
                         ),
                         underline: const SizedBox(),
                       ),
                     ),
                     Container(
-                      margin: const EdgeInsets.only(right: 10),
+                      margin: EdgeInsets.only(
+                        right: Utils.screenWidth *
+                            0.02, // Adjust the percentage as needed
+                        left: Utils.screenWidth *
+                            0.035, // Adjust the percentage as needed
+                      ),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: Colors.transparent,
                         border: Border.all(
-                          width: 2,
+                          width: Utils.screenWidth *
+                              0.006, // Adjust the percentage as needed
                           color: HexColor.fromHex("616575"),
                         ),
                       ),
@@ -306,7 +330,8 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
                                             motion: const StretchMotion(),
                                             children: [
                                               SlidableAction(
-                                                label: "Delete ",
+                                                label:
+                                                    AppConstants.delete_key.tr,
                                                 borderRadius:
                                                     BorderRadius.circular(30),
                                                 backgroundColor: Colors.red,
@@ -337,7 +362,9 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
 
                                                     print("delete");
                                                     CustomSnackBar.showSuccess(
-                                                        "Team Deleted 'Successfully");
+                                                        AppConstants
+                                                            .team_deleted_successfully_key
+                                                            .tr);
                                                   } on Exception catch (e) {
                                                     Navigator.of(context).pop();
                                                     CustomSnackBar.showError(
@@ -352,12 +379,13 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
                                             motion: const StretchMotion(),
                                             children: [
                                               SlidableAction(
-                                                label: "Projects",
+                                                label:
+                                                    AppConstants.details_key.tr,
                                                 borderRadius:
                                                     BorderRadius.circular(30),
                                                 backgroundColor: Colors.blue,
                                                 icon:
-                                                    FontAwesomeIcons.listCheck,
+                                                    FontAwesomeIcons.tableList,
                                                 onPressed: (context) async {
                                                   showDialogMethod(context);
                                                   ManagerModel? userAsManger =
@@ -380,34 +408,41 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
                                                 },
                                               ),
                                             ]),
-                                        child: ActiveTeamCard(
-                                          imageType: ImageType.Network,
-                                          onTap: () {
-                                            if (widget.title !=
-                                                "Manager Teams") {
-                                              print("objectsasa");
-                                              addTeamToCreatProjectScreen
-                                                  .addUser(team);
-                                              print("objectssdadsdasa");
+                                        child: Padding(
+                                          padding: EdgeInsets.symmetric(
+                                            horizontal: Utils.screenWidth *
+                                                0.02, // Adjust the percentage as needed
+                                          ),
+                                          child: ActiveTeamCard(
+                                            imageType: ImageType.Network,
+                                            onTap: () {
+                                              if (widget.title !=
+                                                  AppConstants
+                                                      .manager_teams_key.tr) {
+                                                print("objectsasa");
+                                                addTeamToCreatProjectScreen
+                                                    .addUser(team);
+                                                print("objectssdadsdasa");
 
-                                              addTeamToCreatProjectScreen
-                                                  .update();
-                                              Get.close(1);
-                                            }
-                                          },
-                                          team: team,
-                                          numberOfMembers: membersCount,
-                                          teamName: team.name!,
-                                          teamImage: team.imageUrl,
+                                                addTeamToCreatProjectScreen
+                                                    .update();
+                                                Get.close(1);
+                                              }
+                                            },
+                                            team: team,
+                                            numberOfMembers: membersCount,
+                                            teamName: team.name!,
+                                            teamImage: team.imageUrl,
+                                          ),
                                         ),
                                       ),
                                     );
                                   } else if (memberSnapshot.hasError) {
                                     return Text(
-                                      'Error: ${memberSnapshot.error}',
-                                      style: const TextStyle(
+                                      '${AppConstants.error_key.tr} ${memberSnapshot.error}',
+                                      style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 39,
+                                        fontSize: Utils.screenWidth * 0.1,
                                       ),
                                     );
                                   } else {
@@ -427,21 +462,24 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
 //                               height: 75,
 //                               child: Image.asset("assets/icon/error.png"),
 //                             ),
-                            const Icon(
+                            Icon(
                               Icons.search_off,
                               //   Icons.heart_broken_outlined,
                               color: Colors.red,
-                              size: 120,
+                              size: Utils.screenWidth * 0.27,
                             ),
                             Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 50, vertical: 40),
+                              padding: EdgeInsets.symmetric(
+                                horizontal: Utils.screenWidth *
+                                    0.1, // Adjust the percentage as needed
+                                vertical: Utils.screenHeight * 0.05,
+                              ),
                               child: Center(
                                 child: Text(
                                   snapshot.error.toString().substring(11),
                                   style: GoogleFonts.fjallaOne(
                                     color: Colors.white,
-                                    fontSize: 40,
+                                    fontSize: Utils.screenWidth * 0.1,
                                   ),
                                 ),
                               ),
@@ -457,12 +495,14 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
                   ),
                 ),
                 AppPrimaryButton(
-                  buttonHeight: 50,
-                  buttonWidth: 180,
-                  buttonText: "Add New Team",
+                  buttonHeight: Utils.screenHeight *
+                      0.12, // Adjust the percentage as needed
+                  buttonWidth: Utils.screenWidth * 0.4,
+                  buttonText: AppConstants.create_new_team_key.tr,
                   callback: () {
                     DashboardMeetingDetails.users = [];
                     Get.to(() => const DashboardMeetingDetails());
+
                     // Get.to(() => TeamDetails(
                     //       title: "TEMaM",
                     //     ));

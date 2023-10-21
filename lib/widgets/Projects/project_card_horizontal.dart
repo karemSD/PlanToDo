@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mytest/constants/app_constans.dart';
 import 'package:mytest/widgets/Projects/project_badge.dart';
 import 'package:intl/intl.dart';
 import 'package:mytest/widgets/User/focused_menu_item.dart';
@@ -30,96 +31,101 @@ class ProjectCardHorizontal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-        decoration: BoxDecoration(
-            color: HexColor.fromHex("20222A"),
-            borderRadius: BorderRadius.circular(20)),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(children: [
-                  ColouredProjectBadge(projeImagePath: projeImagePath),
-                  AppSpaces.horizontalSpace20,
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(projectName,
-                            style: GoogleFonts.lato(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600)),
-                        const SizedBox(height: 5),
-                        Row(children: [
-                          InkWell(
-                            child: Text(
-                              "Team : ",
-                              style: TextStyle(
-                                color: HexColor.fromHex("246CFE"),
-                              ),
-                            ),
-                          ),
-                          Text(
-                            teamName,
-                            style: TextStyle(
-                              color: HexColor.fromHex("626677"),
-                            ),
-                          ),
-                        ]),
-                        Row(
-                          children: [
-                            Text(
-                              "Status : ",
-                              style: GoogleFonts.lato(
-                                color: HexColor.fromHex("246CFE"),
-                              ),
-                            ),
-                            Text(
-                              status,
-                              style: GoogleFonts.lato(
-                                color: HexColor.fromHex("626677"),
-                              ),
-                            ),
-                          ],
+      padding: EdgeInsets.symmetric(
+        horizontal: Utils.screenWidth * 0.03,
+        vertical: Utils.screenHeight * 0.005,
+      ),
+      decoration: BoxDecoration(
+        color: HexColor.fromHex("20222A"),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(children: [
+                ColouredProjectBadge(projeImagePath: projeImagePath),
+                AppSpaces.horizontalSpace20,
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text(
+                    projectName,
+                    style: GoogleFonts.lato(
+                        color: Colors.white,
+                        fontSize: Utils.screenWidth * 0.05,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  SizedBox(height: Utils.screenHeight * 0.01),
+                  Row(children: [
+                    InkWell(
+                      child: Text(
+                        "${AppConstants.team_key.tr} : ",
+                        style: TextStyle(
+                          color: HexColor.fromHex("246CFE"),
                         ),
-                        Row(
-                          children: [
-                            Text(
-                              "Start Date : ",
-                              style: GoogleFonts.lato(
-                                color: HexColor.fromHex("246CFE"),
-                              ),
-                            ),
-                            Text(
-                              formatDateTime(startDate),
-                              style: GoogleFonts.lato(
-                                color: HexColor.fromHex("626677"),
-                              ),
-                            ),
-                          ],
+                      ),
+                    ),
+                    Text(
+                      teamName,
+                      style: TextStyle(
+                        color: HexColor.fromHex("626677"),
+                      ),
+                    ),
+                  ]),
+                  Row(
+                    children: [
+                      Text(
+                        "${AppConstants.status_key.tr} : ",
+                        style: GoogleFonts.lato(
+                          color: HexColor.fromHex("246CFE"),
                         ),
-                        Row(
-                          children: [
-                            Text(
-                              "End Date : ",
-                              style: GoogleFonts.lato(
-                                color: HexColor.fromHex("246CFE"),
-                              ),
-                            ),
-                            Text(
-                              formatDateTime(endDate),
-                              style: GoogleFonts.lato(
-                                color: HexColor.fromHex("626677"),
-                              ),
-                            ),
-                          ],
+                      ),
+                      Text(
+                        status,
+                        style: GoogleFonts.lato(
+                          color: HexColor.fromHex("626677"),
                         ),
-                      ])
-                ]),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        "${AppConstants.start_date_key.tr}  : ",
+                        style: GoogleFonts.lato(
+                          color: HexColor.fromHex("246CFE"),
+                        ),
+                      ),
+                      Text(
+                        formatDateTime(startDate),
+                        style: GoogleFonts.lato(
+                          color: HexColor.fromHex("626677"),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        "${AppConstants.end_date_key.tr} : ",
+                        style: GoogleFonts.lato(
+                          color: HexColor.fromHex("246CFE"),
+                        ),
+                      ),
+                      Text(
+                        formatDateTime(endDate),
+                        style: GoogleFonts.lato(
+                          color: HexColor.fromHex("626677"),
+                        ),
+                      ),
+                    ],
+                  ),
+                ])
               ]),
-          AppSpaces.verticalSpace10,
-        ]));
+            ]),
+        AppSpaces.verticalSpace10,
+      ]),
+    );
   }
 }
 
@@ -129,7 +135,7 @@ String formatDateTime(DateTime dateTime) {
   if (dateTime.year == now.year &&
       dateTime.month == now.month &&
       dateTime.day == now.day) {
-    return "Today ${DateFormat('h:mm a').format(dateTime)}";
+    return "${AppConstants.today_key.tr} ${DateFormat('h:mm a').format(dateTime)}";
   } else {
     return DateFormat('dd/MM h:mm a').format(dateTime);
   }

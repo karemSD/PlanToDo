@@ -80,7 +80,7 @@ class _ColorSelectionDialogState extends State<ColorSelectionDialog> {
               ),
             ),
             PrimaryProgressButton(
-              width: Utils.screenWidth * 0.2,
+              width: Utils.screenWidth * 0.3,
               label: AppConstants.oK_key.tr,
               callback: () {
                 // Do something with the selected color

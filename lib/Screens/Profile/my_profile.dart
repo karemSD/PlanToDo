@@ -36,145 +36,158 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(children: [
-      DarkRadialBackground(
-        color: HexColor.fromHex("#181a1f"),
-        position: "topLeft",
-      ),
-      Padding(
-        padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-        child: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                DefaultNav(
-                    userModel: widget.user,
-                    title: "$tabSpace ${AppConstants.profile_key.tr}",
-                    type: ProfileDummyType.Button),
-                const SizedBox(height: 30),
-                StreamBuilder<DocumentSnapshot<UserModel>>(
-                    stream: UserController().getUserByIdStream(
-                        id: AuthService.instance.firebaseAuth.currentUser!.uid),
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const CircularProgressIndicator();
-                      }
-                      return Column(
-                        children: [
-                          ProfileDummy(
-                              imageType: ImageType.Network,
-                              color: HexColor.fromHex("0000"),
-                              dummyType: ProfileDummyType.Image,
-                              scale: 4.0,
-                              image: snapshot.data!.data()!.imageUrl),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("${snapshot.data!.data()!.name} ",
+      body: Stack(children: [
+        DarkRadialBackground(
+          color: HexColor.fromHex("#181a1f"),
+          position: "topLeft",
+        ),
+        Padding(
+          padding: EdgeInsets.only(
+            left: Utils.screenWidth * 0.04, // Adjust the percentage as needed
+            right: Utils.screenWidth * 0.04,
+          ),
+          child: SafeArea(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  DefaultNav(
+                      userModel: widget.user,
+                      title: "$tabSpace ${AppConstants.profile_key.tr}",
+                      type: ProfileDummyType.Button),
+                  const SizedBox(height: 30),
+                  StreamBuilder<DocumentSnapshot<UserModel>>(
+                      stream: UserController().getUserByIdStream(
+                          id: AuthService
+                              .instance.firebaseAuth.currentUser!.uid),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const CircularProgressIndicator();
+                        }
+                        return Column(
+                          children: [
+                            ProfileDummy(
+                                imageType: ImageType.Network,
+                                color: HexColor.fromHex("0000"),
+                                dummyType: ProfileDummyType.Image,
+                                scale: 4.0,
+                                image: snapshot.data!.data()!.imageUrl),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                "${snapshot.data!.data()!.name} ",
                                 style: GoogleFonts.lato(
                                     color: Colors.white,
-                                    fontSize: 40,
-                                    fontWeight: FontWeight.bold)),
-                          ),
-                          Text(
+                                    fontSize: Utils.screenWidth * 0.1,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            Text(
                               AuthService.instance.firebaseAuth.currentUser!
                                       .isAnonymous
                                   ? AppConstants.sign_in_anonmouslly_key.tr
                                   : snapshot.data!.data()!.email!,
                               style: GoogleFonts.lato(
-                                  color: HexColor.fromHex("B0FFE1"),
-                                  fontSize: 17)),
-                          Padding(
-                            padding: const EdgeInsets.all(15.0),
-                            child: OutlinedButtonWithText(
-                                width: 75,
-                                content: AppConstants.edit_key.tr,
-                                onPressed: () {
-                                  Get.to(() => EditProfilePage(
-                                      user: snapshot.data?.data()));
-                                }),
-                          ),
-                        ],
-                      );
-                    }),
-                AppSpaces.verticalSpace20,
-                Column(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF262A34),
-                        borderRadius: BorderRadius.circular(10),
+                                color: HexColor.fromHex("B0FFE1"),
+                                fontSize: Utils.screenWidth * 0.05,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: OutlinedButtonWithText(
+                                  width: 75,
+                                  content: AppConstants.edit_key.tr,
+                                  onPressed: () {
+                                    Get.to(
+                                      () => EditProfilePage(
+                                        user: snapshot.data?.data(),
+                                      ),
+                                    );
+                                  }),
+                            ),
+                          ],
+                        );
+                      }),
+                  AppSpaces.verticalSpace20,
+                  Column(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF262A34),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        // child: Column(
+                        //   children: [
+                        //     ToggleLabelOption(
+                        //       label: '$tabSpace Show me as away',
+                        //       notifierValue: totalTaskNotifier,
+                        //       icon: Icons.directions_run_rounded,
+                        //       margin: 7.0,
+                        //     ),
+                        //   ],
+                        // ),
                       ),
-                      // child: Column(
-                      //   children: [
-                      //     ToggleLabelOption(
-                      //       label: '$tabSpace Show me as away',
-                      //       notifierValue: totalTaskNotifier,
-                      //       icon: Icons.directions_run_rounded,
-                      //       margin: 7.0,
-                      //     ),
-                      //   ],
-                      // ),
-                    ),
-                    AppSpaces.verticalSpace10,
-                    ProfileTextOption(
-                      inTap: () {
-                        Get.to(() => Scaffold(
-                              backgroundColor: HexColor.fromHex("#181a1f"),
-                              floatingActionButtonLocation:
-                                  FloatingActionButtonLocation.centerFloat,
-                              body: ProjectScreen(),
-                            ));
-                      },
-                      label: '$tabSpace ${AppConstants.my_projects_key.tr}',
-                      icon: Icons.cast,
-                      margin: 5.0,
-                    ),
-                    AppSpaces.verticalSpace10,
-                    ProfileTextOption(
-                      inTap: () async {
-                        showDialogMethod(context);
-                        ManagerModel? userAsManger = await ManagerController()
-                            .getMangerWhereUserIs(
-                                userId: AuthService
-                                    .instance.firebaseAuth.currentUser!.uid);
-                        if (mounted) {
-                          Navigator.of(context).pop();
-                        }
-                        Get.to(() => SelectTeamScreen(
-                            title: AppConstants.my_teams_key.tr,
-                            managerModel: userAsManger));
-                      },
-                      label: '$tabSpace ${AppConstants.my_teams_key.tr}',
-                      icon: Icons.group,
-                      margin: 5.0,
-                    ),
-                    AppSpaces.verticalSpace10,
-                    ProfileTextOption(
-                      inTap: () {
-                        Get.to(() => SelectMyTeamScreen(
-                            title: AppConstants.manager_teams_key.tr));
-                      },
-                      label: '$tabSpace ${AppConstants.manager_teams_key.tr}',
-                      icon: FeatherIcons.share2,
-                      margin: 5.0,
-                    ),
-                    AppSpaces.verticalSpace10,
-                    ProfileTextOption(
-                      inTap: () {
-                        print("to nour");
-                      },
-                      label: '$tabSpace ${AppConstants.all_task_key.tr}',
-                      icon: Icons.check_circle_outline,
-                      margin: 5.0,
-                    ),
-                    AppSpaces.verticalSpace20,
-                  ],
-                ),
-              ],
+                      AppSpaces.verticalSpace10,
+                      ProfileTextOption(
+                        inTap: () {
+                          Get.to(() => Scaffold(
+                                backgroundColor: HexColor.fromHex("#181a1f"),
+                                floatingActionButtonLocation:
+                                    FloatingActionButtonLocation.centerFloat,
+                                body: ProjectScreen(),
+                              ));
+                        },
+                        label: '$tabSpace ${AppConstants.my_projects_key.tr}',
+                        icon: Icons.cast,
+                        margin: 5.0,
+                      ),
+                      AppSpaces.verticalSpace10,
+                      ProfileTextOption(
+                        inTap: () async {
+                          showDialogMethod(context);
+                          ManagerModel? userAsManger = await ManagerController()
+                              .getMangerWhereUserIs(
+                                  userId: AuthService
+                                      .instance.firebaseAuth.currentUser!.uid);
+                          if (mounted) {
+                            Navigator.of(context).pop();
+                          }
+                          Get.to(() => SelectTeamScreen(
+                              title: AppConstants.my_teams_key.tr,
+                              managerModel: userAsManger));
+                        },
+                        label: '$tabSpace ${AppConstants.my_teams_key.tr}',
+                        icon: Icons.group,
+                        margin: 5.0,
+                      ),
+                      AppSpaces.verticalSpace10,
+                      ProfileTextOption(
+                        inTap: () {
+                          Get.to(() => SelectMyTeamScreen(
+                              title: AppConstants.manager_teams_key.tr));
+                        },
+                        label: '$tabSpace ${AppConstants.manager_teams_key.tr}',
+                        icon: FeatherIcons.share2,
+                        margin: 5.0,
+                      ),
+                      AppSpaces.verticalSpace10,
+                      ProfileTextOption(
+                        inTap: () {
+                          print("to nour");
+                        },
+                        label: '$tabSpace ${AppConstants.all_task_key.tr}',
+                        icon: Icons.check_circle_outline,
+                        margin: 6.0,
+                      ),
+                      AppSpaces.verticalSpace20,
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
-      ),
-    ]));
+      ]),
+    );
   }
 }

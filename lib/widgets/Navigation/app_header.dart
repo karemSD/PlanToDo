@@ -14,29 +14,44 @@ class TaskezAppHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-      const AppBackButton(),
-      (messagingPage != null)
-          ? Row(children: [
-              Container(
+    return SingleChildScrollView(
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        const AppBackButton(),
+        (messagingPage != null)
+            ? Row(children: [
+                Container(
                   width: 10,
                   height: 10,
                   decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: HexColor.fromHex("94D57B"))),
-              const SizedBox(width: 5),
-              Text(title,
+                    shape: BoxShape.circle,
+                    color: HexColor.fromHex("94D57B"),
+                  ),
+                ),
+                SizedBox(
+                    width: Utils.screenWidth *
+                        0.01), // Adjust the percentage as needed
+
+                Text(
+                  title,
                   style: GoogleFonts.lato(
-                      fontSize: 20,
+                      fontSize: Utils.screenWidth *
+                          0.07, // Adjust the percentage as needed
+
                       color: Colors.white,
-                      fontWeight: FontWeight.bold))
-            ])
-          : Text(title,
-              style: GoogleFonts.lato(
-                  fontSize: 20,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold)),
-      widget!
-    ]);
+                      fontWeight: FontWeight.bold),
+                )
+              ])
+            : Text(
+                title,
+                style: GoogleFonts.lato(
+                    fontSize: Utils.screenWidth *
+                        0.065, // Adjust the percentage as needed
+
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
+              ),
+        widget!
+      ]),
+    );
   }
 }

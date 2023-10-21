@@ -211,6 +211,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:mytest/constants/app_constans.dart';
 
 import '../../Values/values.dart';
 import '../../widgets/Buttons/primary_progress_button.dart';
@@ -327,7 +328,10 @@ class _NewTaskDueDateState extends State<NewTaskDueDate> {
                                         );
                                       },
                                       child: ConditionText(
-                                        label: "Due Time",
+                                        label: widget.title ==
+                                                AppConstants.start_date_key.tr
+                                            ? AppConstants.start_time_key.tr
+                                            : AppConstants.end_time_key.tr,
                                         color: HexColor.fromHex("BE5EF6"),
                                         value: DateFormat('h:mm a').format(t!),
                                       ),
@@ -349,10 +353,10 @@ class _NewTaskDueDateState extends State<NewTaskDueDate> {
                                         Get.back();
                                       },
                                       child: Text(
-                                        'Cancel',
+                                        AppConstants.cancel_key.tr,
                                         style: GoogleFonts.lato(
                                           color: HexColor.fromHex("F49189"),
-                                          fontSize: 14,
+                                          fontSize: Utils.screenWidth * 0.05,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -360,7 +364,7 @@ class _NewTaskDueDateState extends State<NewTaskDueDate> {
                                     PrimaryProgressButton(
                                       width: Get.width > 600 ? 110 : 120,
                                       height: Get.height > 500 ? 70 : 90,
-                                      label: "Done",
+                                      label: AppConstants.done_key.tr,
                                       callback: () {
                                         // print(widget.selectedDay);
                                         // print(t);

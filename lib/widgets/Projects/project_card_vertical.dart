@@ -36,19 +36,26 @@ class ProjectCardVertical extends StatelessWidget {
       // width: 150,
 
       //margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      padding: EdgeInsets.symmetric(
+        horizontal: Utils.screenWidth * 0.03, // Adjust the percentage as needed
+        vertical: Utils.screenHeight * 0 , // Adjust the percentage as needed
+      ),
+      // padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
       decoration: BoxDecoration(
-          color: HexColor.fromHex("20222A"),
-          borderRadius: BorderRadius.circular(20)),
+        color: HexColor.fromHex("20222A"),
+        borderRadius: BorderRadius.circular(20),
+      ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         ColouredProjectBadge(projeImagePath: projeImagePath),
-        const SizedBox(height: 5),
+        SizedBox(height: Utils.screenHeight * 0.01),
         Text(
           projectName,
           style: GoogleFonts.lato(
-              color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600),
+              color: Colors.white,
+              fontSize: Utils.screenWidth * 0.05,
+              fontWeight: FontWeight.w600),
         ),
-        const SizedBox(height: 5),
+        SizedBox(height: Utils.screenHeight * 0.01),
         Row(children: [
           InkWell(
             child: Text(
@@ -69,7 +76,7 @@ class ProjectCardVertical extends StatelessWidget {
         Row(
           children: [
             Text(
-              "Status : ",
+              "${AppConstants.status_key.tr} : ",
               style: GoogleFonts.lato(
                 color: HexColor.fromHex("246CFE"),
               ),

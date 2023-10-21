@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 import 'package:get/get.dart';
 import 'package:mytest/Values/values.dart';
+import 'package:mytest/constants/app_constans.dart';
 import 'package:mytest/controllers/categoryController.dart';
 import 'package:mytest/controllers/statusController.dart';
 import 'package:mytest/controllers/user_task_controller.dart';
@@ -38,22 +39,22 @@ class TaskWidget extends StatelessWidget {
       case TaskStatus.notDone:
         icon = Icons.clear;
         color = Colors.red;
-        statusText = 'Not Done';
+        statusText = AppConstants.not_done_key.tr;
         break;
       case TaskStatus.inProgress:
         icon = Icons.access_time;
         color = Colors.orange;
-        statusText = 'In Progress';
+        statusText = AppConstants.in_progress_key.tr;
         break;
       case TaskStatus.done:
         icon = Icons.check;
         color = Colors.green;
-        statusText = 'Done';
+        statusText = AppConstants.done_key.tr;
         break;
       case TaskStatus.notStarted:
         icon = Icons.schedule;
         color = Colors.grey;
-        statusText = 'not started';
+        statusText = AppConstants.not_started_key.tr;
     }
 
     return Row(
@@ -62,7 +63,7 @@ class TaskWidget extends StatelessWidget {
           icon,
           color: color,
         ),
-        SizedBox(width: 8),
+        const SizedBox(width: 8),
         Text(
           statusText,
           style: TextStyle(
@@ -181,12 +182,13 @@ class _CardTaskState extends State<CardTask> {
                       userTaskModel.endDate != dueDate) &&
                   taskStatus != statusNotStarted) {
                 CustomSnackBar.showError(
-                    "Cannot edit a start time and end time of done or doing task");
+                    AppConstants.cannot_edit_time_of_done_or_doing_task_key.tr);
                 return;
               }
               if (startDate.isAfter(dueDate) ||
                   startDate.isAtSameMomentAs(dueDate)) {
-                CustomSnackBar.showError("start date cannot be after end date");
+                CustomSnackBar.showError(
+                    AppConstants.start_date_cannot_be_after_end_date_key.tr);
                 return;
               }
 
@@ -237,12 +239,14 @@ class _CardTaskState extends State<CardTask> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          buildLabel(widget.task.name!),
+                          buildLabelWithStyle(widget.task.name!,
+                              textStyle: AppTextStyles.header2),
                           _buildStatus(widget.task.importance),
                         ],
                       ),
                       const SizedBox(height: 20),
-                      buildLabel("Description: ${widget.task.description}"),
+                      buildLabel(
+                          "${AppConstants.description_key.tr} : ${widget.task.description}"),
                       StreamBuilder(
                         stream: statusController
                             .getStatusByIdStream(idk: widget.task.statusId)
@@ -259,9 +263,9 @@ class _CardTaskState extends State<CardTask> {
                         },
                       ),
                       buildLabel(
-                          "Start Date:${formatDateTime(widget.task.startDate)}"),
+                          "${AppConstants.start_date_key.tr} : ${formatDateTime(widget.task.startDate)}"),
                       buildLabel(
-                          "End date:${formatDateTime(widget.task.endDate!)}"),
+                          "${AppConstants.end_date_key.tr} : ${formatDateTime(widget.task.endDate!)}"),
                     ],
                   ),
                 ),
@@ -314,9 +318,9 @@ class _CardTaskState extends State<CardTask> {
   }
 
   Widget _buildStatus(int importance) {
-    final maxOpacity = 0.9; // Maximum opacity for the task
-    final minOpacity = 0.3; // Minimum opacity for the task
-    final opacityStep =
+    const maxOpacity = 0.9; // Maximum opacity for the task
+    const minOpacity = 0.3; // Minimum opacity for the task
+    const opacityStep =
         (maxOpacity - minOpacity) / 4; // Step size for opacity calculation
 
     return Row(
@@ -372,10 +376,21 @@ class _CardTaskState extends State<CardTask> {
     }
   }
 
-  Widget buildLabel(String name) {
+  Widget buildLabel(
+    String name,
+  ) {
     return Text(
       name,
       style: AppTextStyles.header2_2,
+      maxLines: 2,
+      overflow: TextOverflow.ellipsis,
+    );
+  }
+
+  Widget buildLabelWithStyle(String name, {required TextStyle? textStyle}) {
+    return Text(
+      name,
+      style: textStyle,
       maxLines: 2,
       overflow: TextOverflow.ellipsis,
     );

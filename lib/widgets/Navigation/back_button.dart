@@ -17,20 +17,23 @@ class AppBackButton extends StatelessWidget {
 // }
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        if (Navigator.canPop(context)) {
-          Get.back();
-        } else {
-          // User? user=  AuthService.instance.firebaseAuth.currentUser;
-          // if (user!=null && !user.isAnonymous) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: InkWell(
+        onTap: () {
+          if (Navigator.canPop(context)) {
+            Get.back();
+          } else {
+            // User? user=  AuthService.instance.firebaseAuth.currentUser;
+            // if (user!=null && !user.isAnonymous) {
 
-          // }
-          Get.offAll(() => const Timeline());
-        }
-        print(1);
-      },
-      child: const RoundedBorderWithIcon(icon: Icons.arrow_back),
+            // }
+            Get.offAll(() => const Timeline());
+          }
+          print(1);
+        },
+        child: const RoundedBorderWithIcon(icon: Icons.arrow_back),
+      ),
     );
   }
 }

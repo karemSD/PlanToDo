@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mytest/Screens/Dashboard/search_bar_animation.dart';
+import 'package:mytest/constants/app_constans.dart';
 import 'package:mytest/constants/back_constants.dart';
 import 'package:mytest/controllers/project_sub_task_controller.dart';
 import 'package:mytest/controllers/team_member_controller.dart';
@@ -116,11 +117,15 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
       userSubscription = userModelStream.listen((userSnapshot) {
         UserModel user = userSnapshot.data()!;
         bool updatedIsManager;
-        if (user.id != AuthService.instance. firebaseAuth.currentUser!.uid) {
-          print(user.id + "/////" + AuthService.instance. firebaseAuth.currentUser!.uid);
+        if (user.id != AuthService.instance.firebaseAuth.currentUser!.uid) {
+          print(user.id +
+              "/////" +
+              AuthService.instance.firebaseAuth.currentUser!.uid);
           updatedIsManager = false;
         } else {
-          print(user.id + "/////" + AuthService.instance. firebaseAuth.currentUser!.uid);
+          print(user.id +
+              "/////" +
+              AuthService.instance.firebaseAuth.currentUser!.uid);
           updatedIsManager = true;
         }
         print(updatedIsManager);
@@ -168,8 +173,9 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
               child: Text("gome")),
           SafeArea(
             child: TaskezAppHeader(
-              title: "Sub tasks",
+              title: AppConstants.sub_tasks_key.tr,
               widget: MySearchBarWidget(
+                searchWord: AppConstants.sub_tasks_key.tr,
                 editingController: editingController,
                 onChanged: (String value) {
                   setState(() {

@@ -76,6 +76,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
           child: TaskezAppHeader(
             title: AppConstants.categories_key.tr,
             widget: MySearchBarWidget(
+              searchWord: AppConstants.categories_key.tr,
               editingController: editingController,
               onChanged: (String value) {
                 setState(() {
@@ -89,8 +90,18 @@ class _CategoryScreenState extends State<CategoryScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              margin: const EdgeInsets.only(right: 20.0, left: 20.0),
-              padding: const EdgeInsets.only(right: 20.0, left: 20.0),
+              margin: EdgeInsets.only(
+                right:
+                    Utils.screenWidth * 0.05, // Adjust the percentage as needed
+                left:
+                    Utils.screenWidth * 0.05, // Adjust the percentage as needed
+              ),
+              padding: EdgeInsets.only(
+                right: Utils.screenWidth *
+                    0.04, // Adjust the 0percentage as needed
+                left:
+                    Utils.screenWidth * 0.04, // Adjust the percentage as needed
+              ),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
@@ -117,19 +128,32 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 }).toList(),
 
                 // Add extra styling
-                icon: const Icon(
+                icon: Icon(
                   Icons.arrow_drop_down,
-                  size: 35,
+                  size: Utils.screenWidth *
+                      0.07, // Adjust the percentage as needed
                 ),
                 underline: const SizedBox(),
               ),
             ),
-            IconButton(
-              icon: Icon(
-                sortAscending ? Icons.arrow_upward : Icons.arrow_downward,
-                color: Colors.white,
+            Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.transparent,
+                border: Border.all(
+                  width: 2,
+                  color: HexColor.fromHex("616575"),
+                ),
               ),
-              onPressed: toggleSortOrder, // Toggle the sort order
+              child: IconButton(
+                icon: Icon(
+                  size: Utils.screenWidth *
+                      0.06, // Adjust the percentage as needed
+                  sortAscending ? Icons.arrow_upward : Icons.arrow_downward,
+                  color: Colors.white,
+                ),
+                onPressed: toggleSortOrder, // Toggle the sort order
+              ),
             ),
             IconButton(
               icon: const Icon(
@@ -159,19 +183,19 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   if (taskCount > 0) {
                     if (search.isNotEmpty) {
                       print(search + "helli");
-                      snapshot.data!.docs.forEach((element) {
+                      for (var element in snapshot.data!.docs) {
                         UserTaskCategoryModel taskModel = element.data();
                         if (taskModel.name!.toLowerCase().contains(search)) {
                           list.add(taskModel);
                         }
-                      });
+                      }
                     } else {
-                      snapshot.data!.docs.forEach((element) {
+                      for (var element in snapshot.data!.docs) {
                         UserTaskCategoryModel taskCategoryModel =
                             element.data();
 
                         list.add(taskCategoryModel);
-                      });
+                      }
                     }
                     switch (selectedSortOption) {
                       case CategorySortOption.name:

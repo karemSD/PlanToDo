@@ -105,6 +105,7 @@ class WatingSubTasksController extends TopController {
         waitingSubTaskId: waitingSubTaskId,
         isAccepted: true,
         memberMessage: '');
+    print("DFsdfsdfsd");
   }
 
   Future<void> rejectSubTask({
@@ -182,12 +183,15 @@ class WatingSubTasksController extends TopController {
     }
   }
 
-
-
-///تعديل 
-  Stream<QuerySnapshot<WaitingSubTaskModel>> getWaitingSubTasksInMembersId({required List<String> membersId}) {
-   return  watingSubTasksRef.where( "subTask.$assignedToK", whereIn: membersId).snapshots().cast<QuerySnapshot<WaitingSubTaskModel>>();
+  ///تعديل
+  Stream<QuerySnapshot<WaitingSubTaskModel>> getWaitingSubTasksInMembersId(
+      {required List<String> membersId}) {
+    return watingSubTasksRef
+        .where("subTask.$assignedToK", whereIn: membersId)
+        .snapshots()
+        .cast<QuerySnapshot<WaitingSubTaskModel>>();
   }
+
   Future<void> deleteWatingSubTask({required String id}) async {
     WriteBatch batch = fireStore.batch();
     deleteDocUsingBatch(

@@ -217,7 +217,7 @@ class AppConstants {
   static const String sub_task_already_exist_in_main_task_key =
       "task already exist in main task";
   static const String task_key = "task";
-  static const String added_successfully_key = "added successfully";
+  static const String added_successfully_key = "added_successfully";
   static const String main_task_already_exist_in_project_key =
       "main_task_already_exist_in_project";
   static const String updated_successfully_key = "updated_successfully";
@@ -371,7 +371,8 @@ class AppConstants {
   static const String team_name_empty_error_key = "team_name_empty_error";
   static const String team_name_min_length_error_key =
       "team_name_min_length_error";
-   static const String    choose_member_for_team_key = "Please_choose_one_member_at_least_to_make_a_Team";
+  static const String choose_member_for_team_key =
+      "Please_choose_one_member_at_least_to_make_a_Team";
   static const String team_creating_time_future_error_key =
       "team_creating_time_future_error";
   static const String team_creating_time_past_error_key =
@@ -522,6 +523,11 @@ class AppConstants {
   static const String to_be_a_member_in_team_key = "to_be_a_member_in_team";
   static const String do_something_when_your_item_deleted_key =
       "do_something_when_your_item_deleted";
+  static const String search_key = "Search";
+  static const String please_enter_username_to_search_key =
+      "please_enter_any_username_to_search_for";
+  static const String no_user_found_with_username_key =
+      "No_User_Found_With_This_UserName";
   static const String you_are_not_member_of_any_team_yet_key =
       "you_are_not_member_of_any_team_yet";
   static const String created_by_key = "created_by";
@@ -532,13 +538,19 @@ class AppConstants {
   static const String you_have_to_member_in_team_to_have_tasks_key =
       "you_have_to_member_in_team_to_have_tasks";
   static const String there_is_no_task_yet_key = "there_is_no_task_yet";
-  static const String no_tasks_found_key = "no_tasks_found";
+ static const String no_tasks_found_key = "No_tasks_found";
   static const String create_new_task_key = "create_new_task";
 
   static const String update_task_key = "update_task";
-  static const String delete_key = "delete";
+  static const String delete_key = "Delete";
+  static const String in_progress_key = "In_Progress";
+  static const String cannot_edit_time_of_done_or_doing_task_key = "Cannot_edit_time_of_done_or_doing_task";
 
+static const String not_started_key = "Not_Started";
   static const String update_project_key = "update_project";
+static const String add_task_to_get_started_key = "Add_a_task_to_get_started";
+  static const String enter_name_key = "Please_enter_name";
+static const String checked_already_key = "Checked_already";
 
   static const String edit_category_key = "edit_category";
   static const String delete_category_key = "delete_category";
@@ -550,8 +562,17 @@ class AppConstants {
   static const String project_key = "project";
 
   static const String team_key = "team";
+static const String bio_key = "Bio";
+static const String details_key = "Details";
 
   static const String invitation_key = "invitation";
+static const String managed_by_key = "Managed_By";
+static const String that_created_the_team_on_key = "That_created_the_Team_on";
+static const String of_key = "Of";
+static const String no_projects_for_key = "No_Projects_for";
+static const String no_any_members_yet_key = "No_Any_Members_yet";
+static const String from_this_team_key = "From_this_Team ?";
+static const String team_has_same_name_in_your_teams_key = "There_is_a_team_has_the_same_name_in_your_teams";
 
   static const String file_key = "file";
 
@@ -658,6 +679,7 @@ class AppConstants {
   static const String arabic_key = "arabic";
   static const String english_key = "english";
   static const String receive_notification_key = "receive_notification";
+static const String start_date_cannot_be_after_end_date_or_in_the_same_time_or_before_the_current_date_key = "start_date_cannot_be_After_end_date_Or_in_the_same_Time_Or_before_the_current_date";
 
   static const String task_calendar_chat_key = "task_calendar_chat";
   static const String work_anywhere_easily_key = "work_anywhere_easily";
@@ -733,6 +755,7 @@ class AppConstants {
   static const String sensitive_change_password_process_key =
       "This_process_is_sensitive_so_you_should_log_in_again_before_trying_to_change_your_password_again";
 
+  static const String search_in_key = "Search_in";
   static const String manager_teams_key = "Manager_Teams";
 
 // ignore_for_file: constant_identifier_names

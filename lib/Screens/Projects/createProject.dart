@@ -178,14 +178,15 @@ class _CreateProjectState extends State<CreateProject> {
                   Visibility(
                     visible: selectedImagePath == null,
                     child: Container(
-                        width: 120,
-                        height: 120,
-                        decoration: BoxDecoration(
-                            color:
-                                AppColors.primaryAccentColor.withOpacity(0.75),
-                            shape: BoxShape.circle),
-                        child: const Icon(FeatherIcons.camera,
-                            color: Colors.white, size: 20)),
+                      width: Utils.screenWidth *
+                          0.335, // Adjust the percentage as needed
+                      height: Utils.screenWidth * 0.335 ,
+                      decoration: BoxDecoration(
+                          color: AppColors.primaryAccentColor.withOpacity(0.75),
+                          shape: BoxShape.circle),
+                      child: Icon(FeatherIcons.camera,
+                          color: Colors.white, size: Utils.screenWidth * 0.06),
+                    ),
                   )
                 ],
               ),
@@ -206,9 +207,10 @@ class _CreateProjectState extends State<CreateProject> {
                       controller.teams.isEmpty
                           ? AppConstants.choose_team_key.tr
                           : controller.teams.first.name!,
-                      style: const TextStyle(
+                      style: TextStyle(
                           color: Colors.white,
-                          fontSize: 20,
+                          fontSize: Utils.screenWidth *
+                              0.05, // Adjust the percentage as needed
                           fontWeight: FontWeight.bold),
                     ),
                   ),
@@ -233,8 +235,10 @@ class _CreateProjectState extends State<CreateProject> {
                                     },
                                     teams: <TeamModel?>[]);
                               } else {
-                                return Obx(() =>
-                                    buildStackedImagesTeamEdit(addMore: false));
+                                return Obx(
+                                  () => buildStackedImagesTeamEdit(
+                                      addMore: false),
+                                );
                               }
                             },
                           );
@@ -259,8 +263,10 @@ class _CreateProjectState extends State<CreateProject> {
                                         .map((doc) => doc.data())
                                         .toList());
                               } else {
-                                return Obx(() =>
-                                    buildStackedImagesTeamEdit(addMore: false));
+                                return Obx(
+                                  () => buildStackedImagesTeamEdit(
+                                      addMore: false),
+                                );
                               }
                             },
                           );
@@ -384,6 +390,7 @@ class _CreateProjectState extends State<CreateProject> {
               AppSpaces.verticalSpace20,
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 AddSubIcon(
+                  icon: const Icon(Icons.add, color: Colors.white),
                   scale: 1,
                   color: AppColors.primaryAccentColor,
                   callback: () async {
@@ -415,7 +422,7 @@ class _CreateProjectState extends State<CreateProject> {
     if (dateTime.year == now.year &&
         dateTime.month == now.month &&
         dateTime.day == now.day) {
-      return "Today ${DateFormat('h:mma').format(dateTime)}";
+      return "${AppConstants.today_key.tr} ${DateFormat('h:mma').format(dateTime)}";
     } else {
       return DateFormat('dd/MM h:mma').format(dateTime);
     }
@@ -445,13 +452,13 @@ class _CreateProjectState extends State<CreateProject> {
         startDate.isAtSameMomentAs(dueDate) ||
         startDate.isBefore(
           firebaseTime(
-            DateTime.now(),
+            DateTime.now().add(const Duration(minutes: 2)),
           ),
         )) {
       print("step 1");
-      CustomSnackBar.showError(
-        "start date cannot be After end date Or in tha same Time Or before the current date",
-      );
+      CustomSnackBar.showError(AppConstants
+          .start_date_cannot_be_after_end_date_or_in_the_same_time_or_before_the_current_date_key
+          .tr);
       return;
     }
     print("step2");
@@ -483,6 +490,7 @@ class _CreateProjectState extends State<CreateProject> {
           );
           resOfUpload.fold((left) {
             Navigator.of(context).pop();
+            print(left.toString());
             CustomSnackBar.showError("${left.toString()} ");
             return;
           }, (right) async {
@@ -506,7 +514,7 @@ class _CreateProjectState extends State<CreateProject> {
                 Navigator.of(context).pop();
               }
               CustomSnackBar.showSuccess(
-                  "${AppConstants.create_project_key.tr} $name completed successfully ");
+                  "${AppConstants.create_project_key.tr} $name ${AppConstants.completed_successfully_key.tr}");
             });
           });
         } else {
@@ -531,6 +539,7 @@ class _CreateProjectState extends State<CreateProject> {
         //  Get.key.currentState!.pop();
       } catch (e) {
         print("error");
+        print(e.toString());
         CustomSnackBar.showError(e.toString());
       }
     } else {

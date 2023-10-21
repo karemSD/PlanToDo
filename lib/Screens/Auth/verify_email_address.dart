@@ -59,25 +59,27 @@ class _VerifyEmailAddressScreenState extends State<VerifyEmailAddressScreen> {
                     Padding(
                       padding: EdgeInsets.symmetric(
                           horizontal: Utils.screenWidth / 3),
-                      child: const Icon(
-                        size: 100,
+                      child: Icon(
+                        size: Utils.screenWidth * 0.29,
                         FontAwesomeIcons.envelopeOpen,
                         color: Colors.white,
                       ),
                     ),
-                    const SizedBox(height: 40),
+                    SizedBox(
+                        height: Utils.screenHeight *
+                            0.04), // Adjust the percentage as needed
                     Text(
                         AppConstants
                             .check_your_an_email_messages_we_have_send_the_link_to_email_to_verify_key
                             .tr,
                         style: GoogleFonts.lato(
                             color: Colors.white,
-                            fontSize: 40,
+                            fontSize: Utils.screenWidth * 0.11,
                             fontWeight: FontWeight.bold)),
                     AppSpaces.verticalSpace40,
                     SizedBox(
                       //width: 180,
-                      height: 60,
+                      height: Utils.screenHeight * 0.15,
                       child: ElevatedButton(
                         onPressed: () async {
                           var verifyEmail =
@@ -101,7 +103,8 @@ class _VerifyEmailAddressScreenState extends State<VerifyEmailAddressScreen> {
                             const Icon(Iconsax.link, color: Colors.white),
                             Text(AppConstants.send_verify_link_key.tr,
                                 style: GoogleFonts.lato(
-                                    fontSize: 20, color: Colors.white)),
+                                    fontSize: Utils.screenWidth * 0.06,
+                                    color: Colors.white)),
                           ],
                         ),
                       ),
@@ -112,8 +115,9 @@ class _VerifyEmailAddressScreenState extends State<VerifyEmailAddressScreen> {
                       children: [
                         Text(
                           AppConstants.verifed_key.tr,
-                          style: const TextStyle(
-                              color: Colors.white, fontSize: 20),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: Utils.screenWidth * 0.055),
                         ),
                         GestureDetector(
                           onTap: () {
@@ -134,9 +138,9 @@ class _VerifyEmailAddressScreenState extends State<VerifyEmailAddressScreen> {
                           },
                           child: Text(
                             AppConstants.continue_key.tr,
-                            style: const TextStyle(
+                            style: TextStyle(
                                 color: Colors.blueAccent,
-                                fontSize: 20,
+                                fontSize: Utils.screenWidth * 0.055,
                                 fontWeight: FontWeight.bold),
                           ),
                         )

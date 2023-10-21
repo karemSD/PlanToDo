@@ -21,9 +21,12 @@ class TaskDueDate extends StatelessWidget {
       Padding(
           padding: const EdgeInsets.only(top: 60.0),
           child: Column(children: [
-            const Padding(
-              padding: EdgeInsets.only(right: 20, left: 20),
-              child: TaskezAppHeader(title: "Due Date", widget: SizedBox()),
+             Padding(
+              padding: EdgeInsets.only(
+          left: Utils.screenWidth * 0.04, // Adjust the percentage as needed
+          right: Utils.screenWidth * 0.04,
+        ),
+              child: const TaskezAppHeader(title: "Due Date", widget: SizedBox()),
             ),
             const SizedBox(height: 40),
             Expanded(

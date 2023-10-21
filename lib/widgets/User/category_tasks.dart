@@ -55,17 +55,17 @@ class _CategoryTasksState extends State<CategoryTasks> {
   String _getSortOptionText(TaskSortOption option) {
     switch (option) {
       case TaskSortOption.name:
-        return 'Name';
+        return AppConstants.name_key.tr;
       case TaskSortOption.updatedDate:
-        return 'Updated Date';
+        return AppConstants.updated_Date_key.tr;
       case TaskSortOption.createDate:
-        return 'Created Date';
+        return AppConstants.created_date_key.tr;
       case TaskSortOption.startDate:
-        return 'Start Date';
+        return AppConstants.start_date_key.tr;
       case TaskSortOption.endDate:
-        return 'End Date';
+        return AppConstants.end_date_key.tr;
       case TaskSortOption.importance:
-        return 'Importance';
+        return AppConstants.importance_key.tr;
       // Add cases for more sorting options if needed
       default:
         return '';
@@ -98,23 +98,38 @@ class _CategoryTasksState extends State<CategoryTasks> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: EdgeInsets.only(right: 20, left: 20),
-            child: SafeArea(
-              child: TaskezAppHeader2(
-                title: widget.categoryModel.name!.toUpperCase() + " Tasks",
-                widget: MySearchBarWidget(
-                  editingController: editingController,
-                  onChanged: (String value) {
-                    setState(() {
-                      // print(search);
-                      search = value;
-                    });
-                  },
-                ),
-              ),
+          SafeArea(
+              child: TaskezAppHeader(
+            title: widget.categoryModel.name!.toUpperCase(),
+            widget: MySearchBarWidget(
+              searchWord: widget.categoryModel.name!.toUpperCase() +
+                  AppConstants.tasks_key.tr,
+              editingController: editingController,
+              onChanged: (String value) {
+                setState(() {
+                  // print(search);
+                  search = value;
+                });
+              },
             ),
-          ),
+          )
+              // )
+              // TaskezAppHeader2(
+              //   title: widget.categoryModel.name!.toUpperCase() +
+              //       AppConstants.tasks_key.tr,
+              //   widget: MySearchBarWidget(
+              //     searchWord: widget.categoryModel.name!.toUpperCase() +
+              //         AppConstants.tasks_key.tr,
+              //     editingController: editingController,
+              //     onChanged: (String value) {
+              //       setState(() {
+              //         // print(search);
+              //         search = value;
+              //       });
+              //     },
+              //   ),
+              // ),
+              ),
           AppSpaces.verticalSpace20,
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -147,9 +162,9 @@ class _CategoryTasksState extends State<CategoryTasks> {
                   }).toList(),
 
                   // Add extra styling
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.arrow_drop_down,
-                    size: 35,
+                    size: Utils.screenWidth * 0.075,
                   ),
                   underline: const SizedBox(),
                 ),
@@ -189,7 +204,7 @@ class _CategoryTasksState extends State<CategoryTasks> {
                       List<UserTaskModel> list = [];
                       if (taskCount > 0) {
                         if (search.isNotEmpty) {
-                          snapshot.data!.docs.forEach((element) {
+                          for (var element in snapshot.data!.docs) {
                             UserTaskModel taskModel = element.data();
                             if (taskModel.name!
                                     .toLowerCase()
@@ -197,14 +212,14 @@ class _CategoryTasksState extends State<CategoryTasks> {
                                 taskModel.taskFatherId == null) {
                               list.add(taskModel);
                             }
-                          });
+                          }
                         } else {
-                          snapshot.data!.docs.forEach((element) {
+                          for (var element in snapshot.data!.docs) {
                             UserTaskModel taskCategoryModel = element.data();
                             if (taskCategoryModel.taskFatherId == null) {
                               list.add(taskCategoryModel);
                             }
-                          });
+                          }
                         }
                         switch (selectedSortOption) {
                           case TaskSortOption.name:
@@ -260,27 +275,27 @@ class _CategoryTasksState extends State<CategoryTasks> {
                             children: <Widget>[
                               Icon(
                                 Icons.task,
-                                size: 100,
+                                size: Utils.screenWidth * 0.3,
                                 color: HexColor.fromHex("#999999"),
                               ),
                               AppSpaces.verticalSpace10,
                               Text(
-                                "No Tasks Found",
+                                AppConstants.no_tasks_found_key.tr,
                                 style: GoogleFonts.poppins(
                                   textStyle: TextStyle(
                                     color: HexColor.fromHex("#999999"),
-                                    fontSize: 16,
+                                    fontSize: Utils.screenWidth * 0.05,
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
                               ),
                               AppSpaces.verticalSpace10,
                               Text(
-                                "Add a task to get started",
+                                AppConstants.add_task_to_get_started_key.tr,
                                 style: GoogleFonts.poppins(
                                   textStyle: TextStyle(
                                     color: HexColor.fromHex("#999999"),
-                                    fontSize: 14,
+                                    fontSize: Utils.screenWidth * 0.05,
                                     fontWeight: FontWeight.w400,
                                   ),
                                 ),
@@ -295,7 +310,7 @@ class _CategoryTasksState extends State<CategoryTasks> {
                         child: Text("Error: ${snapshot.error}"),
                       );
                     } else {
-                      return Center(
+                      return const Center(
                         child: CircularProgressIndicator(),
                       );
                     }
@@ -321,7 +336,8 @@ class _CategoryTasksState extends State<CategoryTasks> {
             required String color}) async {
           if (startDate.isAfter(dueDate) ||
               startDate.isAtSameMomentAs(dueDate)) {
-            CustomSnackBar.showError("start date cannot be after end date");
+            CustomSnackBar.showError(
+                AppConstants.start_date_cannot_be_after_end_date_key.tr);
             return;
           }
 
@@ -332,7 +348,7 @@ class _CategoryTasksState extends State<CategoryTasks> {
 
             UserTaskModel userTaskModel = UserTaskModel.firestoreConstructor(
                 colorParameter: color,
-                userId: AuthService.instance. firebaseAuth.currentUser!.uid,
+                userId: AuthService.instance.firebaseAuth.currentUser!.uid,
                 folderId: widget.categoryModel.id,
                 taskFatherId: null,
                 descriptionParameter: desc!,
@@ -347,7 +363,7 @@ class _CategoryTasksState extends State<CategoryTasks> {
             await UserTaskController()
                 .addUserLateTask(userTaskModel: userTaskModel);
             CustomSnackBar.showSuccess(
-                "${AppConstants.the_task_key} ${userTaskModel.name} ${AppConstants.added_successfully_key}");
+                "${AppConstants.the_task_key.tr} ${userTaskModel.name} ${AppConstants.added_successfully_key.tr}");
             Get.key.currentState!.pop();
           } catch (e) {
             CustomSnackBar.showError(e.toString());
@@ -371,7 +387,8 @@ class _CategoryTasksState extends State<CategoryTasks> {
             required String color}) async {
           if (startDate.isAfter(dueDate) ||
               startDate.isAtSameMomentAs(dueDate)) {
-            CustomSnackBar.showError("start date cannot be after end date");
+            CustomSnackBar.showError(
+                AppConstants.start_date_cannot_be_after_end_date_key.tr);
             return;
           }
           try {
@@ -381,7 +398,8 @@ class _CategoryTasksState extends State<CategoryTasks> {
 
             UserTaskModel userTaskModel = UserTaskModel(
                 hexColorParameter: color,
-                userIdParameter: AuthService.instance. firebaseAuth.currentUser!.uid,
+                userIdParameter:
+                    AuthService.instance.firebaseAuth.currentUser!.uid,
                 folderIdParameter: widget.categoryModel.id,
                 taskFatherIdParameter: null,
                 descriptionParameter: desc!,

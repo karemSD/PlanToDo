@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mytest/Screens/Profile/team_details.dart';
 import 'package:mytest/Screens/Projects/searchForMembers.dart';
+import 'package:mytest/constants/app_constans.dart';
 import 'package:mytest/controllers/team_member_controller.dart';
 import 'package:mytest/controllers/userController.dart';
 import 'package:mytest/controllers/waitingMamberController.dart';
@@ -70,11 +71,17 @@ class ShowTeamMembers extends StatelessWidget {
           padding: const EdgeInsets.only(top: 60.0),
           child: Column(children: [
             Padding(
-              padding: EdgeInsets.only(right: 20, left: 20),
+              padding: EdgeInsets.only(
+                left:
+                    Utils.screenWidth * 0.04, // Adjust the percentage as needed
+                right: Utils.screenWidth * 0.04,
+              ),
               child: TaskezAppHeader(
-                title: "The Memebers",
+                title: AppConstants.members_key.tr,
                 widget: GestureDetector(
                   onTap: () async {
+                    //TODO:
+
                     // bool fcmStutas =
                     //     await FcmNotifications.getNotificationStatus();
                     // Get.to(() => ProfileOverview(
@@ -178,24 +185,33 @@ class ShowTeamMembers extends StatelessWidget {
                                                       MainAxisAlignment.center,
                                                   children: [
 //
-                                                    const Icon(
+                                                    Icon(
                                                       Icons.search_off,
-                                                      //   Icons.heart_broken_outlined,
                                                       color: Colors.red,
-                                                      size: 120,
+                                                      size: Utils.screenWidth *
+                                                          0.27,
                                                     ),
                                                     Padding(
-                                                      padding: const EdgeInsets
-                                                              .symmetric(
-                                                          horizontal: 50,
-                                                          vertical: 40),
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                        horizontal: Utils
+                                                                .screenWidth *
+                                                            0.1, // Adjust the percentage as needed
+                                                        vertical:
+                                                            Utils.screenHeight *
+                                                                0.05,
+                                                      ),
                                                       child: Center(
                                                         child: Text(
-                                                          "No Any Members yet",
+                                                          AppConstants
+                                                              .no_any_members_yet_key
+                                                              .tr,
                                                           style: GoogleFonts
                                                               .fjallaOne(
                                                             color: Colors.white,
-                                                            fontSize: 40,
+                                                            fontSize: Utils
+                                                                    .screenWidth *
+                                                                0.1,
                                                           ),
                                                         ),
                                                       ),
@@ -226,7 +242,7 @@ class ShowTeamMembers extends StatelessWidget {
                                                         return Padding(
                                                           padding:
                                                               const EdgeInsets
-                                                                      .symmetric(
+                                                                  .symmetric(
                                                                   horizontal: 3,
                                                                   vertical: 6),
                                                           child: Slidable(
@@ -255,9 +271,9 @@ class ShowTeamMembers extends StatelessWidget {
                                                                                       await TeamMemberController().deleteMember(id: snapshotTeamMembers.data!.docs[index].data().id);
                                                                                       Get.back();
                                                                                     },
-                                                                                    content: Text("Are You sure ro Delete the member ${snapshotUsers.data!.docs[index].data().name} from this Team ?"));
+                                                                                    content: Text("${AppConstants.confirm_delete_key.tr} ${snapshotUsers.data!.docs[index].data().name} ${AppConstants.from_this_team_key.tr}"));
                                                                               },
-                                                                              label: 'Delete',
+                                                                              label: AppConstants.delete_key.tr,
                                                                               icon: FontAwesomeIcons.trash,
                                                                             ),
                                                                           ])
@@ -274,7 +290,7 @@ class ShowTeamMembers extends StatelessWidget {
                                                                                 Get.key.currentState!.pop();
                                                                                 print("object dlete waitiing member");
                                                                               },
-                                                                              label: 'Delete',
+                                                                              label: AppConstants.delete_key.tr,
                                                                               icon: FontAwesomeIcons.trash,
                                                                             ),
                                                                           ])
@@ -307,7 +323,7 @@ class ShowTeamMembers extends StatelessWidget {
 
                                                                                 print("see tasks as manager");
                                                                               },
-                                                                              label: "Tasks",
+                                                                              label: AppConstants.tasks_key.tr,
                                                                               icon: FontAwesomeIcons.listCheck,
                                                                             ),
                                                                           ])
@@ -330,7 +346,7 @@ class ShowTeamMembers extends StatelessWidget {
                                                                                 ));
                                                                                 print("see tasks as parnter in main tasks");
                                                                               },
-                                                                              label: "Tasks",
+                                                                              label: AppConstants.tasks_key.tr,
                                                                               icon: FontAwesomeIcons.listCheck,
                                                                             ),
                                                                           ])
@@ -416,7 +432,7 @@ class ShowTeamMembers extends StatelessWidget {
               child: AppPrimaryButton(
                   buttonHeight: 50,
                   buttonWidth: 150,
-                  buttonText: "Add Member",
+                  buttonText: AppConstants.add_member_key.tr,
                   callback: () {
                     Get.to(
                       () => SearchForMembers(
@@ -434,5 +450,5 @@ class ShowTeamMembers extends StatelessWidget {
     );
   }
 
-  void GoToCommon(String projectId, bool isManager) {}
+//  void GoToCommon(String projectId, bool isManager) {}
 }

@@ -8,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:mytest/Screens/Dashboard/selectMyTeams.dart';
+import 'package:mytest/constants/app_constans.dart';
 import 'package:mytest/controllers/manger_controller.dart';
 import 'package:mytest/controllers/projectController.dart';
 import 'package:mytest/controllers/teamController.dart';
@@ -67,18 +68,17 @@ class EditProject extends StatefulWidget {
 class _EditProjectState extends State<EditProject> {
   STX stx = Get.put(STX());
   String? selectedImagePath;
-
   void _showImagePickerDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Choose an Image'),
+          title: Text(AppConstants.choose_an_image_key.tr),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
                 GestureDetector(
-                  child: const Text('Camera'),
+                  child: Text(AppConstants.camera_key.tr),
                   onTap: () {
                     _getImage(ImageSource.camera);
                     Navigator.of(context).pop();
@@ -86,7 +86,7 @@ class _EditProjectState extends State<EditProject> {
                 ),
                 const Padding(padding: EdgeInsets.all(8.0)),
                 GestureDetector(
-                  child: const Text('Gallery'),
+                  child: Text(AppConstants.gallery_key.tr),
                   onTap: () {
                     _getImage(ImageSource.gallery);
                     Navigator.of(context).pop();
@@ -94,7 +94,7 @@ class _EditProjectState extends State<EditProject> {
                 ),
                 const Padding(padding: EdgeInsets.all(8.0)),
                 GestureDetector(
-                  child: const Text('Cancel'),
+                  child: Text(AppConstants.cancel_key.tr),
                   onTap: () {
                     Navigator.of(context).pop();
                   },
@@ -223,9 +223,9 @@ class _EditProjectState extends State<EditProject> {
                     builder: (context, snapshotTeam) {
                       return Text(
                         snapshotTeam.data!.data()!.name!,
-                        style: const TextStyle(
+                        style: TextStyle(
                             color: Colors.white,
-                            fontSize: 20,
+                            fontSize: Utils.screenWidth * 0.06,
                             fontWeight: FontWeight.bold),
                       );
                     },
@@ -298,11 +298,12 @@ class _EditProjectState extends State<EditProject> {
                         ///  value: name,
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return "Name Can not be Empty";
+                            return AppConstants.name_can_not_be_empty_key.tr;
                           }
                           if (value.isNotEmpty) {
                             if (controller.isTaked.value) {
-                              return "Please use another project name";
+                              return AppConstants
+                                  .please_use_another_project_name_key.tr;
                             }
                           }
                           return null;
@@ -335,10 +336,10 @@ class _EditProjectState extends State<EditProject> {
                             // controller.isTaked.value = false;
                           }
                         },
-                        label: "Name",
+                        label: AppConstants.name_key.tr,
                         readOnly: false,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
-                        placeholder: "Project Name ....",
+                        placeholder: "${AppConstants.project_name_key.tr} ....",
                         keyboardType: "text",
                         controller: _projectNameController,
                         obscureText: false,
@@ -351,7 +352,8 @@ class _EditProjectState extends State<EditProject> {
               LabelledFormInput(
                 validator: (p0) {
                   if (p0!.isEmpty) {
-                    return "description cannot be empty spaces";
+                    return AppConstants
+                        .description_cannot_be_empty_spaces_key.tr;
                   }
                   return null;
                 },
@@ -367,10 +369,10 @@ class _EditProjectState extends State<EditProject> {
                   _projectDescController.text = "";
                   //  });
                 },
-                label: "Description",
+                label: AppConstants.description_key.tr,
                 readOnly: false,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
-                placeholder: "Project Description ....",
+                placeholder: "${AppConstants.project_description_key.tr}....",
                 keyboardType: "text",
                 controller: _projectDescController,
                 obscureText: false,
@@ -383,7 +385,7 @@ class _EditProjectState extends State<EditProject> {
                   cardBackgroundColor: HexColor.fromHex("7DBA67"),
                   textAccentColor: HexColor.fromHex("A9F49C"),
                   value: formattedStartDate,
-                  label: 'Start Date',
+                  label: AppConstants.start_date_key.tr,
                 ),
                 NewSheetGoToCalendarWidget(
                   onSelectedDayChanged: handleDueDayChanged,
@@ -391,7 +393,7 @@ class _EditProjectState extends State<EditProject> {
                   cardBackgroundColor: HexColor.fromHex("BA67A3"),
                   textAccentColor: HexColor.fromHex("BA67A3"),
                   value: formattedDueDate,
-                  label: 'Due Date',
+                  label: AppConstants.due_date_validation_key.tr,
                 )
               ]),
               // Spacer(),
@@ -399,7 +401,7 @@ class _EditProjectState extends State<EditProject> {
               AppSpaces.verticalSpace20,
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 AddSubIcon(
-                  
+                  icon: const Icon(Icons.add, color: Colors.white),
                   scale: 1,
                   color: AppColors.primaryAccentColor,
                   callback: () async {
@@ -426,7 +428,7 @@ class _EditProjectState extends State<EditProject> {
     if (dateTime.year == now.year &&
         dateTime.month == now.month &&
         dateTime.day == now.day) {
-      return "Today ${DateFormat('h:mma').format(dateTime)}";
+      return "${AppConstants.today_key.tr} ${DateFormat('h:mma').format(dateTime)}";
     } else {
       return DateFormat('dd/MM h:mma').format(dateTime);
     }

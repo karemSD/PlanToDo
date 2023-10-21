@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:mytest/constants/app_constans.dart';
 import 'package:mytest/constants/back_constants.dart';
 import 'package:mytest/controllers/projectController.dart';
 import 'package:mytest/controllers/team_member_controller.dart';
@@ -78,7 +79,8 @@ class TeamDetails extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         TaskezAppHeader(
-                          title: "$tabSpace Details Team",
+                          title:
+                              "$tabSpace ${AppConstants.details_key.tr} ${AppConstants.team_key.tr}",
                           widget: Visibility(
                             visible: userAsManager != null &&
                                 team!.managerId == userAsManager!.id,
@@ -194,9 +196,10 @@ class TeamDetails extends StatelessWidget {
 
                               return InBottomSheetSubtitle(
                                   title:
-                                      "Managed By ${snapshot.data!.name} that created the Team on ${snapshotTeam.data!.data()!.createdAt.month}/${snapshotTeam.data!.data()!.createdAt.day}  of ${snapshotTeam.data!.data()!.createdAt.year}",
+                                      " ${AppConstants.managed_by_key.tr} ${snapshot.data!.name} ${AppConstants.that_created_the_team_on_key.tr} ${snapshotTeam.data!.data()!.createdAt.month}/${snapshotTeam.data!.data()!.createdAt.day}  ${AppConstants.of_key.tr} ${snapshotTeam.data!.data()!.createdAt.year}",
                                   textStyle: GoogleFonts.lato(
-                                      fontSize: 15, color: Colors.white70));
+                                      fontSize: Utils.screenHeight * 0.045,
+                                      color: Colors.white70));
                             }),
                         AppSpaces.verticalSpace40,
                         ValueListenableBuilder(
@@ -216,7 +219,9 @@ class TeamDetails extends StatelessWidget {
                   return Center(
                     child: Text(
                       snapshotTeam.error.toString(),
-                      style: const TextStyle(color: Colors.white, fontSize: 20),
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: Utils.screenHeight * 0.05),
                     ),
                   );
                 }),
@@ -263,16 +268,16 @@ class TeamProjectOverview extends StatelessWidget {
                   children: <Widget>[
                     Icon(
                       Iconsax.task,
-                      size: 100,
+                      size: Utils.screenWidth * 0.4,
                       color: HexColor.fromHex("#999999"),
                     ),
                     AppSpaces.verticalSpace10,
                     Text(
-                      "No Projects for ${teamModel.name} ",
+                      "${AppConstants.no_projects_for_key.tr}  ${teamModel.name} ",
                       style: GoogleFonts.poppins(
                         textStyle: TextStyle(
                           color: HexColor.fromHex("#999999"),
-                          fontSize: 16,
+                          fontSize: Utils.screenWidth * 0.05,
                           fontWeight: FontWeight.w500,
                         ),
                       ),

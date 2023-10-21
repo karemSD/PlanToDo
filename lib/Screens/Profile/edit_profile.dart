@@ -76,9 +76,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
             color: HexColor.fromHex("#181a1f"),
             position: "topLeft",
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            child: SafeArea(
+          SafeArea(
+            child: Padding(
+              padding: EdgeInsets.only(
+                  right: Utils.screenWidth *
+                      0.04, // Adjust the percentage as needed
+                  left: Utils.screenWidth * 0.04,
+                  top: Utils.screenHeight * 0.05),
               child: SingleChildScrollView(
                 child: Form(
                   key: formKey,
@@ -197,14 +201,15 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               CustomSnackBar.showError(e.toString());
                             }
                           },
-                          width: 80,
-                          height: 40,
+                          width: Utils.screenWidth *
+                              0.2, // Adjust the percentage as needed
+                          height: Utils.screenHeight * 0.1,
                           label: AppConstants.save_key.tr,
                           textStyle: GoogleFonts.lato(
                               color: Colors.white, fontWeight: FontWeight.bold),
                         ),
                       ),
-                      const SizedBox(height: 30),
+                      SizedBox(height: Utils.screenHeight * 0.03),
                       Column(
                         children: [
                           Builder(builder: (context) {
@@ -361,7 +366,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               keyboardType: "text",
                               controller: bioController,
                               obscureText: false,
-                              label: bioK),
+                              label: AppConstants.bio_key.tr),
                         ],
                       ),
                       Visibility(

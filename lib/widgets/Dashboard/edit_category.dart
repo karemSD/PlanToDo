@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:mytest/constants/app_constans.dart';
 import 'package:mytest/constants/back_constants.dart';
 import 'package:mytest/controllers/categoryController.dart';
 import 'package:mytest/widgets/Dashboard/select_color_dialog.dart';
@@ -71,7 +73,8 @@ class _EditUserCategoryState extends State<EditUserCategory> {
         createdAtK: widget.category.createdAt,
         updatedAtK: DateTime.now(),
       }, id: widget.category.id);
-      CustomSnackBar.showSuccess("Category $name updated successfully");
+      CustomSnackBar.showSuccess(
+          "${AppConstants.category_key.tr} $name ${AppConstants.updated_successfully_key.tr}");
       await Future.delayed(const Duration(seconds: 1));
       Get.key.currentState!.pop();
     } catch (e) {
@@ -130,8 +133,9 @@ class _EditUserCategoryState extends State<EditUserCategory> {
                           );
                         },
                         child: Container(
-                          width: 20,
-                          height: 20,
+                          width: Utils.screenHeight *
+                              0.06, // Adjust the percentage as needed
+                          height: Utils.screenHeight * 0.06,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             color: HexColor.fromHex(color),
@@ -154,10 +158,10 @@ class _EditUserCategoryState extends State<EditUserCategory> {
                             });
                           },
                           onChanged: onChanged,
-                          label: "Name",
+                          label: AppConstants.name_key.tr,
                           readOnly: false,
                           autovalidateMode: AutovalidateMode.always,
-                          placeholder: "Category Name ....",
+                          placeholder: AppConstants.category_name_key.tr,
                           keyboardType: "text",
                           controller: _taskNameController,
                           obscureText: false,
@@ -170,6 +174,8 @@ class _EditUserCategoryState extends State<EditUserCategory> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       AddSubIcon(
+                        icon: const Icon(FontAwesomeIcons.pencil,
+                            color: Colors.white),
                         scale: 1,
                         color: AppColors.primaryAccentColor,
                         callback: () async {

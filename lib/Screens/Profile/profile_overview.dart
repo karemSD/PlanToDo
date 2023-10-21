@@ -63,7 +63,10 @@ class _ProfileOverviewState extends State<ProfileOverview> {
         position: "topLeft",
       ),
       Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20),
+        padding: EdgeInsets.only(
+          left: Utils.screenWidth * 0.05, // Adjust the percentage as needed
+          right: Utils.screenWidth * 0.04,
+        ),
         child: SafeArea(
           child: SingleChildScrollView(
             child: Column(
@@ -88,11 +91,13 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text("${snapshot.data!.data()!.name} ",
-                                style: GoogleFonts.lato(
-                                    color: Colors.white,
-                                    fontSize: 40,
-                                    fontWeight: FontWeight.bold)),
+                            child: Text(
+                              "${snapshot.data!.data()!.name} ",
+                              style: GoogleFonts.lato(
+                                  color: Colors.white,
+                                  fontSize: Utils.screenWidth * 0.1,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
                           Text(
                             AuthService.instance.firebaseAuth.currentUser!
@@ -100,8 +105,9 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                                 ? AppConstants.sign_in_anonmouslly_key.tr
                                 : snapshot.data!.data()!.email!,
                             style: GoogleFonts.lato(
-                                color: HexColor.fromHex("B0FFE1"),
-                                fontSize: 17),
+                              color: HexColor.fromHex("B0FFE1"),
+                              fontSize: Utils.screenWidth * 0.045,
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(15.0),
@@ -126,12 +132,13 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                             ? FontAwesomeIcons.bellSlash
                             : FontAwesomeIcons.bell,
                         color: Colors.yellowAccent.shade200,
-                        size: 30,
+                        size: Utils.screenWidth * 0.1,
                       ),
                       title: Text(
                         AppConstants.receive_notification_key.tr,
-                        style:
-                            const TextStyle(color: Colors.white, fontSize: 18),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: Utils.screenWidth * 0.06),
                       ),
                       style: ListTileStyle.drawer,
                       trailing: GlowSwitch(
@@ -258,15 +265,17 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                   },
                   child: Container(
                     width: double.infinity,
-                    height: 50,
+                    height: Utils.screenHeight *
+                        0.15, // Adjust the percentage as needed
+
                     decoration: BoxDecoration(
                         color: HexColor.fromHex("FF968E"),
-                        borderRadius: BorderRadius.circular(10)),
+                        borderRadius: BorderRadius.circular(12)),
                     child: Center(
                       child: Text(AppConstants.log_out_key.tr,
                           style: GoogleFonts.lato(
                               color: Colors.white,
-                              fontSize: 16,
+                              fontSize: Utils.screenWidth * 0.07,
                               fontWeight: FontWeight.bold)),
                     ),
                   ),
@@ -355,7 +364,7 @@ void showPasswordAndEmailDialog(BuildContext context) {
                 },
                 onClear: (() {
                   obscureText.value = !obscureText.value;
-                }),
+                }), 
                 onChanged: (value) {
                   password = value;
                 },
@@ -391,7 +400,8 @@ void showPasswordAndEmailDialog(BuildContext context) {
               }
             },
             buttonText: AppConstants.upgrade_account_key.tr,
-            buttonHeight: 40,
-            buttonWidth: 100),
+            buttonHeight:
+                Utils.screenHeight * 0.1, // Adjust the percentage as needed
+            buttonWidth: Utils.screenWidth * 0.33),
       ));
 }

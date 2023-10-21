@@ -114,6 +114,7 @@ class DashboardAddProjectSheet extends StatelessWidget {
                   ],
                 ),
                 AddSubIcon(
+                  icon: const Icon(Icons.add, color: Colors.white),
                   scale: 0.8,
                   color: AppColors.primaryAccentColor,
                   callback: _addMeeting,

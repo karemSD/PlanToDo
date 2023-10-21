@@ -95,7 +95,7 @@ class TeamModel extends VarTopModel {
       exception = Exception(AppConstants.team_name_empty_error_key.tr);
       throw exception;
     }
-    if (name.length <= 3) {
+    if (name.length < 3) {
       //لايمكن ان يكون اسم الفريق مؤلفاً من اقل من ثلاث محارف
       exception = Exception(AppConstants.team_name_min_length_error_key.tr);
       throw exception;
@@ -112,7 +112,8 @@ class TeamModel extends VarTopModel {
     DateTime now = firebaseTime(DateTime.now());
     //تاريخ إضافة  الدوكيومنت الخاص بالفريق لا يمكن أن يكون بعد الوقت الحالي
     if (createdAtParameter.isAfter(now)) {
-      exception = Exception(AppConstants.team_creating_time_future_error_key.tr);
+      exception =
+          Exception(AppConstants.team_creating_time_future_error_key.tr);
       throw exception;
     }
     //تاريخ إضافة الدوكيومنت الخاص بالفريق لا يمكن أن يكون قبل الوقت الحالي
@@ -129,8 +130,8 @@ class TeamModel extends VarTopModel {
     updatedAtParameter = firebaseTime(updatedAtParameter);
     //تاريخ تحديث الدوكيومنت الخاص بالفريق لا يمكن أن يكون قبل تاريخ الإنشاء
     if (updatedAtParameter.isBefore(createdAt)) {
-      exception =
-          Exception(AppConstants.team_updating_time_before_creation_error_key.tr);
+      exception = Exception(
+          AppConstants.team_updating_time_before_creation_error_key.tr);
       throw exception;
     }
     updatedAt = updatedAtParameter;

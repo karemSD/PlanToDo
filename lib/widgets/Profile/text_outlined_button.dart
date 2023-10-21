@@ -13,20 +13,28 @@ class OutlinedButtonWithText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        width: width,
-        height: 45,
-        child: ElevatedButton(
-            onPressed: onPressed,
-            style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all(HexColor.fromHex("181A1F")),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50.0),
-                        side: BorderSide(
-                            color: HexColor.fromHex("246EFE"), width: 2)))),
-            child: Center(
-                child: Text(content,
-                    style: const TextStyle(fontSize: 17, color: Colors.white)))));
+      width: width,
+      height: 45,
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ButtonStyle(
+          backgroundColor:
+              MaterialStateProperty.all(HexColor.fromHex("181A1F")),
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(50.0),
+              side: BorderSide(color: HexColor.fromHex("246EFE"), width: 2),
+            ),
+          ),
+        ),
+        child: Center(
+          child: Text(
+            content,
+            style: TextStyle(
+                fontSize: Utils.screenWidth * 0.05, color: Colors.white),
+          ),
+        ),
+      ),
+    );
   }
 }

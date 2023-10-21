@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:focused_menu/focused_menu.dart';
 import 'package:focused_menu/modals.dart';
 import 'package:get/get.dart';
+import 'package:mytest/constants/app_constans.dart';
 import '../../models/task/UserTaskCategory_model.dart';
 
 class FocusedMenu extends StatelessWidget {
@@ -29,13 +30,14 @@ class FocusedMenu extends StatelessWidget {
           [
             FocusedMenuItem(
               backgroundColor: Colors.grey,
-              title: const Text("edit"),
+              title: Text(AppConstants.edit_key.tr),
               trailingIcon: const Icon(Icons.edit),
               onPressed: editButton,
             ),
             FocusedMenuItem(
-              title: const Text(
-                "delete",
+              title: Text(
+                AppConstants.delete_key.tr,
+                // ignore: prefer_const_constructors
                 style: TextStyle(color: Colors.white),
               ),
               backgroundColor: Colors.red,

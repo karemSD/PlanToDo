@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:mytest/constants/app_constans.dart';
 import 'package:mytest/constants/back_constants.dart';
 import 'package:mytest/controllers/teamController.dart';
 import 'package:mytest/controllers/topController.dart';
@@ -141,13 +142,14 @@ class _MoreTeamDetailsSheetState extends State<MoreTeamDetailsSheet> {
                 Visibility(
                   visible: selectedImagePath == null,
                   child: Container(
-                      width: 120,
-                      height: 120,
+                      width: Utils.screenWidth *
+                          0.335, // Adjust the percentage as needed
+                      height: Utils.screenWidth * 0.335,
                       decoration: BoxDecoration(
                           color: AppColors.primaryAccentColor.withOpacity(0.75),
                           shape: BoxShape.circle),
-                      child: const Icon(FeatherIcons.camera,
-                          color: Colors.white, size: 20)),
+                      child: Icon(FeatherIcons.camera,
+                          color: Colors.white, size: Utils.screenWidth * 0.06)),
                 )
               ],
             ),
@@ -155,7 +157,8 @@ class _MoreTeamDetailsSheetState extends State<MoreTeamDetailsSheet> {
         }),
         AppSpaces.horizontalSpace10,
         Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20),
+          padding: EdgeInsets.only(
+              left: Utils.screenWidth * 0.06, right: Utils.screenWidth * 0.06),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -174,9 +177,9 @@ class _MoreTeamDetailsSheetState extends State<MoreTeamDetailsSheet> {
                         value: snapshot.data!.data()!.name!,
                         controller: managerNameController,
                         obscureText: false,
-                        label: "Team Mangaer");
+                        label: AppConstants.team_manager_key.tr);
                   }),
-              AppSpaces.verticalSpace20,
+              AppSpaces.verticalSpace10,
               Form(
                 key: formKey,
                 child: LabelledFormInput(
@@ -186,7 +189,7 @@ class _MoreTeamDetailsSheetState extends State<MoreTeamDetailsSheet> {
                     },
                     validator: (p0) {
                       if (p0!.isEmpty) {
-                        return "the name of team should not be empty";
+                        return AppConstants.name_can_not_be_empty_key.tr;
                       }
                       return null;
                     },
@@ -201,10 +204,10 @@ class _MoreTeamDetailsSheetState extends State<MoreTeamDetailsSheet> {
                     keyboardType: "text",
                     controller: teamNameController,
                     obscureText: false,
-                    label: "TEAM NAME"),
+                    label: AppConstants.team_name_key.tr),
               ),
-              AppSpaces.verticalSpace20,
-              const ContainerLabel(label: "Members"),
+              AppSpaces.verticalSpace10,
+              ContainerLabel(label: AppConstants.members_key.tr),
               AppSpaces.verticalSpace10,
               Transform.scale(
                 alignment: Alignment.centerLeft,
@@ -279,7 +282,7 @@ class _MoreTeamDetailsSheetState extends State<MoreTeamDetailsSheet> {
                   PrimaryProgressButton(
                     height: 50,
                     width: 150,
-                    label: "Edit Team",
+                    label: AppConstants.edit_team_key.tr,
                     callback: () async {
                       if (formKey.currentState!.validate()) {
                         name = name.trim();
@@ -294,11 +297,12 @@ class _MoreTeamDetailsSheetState extends State<MoreTeamDetailsSheet> {
                             Get.key.currentState!.pop();
                             CustomSnackBar.showError("${left.toString()} ");
                           }, (right) async {
-                            right.then((value) async{
-                                  String imageNetWork= value!;
-                                await TeamController().updateTeam(
-                              widget.teamModel.id, {imageUrlK: imageNetWork});
-                          Get.key.currentState!.pop();
+                            right.then((value) async {
+                              String imageNetWork = value!;
+                              await TeamController().updateTeam(
+                                  widget.teamModel.id,
+                                  {imageUrlK: imageNetWork});
+                              Get.key.currentState!.pop();
                             });
                           });
                         }
@@ -313,11 +317,13 @@ class _MoreTeamDetailsSheetState extends State<MoreTeamDetailsSheet> {
                               field2: managerIdK);
                           if (res) {
                             Navigator.of(context).pop();
-                            CustomSnackBar.showError(
-                                "There is a team has the same name in your teams  ");
+                            CustomSnackBar.showError(AppConstants
+                                .team_has_same_name_in_your_teams_key.tr);
                           } else {
                             await TeamController()
                                 .updateTeam(widget.teamModel.id, {nameK: name});
+                            CustomSnackBar.showSuccess(
+                                AppConstants.team_updated_successfully_key.tr);
                             Navigator.of(context).pop();
                           }
                           Get.key.currentState!.pop();

@@ -27,15 +27,16 @@ class AppPrimaryButton extends StatelessWidget {
       width: buttonWidth,
       height: buttonHeight,
       child: ElevatedButton(
-
-          onPressed: callback,
-          style: ButtonStyles.blueRounded,
-          
-          child: Text(buttonText,
-              style: GoogleFonts.lato(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white))),
+        onPressed: callback,
+        style: ButtonStyles.blueRounded,
+        child: Text(
+          buttonText,
+          style: GoogleFonts.lato(
+              fontSize: Utils.screenWidth * 0.045,
+              fontWeight: FontWeight.bold,
+              color: Colors.white),
+        ),
+      ),
     );
   }
 }

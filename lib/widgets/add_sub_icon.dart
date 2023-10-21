@@ -6,9 +6,11 @@ class AddSubIcon extends StatelessWidget {
   final VoidCallback? callback;
   final Color? color;
   final double? scale;
+  final Icon icon;
 
   const AddSubIcon({
     Key? key,
+    required this.icon,
     this.callback,
     this.scale,
     this.color,
@@ -26,7 +28,8 @@ class AddSubIcon extends StatelessWidget {
               color: color ?? Colors.transparent,
               border: Border.all(
                   width: 2, color: color ?? HexColor.fromHex("616575"))),
-          child: const Icon(Icons.add, color: Colors.white)),
+          child: icon)
+          
     );
   }
 }

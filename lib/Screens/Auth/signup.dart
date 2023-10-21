@@ -128,15 +128,17 @@ class _SignUpState extends State<SignUp> {
                                     Visibility(
                                       visible: selectedImagePath == null,
                                       child: Container(
-                                          width: 120,
-                                          height: 120,
+                                          width: Utils.screenWidth *
+                                              0.335, // Adjust the percentage as needed
+                                          height: Utils.screenWidth * 0.335,
                                           decoration: BoxDecoration(
                                               color: AppColors
                                                   .primaryAccentColor
                                                   .withOpacity(0.75),
                                               shape: BoxShape.circle),
-                                          child: const Icon(FeatherIcons.camera,
-                                              color: Colors.white, size: 20)),
+                                          child: Icon(FeatherIcons.camera,
+                                              color: Colors.white,
+                                              size: Utils.screenWidth * 0.06)),
                                     )
                                   ],
                                 ),
@@ -145,7 +147,9 @@ class _SignUpState extends State<SignUp> {
                           ],
                         );
                       }),
-                      const SizedBox(height: 30),
+                      SizedBox(
+                          height: Utils.screenHeight *
+                              0.06), // Adjust the percentage as needed
                       LabelledFormInput(
                           validator: (value) {
                             if (value!.isEmpty) {
@@ -180,7 +184,10 @@ class _SignUpState extends State<SignUp> {
                           controller: _nameController,
                           obscureText: false,
                           label: AppConstants.your_name_key.tr),
-                      const SizedBox(height: 15),
+                      SizedBox(
+                          height: Utils.screenHeight *
+                              0.03), // Adjust the percentage as needed
+
                       LabelledFormInput(
                           validator: (value) {
                             if (value!.isNotEmpty) {
@@ -225,7 +232,10 @@ class _SignUpState extends State<SignUp> {
                           controller: _userNameController,
                           obscureText: false,
                           label: AppConstants.your_username_key.tr),
-                      const SizedBox(height: 15),
+                      SizedBox(
+                          height: Utils.screenHeight *
+                              0.03), // Adjust the percentage as needed
+
                       LabelledFormInput(
                           validator: (value) {
                             if (value!.isEmpty) {
@@ -269,7 +279,10 @@ class _SignUpState extends State<SignUp> {
                           controller: _passController,
                           obscureText: obscureText,
                           label: AppConstants.your_password_key.tr),
-                      const SizedBox(height: 15),
+                      SizedBox(
+                          height: Utils.screenHeight *
+                              0.03), // Adjust the percentage as needed
+
                       LabelledFormInput(
                           validator: (value) {
                             if (password.isNotEmpty && confirm != password) {
@@ -300,10 +313,15 @@ class _SignUpState extends State<SignUp> {
                           controller: _confirmPassController,
                           obscureText: obscureText,
                           label: AppConstants.confirm_assword_key.tr),
-                      const SizedBox(height: 40),
+                      SizedBox(
+                          height: Utils.screenHeight *
+                              0.04), // Adjust the percentage as needed
+
                       SizedBox(
                         width: double.infinity,
-                        height: 60,
+                        height: Utils.screenHeight *
+                            0.15, // Adjust the percentage as needed
+
                         child: ElevatedButton(
                           onPressed: () async {
                             if (formKey.currentState!.validate()) {
@@ -348,7 +366,7 @@ class _SignUpState extends State<SignUp> {
                                               userModel: userModel,
                                               email: widget.email,
                                               password: password);
-                                      Navigator.of(context).pop();
+                                      //    Navigator.of(context).pop();
                                     });
                                   });
                                 } else {
@@ -394,7 +412,8 @@ class _SignUpState extends State<SignUp> {
                             AppConstants.sign_up_key.tr,
                             //'Sign Up',
                             style: GoogleFonts.lato(
-                                fontSize: 20, color: Colors.white),
+                                fontSize: Utils.screenWidth * 0.06,
+                                color: Colors.white),
                           ),
                         ),
                       )

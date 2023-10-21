@@ -222,6 +222,7 @@ class _NewCreateTaskBottomSheetState extends State<NewCreateTaskBottomSheet> {
             AppSpaces.verticalSpace20,
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               AddSubIcon(
+                icon: const Icon(Icons.add, color: Colors.white),
                 scale: 1,
                 color: AppColors.primaryAccentColor,
                 callback: _addProject,

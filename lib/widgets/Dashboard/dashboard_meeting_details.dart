@@ -297,7 +297,7 @@ class _DashboardMeetingDetailsState extends State<DashboardMeetingDetails> {
                                       Navigator.of(context).pop();
 
                                       CustomSnackBar.showSuccess(
-                                          "Creating team ${teamModel.name} completed successfully ");
+                                          "${AppConstants.create_team_key.tr} ${teamModel.name} ${AppConstants.completed_successfully_key.tr}");
                                     });
                                   });
                                 } else {
@@ -312,7 +312,7 @@ class _DashboardMeetingDetailsState extends State<DashboardMeetingDetails> {
                                   Navigator.of(context).pop();
 
                                   CustomSnackBar.showSuccess(
-                                      "Creating team ${teamModel.name} completed successfully ");
+                                      "${AppConstants.create_team_key.tr} ${teamModel.name} ${AppConstants.completed_successfully_key.tr}");
                                 }
 
                                 dev.log("message Ysss");

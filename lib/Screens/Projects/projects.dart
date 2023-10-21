@@ -17,9 +17,12 @@ class Projects extends StatelessWidget {
             color: HexColor.fromHex("#181a1f"),
             position: "topLeft",
           ),
-          const Padding(
-              padding: EdgeInsets.only(right: 20, left: 20),
-              child: SafeArea(
+           Padding(
+               padding: EdgeInsets.only(
+          left: Utils.screenWidth * 0.04, // Adjust the percentage as needed
+          right: Utils.screenWidth * 0.04,
+        ),
+              child: const SafeArea(
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

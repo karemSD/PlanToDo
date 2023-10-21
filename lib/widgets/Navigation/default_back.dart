@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mytest/constants/app_constans.dart';
 import 'package:mytest/models/User/User_model.dart';
 
 import '../../Screens/Profile/edit_profile.dart';
@@ -8,7 +9,7 @@ import '../../Values/values.dart';
 import '../Profile/text_outlined_button.dart';
 import '../dummy/profile_dummy.dart';
 import 'back_button.dart';
-
+  
 class DefaultNav extends StatelessWidget {
   final String title;
   final UserModel userModel;
@@ -23,7 +24,9 @@ class DefaultNav extends StatelessWidget {
       const AppBackButton(),
       Text(title,
           style: GoogleFonts.lato(
-              fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold)),
+              fontSize: Utils.screenWidth * 0.07,
+              color: Colors.white,
+              fontWeight: FontWeight.bold)),
       Builder(builder: (context) {
         if (type == ProfileDummyType.Icon) {
           return ProfileDummy(
@@ -41,7 +44,7 @@ class DefaultNav extends StatelessWidget {
         } else if (type == ProfileDummyType.Button) {
           return OutlinedButtonWithText(
             width: 75,
-            content: "Edit",
+            content: AppConstants.edit_key.tr,
             onPressed: () {
               Get.to(() => EditProfilePage(
                     user: userModel,

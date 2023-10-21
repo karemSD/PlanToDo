@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mytest/Screens/Dashboard/search_bar_animation.dart';
+import 'package:mytest/constants/app_constans.dart';
 import 'package:mytest/models/team/Project_main_task_Model.dart';
 import 'package:mytest/services/auth_service.dart';
 import '../../Values/values.dart';
@@ -151,6 +152,7 @@ class _CommonOrNotMainTaskScreenState extends State<CommonOrNotMainTaskScreen> {
             child: TaskezAppHeader(
               title: "Main tasks",
               widget: MySearchBarWidget(
+                searchWord: AppConstants.main_tasks_key.tr,
                 editingController: editingController,
                 onChanged: (String value) {
                   setState(() {

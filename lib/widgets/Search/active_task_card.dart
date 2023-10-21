@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:mytest/constants/app_constans.dart';
 import 'package:mytest/constants/back_constants.dart';
 
 import '../../Values/values.dart';
@@ -36,7 +38,7 @@ class ActiveTaskCard extends StatelessWidget {
         motion: const StretchMotion(),
         children: [
           SlidableAction(
-            label: "Accept",
+            label: AppConstants.accept_key.tr,
             borderRadius: BorderRadius.circular(20),
             backgroundColor: Colors.blue.shade300,
             icon: FontAwesomeIcons.userCheck,
@@ -49,7 +51,7 @@ class ActiveTaskCard extends StatelessWidget {
           motion: const StretchMotion(),
           children: [
             SlidableAction(
-              label: "Decline",
+              label: AppConstants.decline_key.tr,
               borderRadius: BorderRadius.circular(20),
               icon: FontAwesomeIcons.userXmark,
               backgroundColor: Colors.red,
