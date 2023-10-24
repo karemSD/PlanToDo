@@ -204,12 +204,13 @@ class _LoginState extends State<Login> {
                                         .tr
                                     //  "Wrong password provided for that user"
                                     );
+                              } else {
+                                CustomSnackBar.showError(
+                                    e.code.replaceAll(RegExp(r'-'), " "));
                               }
                               Navigator.of(context).pop();
 
-                              // CustomSnackBar.showError(
-                              //     e.code.replaceAll(RegExp(r'-'), " "));
-                              // return;
+                              return;
                             } catch (e) {
                               Navigator.of(context).pop();
 

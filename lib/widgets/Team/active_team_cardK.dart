@@ -32,7 +32,9 @@ class ActiveTeamCard extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
+        margin: EdgeInsets.symmetric(
+            horizontal: Utils.screenWidth * 0.03,
+            vertical: Utils.screenWidth * 0.02),
         width: double.infinity,
         height: 80,
         decoration: BoxDecoration(

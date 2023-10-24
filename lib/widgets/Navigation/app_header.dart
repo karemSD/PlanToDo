@@ -31,24 +31,32 @@ class TaskezAppHeader extends StatelessWidget {
                     width: Utils.screenWidth *
                         0.01), // Adjust the percentage as needed
 
-                Text(
+                Expanded(
+                  child: Text(
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
+                    title,
+                    style: GoogleFonts.lato(
+                        fontSize: Utils.screenWidth *
+                            0.07, // Adjust the percentage as needed
+
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                  ),
+                )
+              ])
+            : Expanded(
+                child: Text(
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
                   title,
                   style: GoogleFonts.lato(
                       fontSize: Utils.screenWidth *
-                          0.07, // Adjust the percentage as needed
+                          0.065, // Adjust the percentage as needed
 
                       color: Colors.white,
                       fontWeight: FontWeight.bold),
-                )
-              ])
-            : Text(
-                title,
-                style: GoogleFonts.lato(
-                    fontSize: Utils.screenWidth *
-                        0.065, // Adjust the percentage as needed
-
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
+                ),
               ),
         widget!
       ]),

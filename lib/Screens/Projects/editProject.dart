@@ -189,14 +189,15 @@ class _EditProjectState extends State<EditProject> {
                         : ImageType.File,
                     color: HexColor.fromHex("94F0F1"),
                     dummyType: ProfileDummyType.Image,
-                    scale: 3.0,
+                    scale: Utils.screenWidth * 0.0077,
                     image: selectedImagePath ?? widget.projectModel.imageUrl,
                   ),
                   Visibility(
                     visible: selectedImagePath == null,
                     child: Container(
-                        width: 120,
-                        height: 120,
+                        width: Utils.screenWidth *
+                            0.310, // Adjust the percentage as needed
+                        height: Utils.screenWidth * 0.310,
                         decoration: BoxDecoration(
                             color:
                                 AppColors.primaryAccentColor.withOpacity(0.75),

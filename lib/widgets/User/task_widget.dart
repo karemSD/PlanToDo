@@ -125,6 +125,7 @@ class _CardTaskState extends State<CardTask> {
           id: widget.task.id,
         );
         documentReference = snapshot.reference;
+        // ignore: use_build_context_synchronously
         Navigator.push(
           context,
           MaterialPageRoute<void>(
@@ -248,9 +249,9 @@ class _CardTaskState extends State<CardTask> {
                       buildLabel(
                           "${AppConstants.description_key.tr} : ${widget.task.description}"),
                       StreamBuilder(
-                        stream: statusController
-                            .getStatusByIdStream(idk: widget.task.statusId)
-                            .asBroadcastStream(),
+                        stream: statusController.getStatusByIdStream(
+                            idk: widget.task.statusId),
+                        //.asBroadcastStream(),
                         builder: (context,
                             AsyncSnapshot<DocumentSnapshot<StatusModel>>
                                 snapshot) {

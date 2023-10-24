@@ -286,7 +286,7 @@ class Invitions extends StatelessWidget {
                                                 Icons.search_off,
                                                 //   Icons.heart_broken_outlined,
                                                 color: Colors.red,
-                                                size: Utils.screenWidth * 0.27,
+                                                size: Utils.screenWidth * 0.40,
                                               ),
                                               Padding(
                                                 padding: EdgeInsets.symmetric(
@@ -457,11 +457,12 @@ class Invitions extends StatelessWidget {
                                       Icons.search_off,
                                       //   Icons.heart_broken_outlined,
                                       color: Colors.red,
-                                      size: Utils.screenWidth * 0.27,
+                                      size: Utils.screenWidth * 0.40,
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 50, vertical: 40),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: Utils.screenWidth * 0.10,
+                                          vertical: 20),
                                       child: Center(
                                         child: Text(
                                           AppConstants.no_invitation_key.tr,

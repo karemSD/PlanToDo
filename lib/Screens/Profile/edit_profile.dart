@@ -376,7 +376,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           padding: const EdgeInsets.symmetric(vertical: 25),
                           child: AppPrimaryButton(
                               callback: () {
-                                showPasswordDialog(context);
+                                CustomDialog.showPasswordDialog(context);
                               },
                               buttonText: AppConstants.change_password_key.tr,
                               buttonHeight: 50,
@@ -511,87 +511,4 @@ class _EditProfilePageState extends State<EditProfilePage> {
 //   }
 // }
 
-void showPasswordDialog(BuildContext context) {
-  final Rx<TextEditingController> passController = TextEditingController().obs;
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  String password = "";
-  RegExp regExletters = RegExp(r"(?=.*[a-z])\w+");
-  RegExp regExnumbers = RegExp(r"(?=.*[0-9])\w+");
-  RegExp regExbigletters = RegExp(r"(?=.*[A-Z])\w+");
-  final RxBool obscureText = false.obs;
-  Get.defaultDialog(
-      backgroundColor: AppColors.primaryBackgroundColor,
-      title: AppConstants.enter_new_password_key.tr,
-      titleStyle: const TextStyle(color: Colors.white),
-      content: Form(
-        key: formKey,
-        child: Column(
-          children: [
-            LabelledFormInput(
-                validator: (value) {
-                  if (value!.isEmpty || value.length < 8) {
-                    return AppConstants
-                        .the_password_should_be_more_then_7_character_key.tr;
-                  }
-                  if (regExletters.hasMatch(value) == false) {
-                    return AppConstants
-                        .please_enter_at_least_one_small_character_key.tr;
-                  }
-                  if (regExnumbers.hasMatch(value) == false) {
-                    return AppConstants.please_enter_at_least_one_number_key.tr;
-                  }
-                  if (regExbigletters.hasMatch(value) == false) {
-                    return AppConstants
-                        .please_enter_at_least_one_big_character_key.tr;
-                  }
-                  return null;
-                },
-                onClear: (() {
-                  obscureText.value = !obscureText.value;
-                }),
-                onChanged: (value) {
-                  password = value;
-                },
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                readOnly: false,
-                placeholder: AppConstants.password_key.tr,
-                keyboardType: "text",
-                controller: passController.value,
-                obscureText: obscureText.value,
-                label: AppConstants.your_password_key.tr),
-            const SizedBox(height: 15),
-          ],
-        ),
-      ),
-      cancel: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10),
-        child: AppPrimaryButton(
-            callback: () async {
-              try {
-                if (formKey.currentState!.validate()) {
-                  showDialogMethod(context);
-                  var updatePassword = AuthService.instance
-                      .updatePassword(newPassword: password);
-                  updatePassword.fold((left) {
-                    Navigator.of(context).pop();
 
-                    CustomSnackBar.showError(left.toString());
-                  }, (right) {
-                    Navigator.of(context).pop();
-                    dev.log("Password Updated ");
-                    CustomSnackBar.showSuccess(
-                        AppConstants.password_updated_successfully_key.tr);
-                    Get.back();
-                  });
-                }
-              } on Exception catch (e) {
-                Navigator.of(context).pop();
-
-                CustomSnackBar.showError(e.toString());
-              }
-            },
-            buttonText: AppConstants.change_password_key.tr,
-            buttonHeight: 50,
-            buttonWidth: 110),
-      ));
-}

@@ -136,15 +136,15 @@ class _MoreTeamDetailsSheetState extends State<MoreTeamDetailsSheet> {
                       : ImageType.File,
                   color: HexColor.fromHex("94F0F1"),
                   dummyType: ProfileDummyType.Image,
-                  scale: 3.0,
+                  scale: Utils.screenWidth * 0.0077,
                   image: selectedImagePath ?? widget.teamModel.imageUrl,
                 ),
                 Visibility(
                   visible: selectedImagePath == null,
                   child: Container(
                       width: Utils.screenWidth *
-                          0.335, // Adjust the percentage as needed
-                      height: Utils.screenWidth * 0.335,
+                          0.310, // Adjust the percentage as needed
+                      height: Utils.screenWidth * 0.310,
                       decoration: BoxDecoration(
                           color: AppColors.primaryAccentColor.withOpacity(0.75),
                           shape: BoxShape.circle),

@@ -55,12 +55,13 @@ class DashboardNav extends StatelessWidget {
         //     )
         //   ]),
         // ),
-        const SizedBox(width: 40),
+        SizedBox(
+            width: Utils.screenWidth * 0.08), // Adjust the percentage as needed
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          padding: EdgeInsets.symmetric(horizontal: Utils.screenWidth * 0.05),
           child: CircleGradientIcon(
             onTap: () {
-              Get.to(TodaysTaskScreen());
+              Get.to(const TodaysTaskScreen());
             },
             icon: Icons.calendar_month,
             color: Colors.purple,
@@ -86,7 +87,7 @@ class DashboardNav extends StatelessWidget {
                   }
                   return ProfileDummy(
                     imageType: ImageType.Network,
-                    color: Colors.white,
+                    color: Colors.white.withOpacity(0),
                     dummyType: ProfileDummyType.Image,
                     image: snapshot.data!.data()!.imageUrl,
                     scale: 1.2,

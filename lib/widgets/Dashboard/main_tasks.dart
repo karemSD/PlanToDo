@@ -61,17 +61,17 @@ class _MainTaskScreenState extends State<MainTaskScreen> {
   String _getSortOptionText(TaskSortOption option) {
     switch (option) {
       case TaskSortOption.name:
-        return 'Name';
+        return AppConstants.name_key.tr;
       case TaskSortOption.updatedDate:
-        return 'Updated Date';
+        return AppConstants.updated_Date_key.tr;
       case TaskSortOption.createDate:
-        return 'Created Date';
+        return AppConstants.created_date_key.tr;
       case TaskSortOption.startDate:
-        return 'Start Date';
+        return AppConstants.start_date_key.tr;
       case TaskSortOption.endDate:
-        return 'End Date';
+        return AppConstants.end_date_key.tr;
       case TaskSortOption.importance:
-        return 'Importance';
+        return AppConstants.importance_key.tr;
       // Add cases for more sorting options if needed
       default:
         return '';
@@ -153,14 +153,14 @@ class _MainTaskScreenState extends State<MainTaskScreen> {
       backgroundColor: HexColor.fromHex("#181a1f"),
       body: Column(
         children: [
-          TextButton(
-              onPressed: () {
-                Get.to(NotificationScreen());
-              },
-              child: Text("gome")),
+          // TextButton(
+          //     onPressed: () {
+          //       Get.to(NotificationScreen());
+          //     },
+          //     child: Text("gome")),
           SafeArea(
             child: TaskezAppHeader(
-              title: "Main tasks",
+              title: AppConstants.main_tasks_key.tr,
               widget: MySearchBarWidget(
                 searchWord: AppConstants.main_tasks_key.tr,
                 editingController: editingController,
@@ -173,7 +173,7 @@ class _MainTaskScreenState extends State<MainTaskScreen> {
             ),
           ),
           SizedBox(
-            height: 20,
+            height: Utils.screenHeight * 0.04,
           ),
           StreamBuilder<DocumentSnapshot<ProjectModel>>(
             stream:
@@ -182,7 +182,8 @@ class _MainTaskScreenState extends State<MainTaskScreen> {
               if (snapshot.hasData) {
                 ProjectModel projectModel = snapshot.data!.data()!;
                 return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: Utils.screenWidth * 0.04),
                   child: SingleChildScrollView(
                     physics: AlwaysScrollableScrollPhysics(),
                     scrollDirection: Axis.horizontal,
@@ -191,7 +192,7 @@ class _MainTaskScreenState extends State<MainTaskScreen> {
                       children: [
                         Text(projectModel.name!,
                             style: AppTextStyles.header2_2),
-                        Text(projectModel!.description!,
+                        Text(projectModel.description!,
                             style: AppTextStyles.header2_2),
                       ],
                     ),
@@ -199,18 +200,28 @@ class _MainTaskScreenState extends State<MainTaskScreen> {
                 );
               }
               if (!snapshot.hasData) {}
-              return CircularProgressIndicator();
+              return const CircularProgressIndicator();
             },
           ),
           SizedBox(
-            height: 20,
+            height: Utils.screenHeight * 0.04,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                margin: const EdgeInsets.only(right: 20.0, left: 20.0),
-                padding: const EdgeInsets.only(right: 20.0, left: 20.0),
+                margin: EdgeInsets.only(
+                  right: Utils.screenWidth *
+                      0.05, // Adjust the percentage as needed
+                  left: Utils.screenWidth *
+                      0.05, // Adjust the percentage as needed
+                ),
+                padding: EdgeInsets.only(
+                  right: Utils.screenWidth *
+                      0.04, // Adjust the 0percentage as needed
+                  left: Utils.screenWidth *
+                      0.04, // Adjust the percentage as needed
+                ),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
@@ -236,22 +247,34 @@ class _MainTaskScreenState extends State<MainTaskScreen> {
                   }).toList(),
 
                   // Add extra styling
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.arrow_drop_down,
-                    size: 35,
+                    size: Utils.screenWidth * 0.07,
                   ),
                   underline: const SizedBox(),
                 ),
               ),
-              IconButton(
-                icon: Icon(
-                  sortAscending ? Icons.arrow_upward : Icons.arrow_downward,
-                  color: Colors.white,
+              Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.transparent,
+                  border: Border.all(
+                    width: 2,
+                    color: HexColor.fromHex("616575"),
+                  ),
                 ),
-                onPressed: toggleSortOrder, // Toggle the sort order
+                child: IconButton(
+                  icon: Icon(
+                    size: Utils.screenWidth * 0.07,
+                    sortAscending ? Icons.arrow_upward : Icons.arrow_downward,
+                    color: Colors.white,
+                  ),
+                  onPressed: toggleSortOrder, // Toggle the sort order
+                ),
               ),
               IconButton(
-                icon: const Icon(
+                icon: Icon(
+                  size: Utils.screenWidth * 0.09,
                   Icons.grid_view,
                   color: Colors.white,
                 ),
@@ -260,10 +283,11 @@ class _MainTaskScreenState extends State<MainTaskScreen> {
               ),
             ],
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: Utils.screenHeight * 0.04),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              padding:
+                  EdgeInsets.symmetric(horizontal: Utils.screenWidth * 0.04),
               child: StreamBuilder(
                 stream: ProjectMainTaskController()
                     .getProjectMainTasksStream(projectId: widget.projectId),
@@ -342,14 +366,30 @@ class _MainTaskScreenState extends State<MainTaskScreen> {
                       ),
                     );
                   }
-                  return Center(
-                    child: Text(
-                      "No Main tasks found",
-                      style: GoogleFonts.lato(
-                        color: Colors.white,
-                        fontSize: 20,
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      //
+                      Icon(
+                        Icons.search_off,
+                        //   Icons.heart_broken_outlined,
+                        color: Colors.red,
+                        size: Utils.screenWidth * 0.40,
                       ),
-                    ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: Utils.screenWidth * 0.10, vertical: 10),
+                        child: Center(
+                          child: Text(
+                            AppConstants.no_main_tasks_found_key.tr,
+                            style: GoogleFonts.fjallaOne(
+                              color: Colors.white,
+                              fontSize: Utils.screenWidth * 0.1,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   );
                 },
               ),
@@ -378,7 +418,8 @@ class _MainTaskScreenState extends State<MainTaskScreen> {
           required startDate,
           required taskName}) async {
         if (startDate.isAfter(dueDate) || startDate.isAtSameMomentAs(dueDate)) {
-          CustomSnackBar.showError("start date cannot be after end date");
+          CustomSnackBar.showError(
+              AppConstants.start_date_cannot_be_after_end_date_key.tr);
           return;
         }
 

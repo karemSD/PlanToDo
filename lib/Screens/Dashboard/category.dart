@@ -148,7 +148,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
               child: IconButton(
                 icon: Icon(
                   size: Utils.screenWidth *
-                      0.06, // Adjust the percentage as needed
+                      0.07, // Adjust the percentage as needed
                   sortAscending ? Icons.arrow_upward : Icons.arrow_downward,
                   color: Colors.white,
                 ),
@@ -165,10 +165,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
             ),
           ],
         ),
-        const SizedBox(height: 20),
+        SizedBox(height: Utils.screenHeight * 0.04),
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            padding: EdgeInsets.symmetric(horizontal: Utils.screenWidth * 0.04),
             child: StreamBuilder(
               stream: taskCategoryController.getUserCategoriesStream(
                 userId: AuthService.instance.firebaseAuth.currentUser!.uid,

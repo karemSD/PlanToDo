@@ -27,42 +27,48 @@ class OverviewTaskContainer extends StatelessWidget {
         }
       },
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10.0),
+        padding: EdgeInsets.symmetric(vertical: Utils.screenHeight * 0.023),
         child: Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(8),
-            height: 80,
-            decoration: BoxDecoration(
-                color: AppColors.primaryBackgroundColor,
-                borderRadius: BorderRadius.circular(20.0)),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    TaskContainerImage(
-                      imageUrl: imageUrl,
-                      backgroundColor: backgroundColor,
-                    ),
-                    AppSpaces.horizontalSpace20,
-                    Text(cardTitle,
-                        style: GoogleFonts.lato(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 20))
-                  ],
-                ),
-                Row(children: [
-                  Text(numberOfItems,
-                      style: GoogleFonts.lato(
-                          color: backgroundColor,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 20)),
+          width: double.infinity,
+          padding: const EdgeInsets.all(8),
+          height: Utils.screenHeight * 0.22,
+          decoration: BoxDecoration(
+            color: AppColors.primaryBackgroundColor,
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  TaskContainerImage(
+                    imageUrl: imageUrl,
+                    backgroundColor: backgroundColor,
+                  ),
                   AppSpaces.horizontalSpace20,
-                  const Icon(Icons.chevron_right, color: Colors.white, size: 30)
-                ])
-              ],
-            )),
+                  Text(
+                    cardTitle,
+                    style: GoogleFonts.lato(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                        fontSize: Utils.screenWidth * 0.055),
+                  )
+                ],
+              ),
+              Row(children: [
+                Text(
+                  numberOfItems,
+                  style: GoogleFonts.lato(
+                      color: backgroundColor,
+                      fontWeight: FontWeight.w600,
+                      fontSize: Utils.screenWidth * 0.055),
+                ),
+                AppSpaces.horizontalSpace20,
+                //                const Icon(Icons.chevron_right, color: Colors.white, size: 30)
+              ])
+            ],
+          ),
+        ),
       ),
     );
   }

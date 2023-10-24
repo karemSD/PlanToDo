@@ -538,50 +538,44 @@ class AppConstants {
   static const String you_have_to_member_in_team_to_have_tasks_key =
       "you_have_to_member_in_team_to_have_tasks";
   static const String there_is_no_task_yet_key = "there_is_no_task_yet";
- static const String no_tasks_found_key = "No_tasks_found";
+  static const String no_tasks_found_key = "No_tasks_found";
   static const String create_new_task_key = "create_new_task";
 
   static const String update_task_key = "update_task";
   static const String delete_key = "Delete";
   static const String in_progress_key = "In_Progress";
-  static const String cannot_edit_time_of_done_or_doing_task_key = "Cannot_edit_time_of_done_or_doing_task";
-
-static const String not_started_key = "Not_Started";
+  static const String cannot_edit_time_of_done_or_doing_task_key =
+      "Cannot_edit_time_of_done_or_doing_task";
+  static const String not_started_key = "Not_Started";
   static const String update_project_key = "update_project";
-static const String add_task_to_get_started_key = "Add_a_task_to_get_started";
+  static const String add_task_to_get_started_key = "Add_a_task_to_get_started";
   static const String enter_name_key = "Please_enter_name";
-static const String checked_already_key = "Checked_already";
-
+  static const String checked_already_key = "Checked_already";
   static const String edit_category_key = "edit_category";
   static const String delete_category_key = "delete_category";
-
   static const String category_color_key = "category_color";
   static const String category_icon_key = "category_icon";
   static const String update_category_key = "update_category";
-
   static const String project_key = "project";
-
   static const String team_key = "team";
-static const String bio_key = "Bio";
-static const String details_key = "Details";
+  static const String empty_bio_key = "Empty_Bio";
 
+  static const String bio_key = "Bio";
+  static const String details_key = "Details";
   static const String invitation_key = "invitation";
-static const String managed_by_key = "Managed_By";
-static const String that_created_the_team_on_key = "That_created_the_Team_on";
-static const String of_key = "Of";
-static const String no_projects_for_key = "No_Projects_for";
-static const String no_any_members_yet_key = "No_Any_Members_yet";
-static const String from_this_team_key = "From_this_Team ?";
-static const String team_has_same_name_in_your_teams_key = "There_is_a_team_has_the_same_name_in_your_teams";
-
+  static const String managed_by_key = "Managed_By";
+  static const String that_created_the_team_on_key = "That_created_the_Team_on";
+  static const String of_key = "Of";
+  static const String no_projects_for_key = "No_Projects_for";
+  static const String no_any_members_yet_key = "No_Any_Members_yet";
+  static const String from_this_team_key = "From_this_Team ?";
+  static const String team_has_same_name_in_your_teams_key =
+      "There_is_a_team_has_the_same_name_in_your_teams";
   static const String file_key = "file";
-
   static const String conversation_key = "conversation";
-
   static const String notification_key = "notification";
   static const String notifications_key = "notifications";
   static const String settings_key = "settings";
-
   static const String language_key = "language";
   static const String theme_key = "theme";
   static const String dark_mode_key = "dark_mode";
@@ -597,7 +591,6 @@ static const String team_has_same_name_in_your_teams_key = "There_is_a_team_has_
   static const String image_upload_failed_key = "image_upload_failed";
   static const String completed_last_7_days_key =
       "Completed_in_the_last_7_Days";
-
   static const String please_use_another_categoryName_key =
       "please_use_another_categoryName";
   static const String category_key = "category";
@@ -624,9 +617,7 @@ static const String team_has_same_name_in_your_teams_key = "There_is_a_team_has_
   static const String overview_key = "overview";
   static const String productivity_key = "productivity";
   static const String sign_in_anonmouslly_key = "sign_in_anonmouslly";
-
   static const String view_profile_key = "view_profile";
-
   static const String make_an_account_by_key = "make_an_account_by";
   static const String make_an_account_by_signing_in =
       "make_an_account_by_signing_in";
@@ -634,7 +625,6 @@ static const String team_has_same_name_in_your_teams_key = "There_is_a_team_has_
   static const String email_key = "email";
   static const String profile_key = "profile";
   static const String sign_in_anonymously_key = "sign_in_anonymously";
-
   static const String please_enter_at_least_one_number_key =
       "please_enter_at_least_one_number";
   static const String please_enter_at_least_one_big_character_key =
@@ -668,7 +658,6 @@ static const String team_has_same_name_in_your_teams_key = "There_is_a_team_has_
       "description_cannot_be_empy_spaces";
   static const String choose_team_key = "choose_team";
   static const String name_can_not_be_empty_key = "name_can_not_be_empty";
-
   static const String description_cannot_be_empty_spaces_key =
       "description_cannot_be_empty_spaces";
   static const String today_key = "today";
@@ -679,8 +668,9 @@ static const String team_has_same_name_in_your_teams_key = "There_is_a_team_has_
   static const String arabic_key = "arabic";
   static const String english_key = "english";
   static const String receive_notification_key = "receive_notification";
-static const String start_date_cannot_be_after_end_date_or_in_the_same_time_or_before_the_current_date_key = "start_date_cannot_be_After_end_date_Or_in_the_same_Time_Or_before_the_current_date";
-
+  static const String
+      start_date_cannot_be_after_end_date_or_in_the_same_time_or_before_the_current_date_key =
+      "start_date_cannot_be_After_end_date_Or_in_the_same_Time_Or_before_the_current_date";
   static const String task_calendar_chat_key = "task_calendar_chat";
   static const String work_anywhere_easily_key = "work_anywhere_easily";
   static const String manage_everything_on_Phone_key =
@@ -705,17 +695,14 @@ static const String start_date_cannot_be_after_end_date_or_in_the_same_time_or_b
   static const String your_password_key = "your_password";
   static const String sign_in_key = "sign_in";
   static const String whats_your_email_address_key = "whats_your_email_address";
-
   static const String enter_valid_email_key = "enter_valid_email";
   static const String sign_up_key = "sign_up";
-
   static const String using_key = "using";
   static const String to_login_key = "to_login.";
   static const String name_key = "name";
   static const String user_name_key = "user_name";
   static const String password_key = "password";
   static const String confirm_key = "confirm";
-
   static const String welcome_in_our_team_Plans_to_do_team_happy_in_you_key =
       "welcome_in_our_team_Plans_to_do_team_happy_in_you";
   static const String choose_an_image_key = "choose_an_image";
@@ -748,15 +735,16 @@ static const String start_date_cannot_be_after_end_date_or_in_the_same_time_or_b
   static const String enter_new_password_key = "Enter_The_New_Password";
   static const String password_updated_successfully_key =
       "Password_updated_successfully";
+      static const String you_key = "You";
+
   static const String send_reset_password_link_key = "Send_Reset_Password_Link";
   static const Whats_your_email_address_to_send_reset_password_Link_key =
       "What's_your_email_address_to_send_reset_password_Link";
-
   static const String sensitive_change_password_process_key =
       "This_process_is_sensitive_so_you_should_log_in_again_before_trying_to_change_your_password_again";
-
   static const String search_in_key = "Search_in";
-  static const String manager_teams_key = "Manager_Teams";
+  static const String no_main_tasks_found_key = "No_Main_tasks_found";
 
+  static const String manager_teams_key = "Manager_Teams";
 // ignore_for_file: constant_identifier_names
 }

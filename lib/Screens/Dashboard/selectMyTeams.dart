@@ -261,12 +261,12 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
                     ),
                   ],
                 ),
-                AppSpaces.verticalSpace40,
+                AppSpaces.verticalSpace20,
                 Expanded(
                   child: StreamBuilder<QuerySnapshot<TeamModel>?>(
                     stream: TeamController().getTeamsOfUserStream(
                         userId:
-                            AuthService.instance.firebaseAuth.currentUser!.uid),
+                            AuthService.instance.firebaseAuth.currentUser!.uid), 
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         List<TeamModel> teams = snapshot.data!.docs

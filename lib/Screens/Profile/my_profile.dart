@@ -11,6 +11,7 @@ import 'package:mytest/constants/app_constans.dart';
 import 'package:mytest/controllers/manger_controller.dart';
 import 'package:mytest/models/User/User_model.dart';
 import 'package:mytest/models/team/Manger_model.dart';
+import 'package:mytest/widgets/Snackbar/custom_snackber.dart';
 
 import '../../Values/values.dart';
 import '../../controllers/userController.dart';
@@ -173,6 +174,12 @@ class _ProfilePageState extends State<ProfilePage> {
                       AppSpaces.verticalSpace10,
                       ProfileTextOption(
                         inTap: () {
+                          CustomDialog.userInfoDialog(
+                            name: widget.user.name!,
+                            userName: widget.user.userName!,
+                            imageUrl: widget.user.imageUrl,
+                            bio: widget.user.bio,
+                          );
                           print("to nour");
                         },
                         label: '$tabSpace ${AppConstants.all_task_key.tr}',

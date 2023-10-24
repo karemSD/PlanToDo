@@ -11,6 +11,7 @@ class ActiveEmployeeCard extends StatelessWidget {
   final Color? color;
   final String bio;
   final ValueNotifier<bool>? notifier;
+  final VoidCallback? onTap;
 
   const ActiveEmployeeCard(
       {Key? key,
@@ -18,15 +19,14 @@ class ActiveEmployeeCard extends StatelessWidget {
       required this.userImage,
       required this.bio,
       required this.notifier,
-      required this.color})
+      required this.color,
+      this.onTap})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        notifier?.value = !notifier!.value;
-      },
+      onTap: onTap,
       child: Container(
         width: double.infinity,
         height: 80,

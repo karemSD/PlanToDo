@@ -401,8 +401,8 @@ class UserTaskController extends ProjectAndTaskController {
 
     Completer<List<String>> completer = Completer<List<String>>();
 
-    Stream<QuerySnapshot<UserTaskModel>> userTasksStream =
-        getUserTasksStream(userId: AuthService.instance.firebaseAuth.currentUser!.uid);
+    Stream<QuerySnapshot<UserTaskModel>> userTasksStream = getUserTasksStream(
+        userId: AuthService.instance.firebaseAuth.currentUser!.uid);
 
     userTasksStream.listen((event) {
       List<QueryDocumentSnapshot<UserTaskModel>> list = event.docs;
@@ -669,8 +669,8 @@ class UserTaskController extends ProjectAndTaskController {
   Future<void> adddUserTask({required UserTaskModel userTaskModel}) async {
     bool overlapped = false;
     int over = 0;
-    List<UserTaskModel> list =
-        await getUserTasks(userId: AuthService.instance.firebaseAuth.currentUser!.uid);
+    List<UserTaskModel> list = await getUserTasks(
+        userId: AuthService.instance.firebaseAuth.currentUser!.uid);
     for (UserTaskModel existingTask in list) {
       if (userTaskModel.startDate.isBefore(existingTask.endDate!) &&
           userTaskModel.endDate!.isAfter(existingTask.startDate)) {
@@ -684,7 +684,7 @@ class UserTaskController extends ProjectAndTaskController {
       Get.defaultDialog(
           title: AppConstants.task_time_error_key,
           middleText:
-              "${AppConstants.there_is_key} ${over} ${AppConstants.task_start_prompt_key}",
+              "${AppConstants.there_is_key.tr} $over ${AppConstants.task_start_prompt_key.tr}",
           onConfirm: () async {
             await addTask(
               reference: usersTasksRef,
@@ -692,10 +692,10 @@ class UserTaskController extends ProjectAndTaskController {
               value: userTaskModel.folderId,
               taskModel: userTaskModel,
               exception:
-                  Exception(AppConstants.task_already_exists_category_key),
+                  Exception(AppConstants.task_already_exists_category_key.tr),
             );
             CustomSnackBar.showSuccess(
-                "${AppConstants.the_task_key} ${userTaskModel.name} ${AppConstants.added_successfully_key}");
+                "${AppConstants.the_task_key.tr} ${userTaskModel.name} ${AppConstants.added_successfully_key.tr}");
             Get.key.currentState!.pop();
           },
           onCancel: () {
@@ -709,12 +709,12 @@ class UserTaskController extends ProjectAndTaskController {
         field: folderIdK,
         value: userTaskModel.folderId,
         taskModel: userTaskModel,
-        exception: Exception(AppConstants.task_already_exists_category_key),
+        exception: Exception(AppConstants.task_already_exists_category_key.tr),
       );
       Get.key.currentState!.pop();
 
       CustomSnackBar.showSuccess(
-          "${AppConstants.the_task_key} ${userTaskModel.name} ${AppConstants.added_successfully_key}");
+          "${AppConstants.the_task_key.tr} ${userTaskModel.name} ${AppConstants.added_successfully_key.tr}");
     }
   }
 
@@ -732,7 +732,7 @@ class UserTaskController extends ProjectAndTaskController {
         id: id,
         field: folderIdK,
         value: userTaskModel.folderId,
-        exception: Exception(AppConstants.task_already_exists_category_key),
+        exception: Exception(AppConstants.task_already_exists_category_key.tr),
       );
       return;
     }
@@ -741,8 +741,8 @@ class UserTaskController extends ProjectAndTaskController {
       bool overlapped = false;
       int over = 0;
 
-      List<UserTaskModel> list =
-          await getUserTasks(userId:AuthService.instance. firebaseAuth.currentUser!.uid);
+      List<UserTaskModel> list = await getUserTasks(
+          userId: AuthService.instance.firebaseAuth.currentUser!.uid);
       list.removeWhere((element) => element.id == id);
       for (UserTaskModel existingTask in list) {
         if (data[startDateK].isBefore(existingTask.endDate) &&
@@ -755,9 +755,9 @@ class UserTaskController extends ProjectAndTaskController {
           GlobalKey<NavigatorState>();
       if (overlapped) {
         Get.defaultDialog(
-            title: AppConstants.task_time_error_key,
+            title: AppConstants.task_time_error_key.tr,
             middleText:
-                "${AppConstants.there_is_key} ${over} ${AppConstants.task_start_prompt_key}",
+                "${AppConstants.there_is_key.tr} $over ${AppConstants.task_start_prompt_key.tr}",
             onConfirm: () async {
               await updateTask(
                 reference: usersTasksRef,
@@ -766,10 +766,10 @@ class UserTaskController extends ProjectAndTaskController {
                 field: folderIdK,
                 value: userTaskModel.folderId,
                 exception:
-                    Exception(AppConstants.task_already_exists_category_key),
+                    Exception(AppConstants.task_already_exists_category_key.tr),
               );
               CustomSnackBar.showSuccess(
-                  "${AppConstants.task_key} ${data[nameK]} ${AppConstants.task_updated_successfully_key}");
+                  "${AppConstants.task_key.reactive} ${data[nameK]} ${AppConstants.task_updated_successfully_key.tr}");
               Get.key.currentState!.pop();
             },
             onCancel: () {
@@ -788,7 +788,7 @@ class UserTaskController extends ProjectAndTaskController {
           exception: Exception(AppConstants.task_already_exists_category_key),
         );
         CustomSnackBar.showSuccess(
-            "${AppConstants.task_key} ${data[nameK]} ${AppConstants.task_updated_successfully_key}");
+            "${AppConstants.task_key.tr} ${data[nameK]} ${AppConstants.task_updated_successfully_key.tr}");
         Get.key.currentState!.pop();
       }
     } else {
@@ -800,10 +800,10 @@ class UserTaskController extends ProjectAndTaskController {
         id: id,
         field: folderIdK,
         value: userTaskModel.folderId,
-        exception: Exception(AppConstants.task_already_exists_category_key),
+        exception: Exception(AppConstants.task_already_exists_category_key.tr),
       );
       CustomSnackBar.showSuccess(
-          "${AppConstants.task_key} ${data[nameK]} ${AppConstants.task_updated_successfully_key}");
+          "${AppConstants.task_key.tr} ${data[nameK]} ${AppConstants.task_updated_successfully_key.tr}");
       Get.key.currentState!.pop();
     }
   }

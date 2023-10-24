@@ -96,12 +96,22 @@ class ShowTeamMembers extends StatelessWidget {
                             ConnectionState.waiting) {
                           return CircularProgressIndicator();
                         }
-                        return ProfileDummy(
-                          imageType: ImageType.Network,
-                          color: Colors.white,
-                          dummyType: ProfileDummyType.Image,
-                          image: snapshot.data!.imageUrl,
-                          scale: 1.2,
+                        return GestureDetector(
+                          onTap: () {
+                            CustomDialog.userInfoDialog(
+                                title: AppConstants.team_leader_key.tr,
+                                imageUrl: snapshot.data!.imageUrl,
+                                name: snapshot.data!.name!,
+                                userName: snapshot.data!.userName!,
+                                bio: snapshot.data!.bio);
+                          },
+                          child: ProfileDummy(
+                            imageType: ImageType.Network,
+                            color: Colors.white,
+                            dummyType: ProfileDummyType.Image,
+                            image: snapshot.data!.imageUrl,
+                            scale: 1.2,
+                          ),
                         );
                       }),
                 ),
@@ -302,60 +312,88 @@ class ShowTeamMembers extends StatelessWidget {
                                                                 ? userAsManager !=
                                                                             null &&
                                                                         teamModel.managerId ==
-                                                                            userAsManager
-                                                                                ?.id
-                                                                    ? ActionPane(
-                                                                        motion:
-                                                                            const ScrollMotion(),
-                                                                        children: [
-                                                                            SlidableAction(
-                                                                              borderRadius: BorderRadius.circular(16),
-                                                                              backgroundColor: Colors.blueAccent,
-                                                                              onPressed: (context) {
-                                                                                TeamMemberModel teamMemberModel = snapshotTeamMembers.data!.docs[index].data();
-                                                                                Get.to(TeamDetails2(
-                                                                                  me: null,
-                                                                                  partner: teamMemberModel.id,
-                                                                                  team: teamModel,
-                                                                                  title: "",
-                                                                                  userAsManager: userAsManager,
-                                                                                ));
+                                                                            userAsManager?.id
+                                                                    ? null
+                                                                    // ActionPane(
+                                                                    //     motion:
+                                                                    //         const ScrollMotion(),
+                                                                    //     children: [
+                                                                    //         SlidableAction(
+                                                                    //           borderRadius: BorderRadius.circular(16),
+                                                                    //           backgroundColor: Colors.blueAccent,
+                                                                    //           onPressed: (context) {
+                                                                    //             // TeamMemberModel teamMemberModel = snapshotTeamMembers.data!.docs[index].data();
+                                                                    //             // Get.to(TeamDetails2(
+                                                                    //             //   me: null,
+                                                                    //             //   partner: teamMemberModel.id,
+                                                                    //             //   team: teamModel,
+                                                                    //             //   title: "",
+                                                                    //             //   userAsManager: userAsManager,
+                                                                    //             // ));
 
-                                                                                print("see tasks as manager");
-                                                                              },
-                                                                              label: AppConstants.tasks_key.tr,
-                                                                              icon: FontAwesomeIcons.listCheck,
-                                                                            ),
-                                                                          ])
-                                                                    : ActionPane(
-                                                                        motion:
-                                                                            const ScrollMotion(),
-                                                                        children: [
-                                                                            SlidableAction(
-                                                                              borderRadius: BorderRadius.circular(16),
-                                                                              backgroundColor: Colors.blueAccent,
-                                                                              onPressed: (context) async {
-                                                                                TeamMemberModel teamMemberModel = snapshotTeamMembers.data!.docs[index].data();
-                                                                                TeamMemberModel me = await TeamMemberController().getMemberByTeamIdAndUserId(teamId: teamModel.id, userId: AuthService.instance.firebaseAuth.currentUser!.uid);
-                                                                                Get.to(TeamDetails2(
-                                                                                  me: me.id,
-                                                                                  partner: teamMemberModel.id,
-                                                                                  team: teamModel,
-                                                                                  title: "",
-                                                                                  userAsManager: userAsManager,
-                                                                                ));
-                                                                                print("see tasks as parnter in main tasks");
-                                                                              },
-                                                                              label: AppConstants.tasks_key.tr,
-                                                                              icon: FontAwesomeIcons.listCheck,
-                                                                            ),
-                                                                          ])
+                                                                    //             print("see tasks as manager");
+                                                                    //           },
+                                                                    //           label: AppConstants.tasks_key.tr,
+                                                                    //           icon: FontAwesomeIcons.listCheck,
+                                                                    //         ),
+                                                                    //       ])
+                                                                    : null
+                                                                //to see the taks of this user uncomment this code
+                                                                // ActionPane(
+                                                                //     motion:
+                                                                //         const ScrollMotion(),
+                                                                //     children: [
+                                                                //         SlidableAction(
+                                                                //           borderRadius: BorderRadius.circular(16),
+                                                                //           backgroundColor: Colors.blueAccent,
+                                                                //           onPressed: (context) async {
+                                                                //             // TeamMemberModel teamMemberModel = snapshotTeamMembers.data!.docs[index].data();
+                                                                //             // TeamMemberModel me = await TeamMemberController().getMemberByTeamIdAndUserId(teamId: teamModel.id, userId: AuthService.instance.firebaseAuth.currentUser!.uid);
+                                                                //             // Get.to(TeamDetails2(
+                                                                //             //   me: me.id,
+                                                                //             //   partner: teamMemberModel.id,
+                                                                //             //   team: teamModel,
+                                                                //             //   title: "",
+                                                                //             //   userAsManager: userAsManager,
+                                                                //             // ));
+                                                                //             print("see tasks as parnter in main tasks");
+                                                                //           },
+                                                                //           label: AppConstants.tasks_key.tr,
+                                                                //           icon: FontAwesomeIcons.listCheck,
+                                                                //         ),
+                                                                //       ])
                                                                 : null,
                                                             child: index <
                                                                     snapshotTeamMembers
                                                                         .data!
                                                                         .size
                                                                 ? ActiveEmployeeCard(
+                                                                    onTap: () {
+                                                                      CustomDialog.userInfoDialog(
+                                                                          imageUrl: snapshotUsers
+                                                                              .data!
+                                                                              .docs[
+                                                                                  index]
+                                                                              .data()
+                                                                              .imageUrl,
+                                                                          name: snapshotUsers
+                                                                              .data!
+                                                                              .docs[
+                                                                                  index]
+                                                                              .data()
+                                                                              .name!,
+                                                                          userName: snapshotUsers
+                                                                              .data!
+                                                                              .docs[
+                                                                                  index]
+                                                                              .data()
+                                                                              .userName!,
+                                                                          bio: snapshotUsers
+                                                                              .data!
+                                                                              .docs[index]
+                                                                              .data()
+                                                                              .bio);
+                                                                    },
                                                                     notifier:
                                                                         null,
                                                                     userImage: snapshotUsers
@@ -364,12 +402,18 @@ class ShowTeamMembers extends StatelessWidget {
                                                                             index]
                                                                         .data()
                                                                         .imageUrl,
-                                                                    userName: snapshotUsers
-                                                                        .data!
-                                                                        .docs[
-                                                                            index]
-                                                                        .data()
-                                                                        .name!,
+                                                                    userName: AuthService.instance.firebaseAuth.currentUser!.uid ==
+                                                                            snapshotUsers.data!.docs[index]
+                                                                                .data()
+                                                                                .id
+                                                                        ? AppConstants
+                                                                            .you_key
+                                                                            .tr
+                                                                        : snapshotUsers
+                                                                            .data!
+                                                                            .docs[index]
+                                                                            .data()
+                                                                            .name!,
                                                                     color: null,
                                                                     bio: snapshotUsers
                                                                             .data!
@@ -386,13 +430,23 @@ class ShowTeamMembers extends StatelessWidget {
                                                                     child:
                                                                         InactiveEmployeeCard(
                                                                       onTap:
-                                                                          null,
-                                                                      userName: snapshotUsers
-                                                                          .data!
-                                                                          .docs[
-                                                                              index]
-                                                                          .data()
-                                                                          .name!,
+                                                                          () {
+                                                                        CustomDialog.userInfoDialog(
+                                                                            imageUrl:
+                                                                                snapshotUsers.data!.docs[index].data().imageUrl,
+                                                                            name: snapshotUsers.data!.docs[index].data().name!,
+                                                                            userName: snapshotUsers.data!.docs[index].data().userName!,
+                                                                            bio: snapshotUsers.data!.docs[index].data().bio);
+                                                                      },
+                                                                      userName: AuthService.instance.firebaseAuth.currentUser!.uid == snapshotUsers.data!.docs[index].data().id
+                                                                          ? AppConstants
+                                                                              .you_key
+                                                                              .tr
+                                                                          : snapshotUsers
+                                                                              .data!
+                                                                              .docs[index]
+                                                                              .data()
+                                                                              .name!,
                                                                       color:
                                                                           null,
                                                                       userImage: snapshotUsers

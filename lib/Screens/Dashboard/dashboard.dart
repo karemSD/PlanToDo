@@ -24,10 +24,10 @@ import 'DashboardTabScreens/productivity.dart';
 // ignore: must_be_immutable
 class Dashboard extends StatelessWidget {
   Dashboard({Key? key}) : super(key: key);
-  final ValueNotifier<bool> _totalTaskTrigger = ValueNotifier(true);
-  final ValueNotifier<bool> _totalDueTrigger = ValueNotifier(false);
-  final ValueNotifier<bool> _totalCompletedTrigger = ValueNotifier(true);
-  final ValueNotifier<bool> _workingOnTrigger = ValueNotifier(false);
+  // final ValueNotifier<bool> _totalTaskTrigger = ValueNotifier(true);
+  // final ValueNotifier<bool> _totalDueTrigger = ValueNotifier(false);
+  // final ValueNotifier<bool> _totalCompletedTrigger = ValueNotifier(true);
+  // final ValueNotifier<bool> _workingOnTrigger = ValueNotifier(false);
   final ValueNotifier<int> _buttonTrigger = ValueNotifier(0);
 
   @override
@@ -66,7 +66,7 @@ class Dashboard extends StatelessWidget {
                       "${AppConstants.hello_n_key.tr}  ,\n ${snapshot.data!.data()!.name} 👋",
                       style: GoogleFonts.lato(
                           color: Colors.white,
-                          fontSize: 40,
+                          fontSize: Utils.screenWidth * 0.12,
                           fontWeight: FontWeight.bold),
                     );
                   }),

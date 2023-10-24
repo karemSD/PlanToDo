@@ -189,7 +189,9 @@ class _CategoryTasksState extends State<CategoryTasks> {
           const SizedBox(height: 20),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.only(right: 20.0, left: 20.0),
+              padding: EdgeInsets.only(
+                  right: Utils.screenWidth * 0.04,
+                  left: Utils.screenWidth * 0.04),
               child: MediaQuery.removePadding(
                 context: context,
                 removeTop: true,
