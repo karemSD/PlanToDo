@@ -27,10 +27,11 @@ const String emailK = "email";
 const String tokenFcmK = "tokenFcm";
 // const String serverKeyK =
 //     "AAAAyFV5_D8:APA91bEkpA3zZnRSOyKGiunH4l10gHC4XP6ZgzFvTlVQvFuyJrkJvn_sx5JYWAJk_wWS_RBxhkhhAOmCmDFYuCzlkBnF6-g0CeemgEqEe_HdU5i0iLl9V10qGo2FfDzB9FNElGRk1ILM";
-// const firebaseProjectIdK = "graduation-plans-to-do";
+//TODO when changing project change theses two 
+const firebaseProjectIdK = "graduation-plans-to-do";
 const String serverKeyK =
-    "AAAA2F8D3aw:APA91bEBWnf8PVxt3txp_xqVFuDJL-iZ2AhMaqSImY4vCe2UbbpRxIkmGaEMCY3UZhP-k9YwOWJKRRd0k40xYT9StSc9SiwXnfxakYGqnf-Wt89rX3mwYdIo3jULtnilakoaJoUFP3fZ";
-const firebaseProjectIdK = "email-password-64698";
+    "AAAAyFV5_D8:APA91bEkpA3zZnRSOyKGiunH4l10gHC4XP6ZgzFvTlVQvFuyJrkJvn_sx5JYWAJk_wWS_RBxhkhhAOmCmDFYuCzlkBnF6-g0CeemgEqEe_HdU5i0iLl9V10qGo2FfDzB9FNElGRk1ILM";
+//const firebaseProjectIdK = "email-password-64698";
 String soundsource = "task_completed";
 String key = "key";
 String label = "label";

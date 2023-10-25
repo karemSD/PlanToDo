@@ -78,6 +78,7 @@ class UserTaskController extends ProjectAndTaskController {
         collectionReference: usersTasksRef, field: userIdK, value: userId);
     List<UserTaskModel> listOfUserTasks = list!.cast<UserTaskModel>();
     print(listOfUserTasks);
+    print("hello from task getter");
     return listOfUserTasks;
   }
 

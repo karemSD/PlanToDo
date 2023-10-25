@@ -116,7 +116,6 @@ Future<void> main() async {
             options: DefaultFirebaseOptions.currentPlatform)
         .then((value) => Get.put(/*() =>  */ AuthService()));
   }
-
   await AndroidAlarmManager.initialize();
   const int helloAlarmID = 0;
   await AndroidAlarmManager.periodic(
@@ -132,6 +131,7 @@ Future<void> main() async {
 
 @pragma('vm:entry-point')
 Future<void> fcmHandler() async {
+  print("object");
   FirebaseMessaging.onMessage.listen(FcmNotifications.handleMessageJson);
   FirebaseMessaging.onMessageOpenedApp
       .listen(FcmNotifications.handleMessageJson);

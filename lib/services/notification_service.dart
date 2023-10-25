@@ -202,7 +202,9 @@ class FcmNotifications extends GetxService {
     //even if you are only sending String,String
     //  print(message.data["data"]);
 
+//TODO return habiby 
     if (await getNotificationStatus() == true) {
+      print("recieved successfully");
       print(message.data);
       Map<String, dynamic> s = jsonDecode(message.data["data"]);
       print(s);

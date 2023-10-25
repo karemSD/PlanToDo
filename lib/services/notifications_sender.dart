@@ -315,6 +315,8 @@ Future<void> checkTaskToSendNotification() async {
 
 @pragma('vm:entry-point')
 void checkAuth(int x, Map<String, dynamic> map) async {
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
+      .then((value) => Get.put(/*() =>  */ AuthService()));
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
