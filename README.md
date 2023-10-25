@@ -2,10 +2,9 @@
 
 
 <p align="center">A productivity mobile application UI kit built with  <span style="color: blue;">Flutter</span> And Full backend made with   <span style="color: red;">Firebase</span>
- and Dart</p>
+ and Dart 🔥:</p>
 ### Show some :heart: and star the repo to support the project
 <br>
-### Show some :heart: and star the repo to support the project
 
 <div>
   <p>Screenshots</p>
