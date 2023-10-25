@@ -8,7 +8,6 @@
   Show some <span style="color: red;">:heart:</span> and star the repo to support the project
 </p>
 
-                                 Show some :heart: and star the repo to support the project
 <br>
 
 <div>
