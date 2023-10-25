@@ -1,9 +1,8 @@
 # Edit_PlanToDo-
 
 
- <p align="center">🔥 A productivity mobile application UI kit built with  <span style="color: blue;">Flutter</span> And Full backend made with   <span style="color: red;">Firebase</span>
-
- and Dart 🔥</p>
+ 
+ <p align="center">🔥 A productivity mobile application UI kit built with Flutter And Full backend made with Firebase and Dart 🔥</p>
  <p align="center" style="font-size: 24px;">
   Show some <span style="color: red;">:heart:</span> and star the repo to support the project
 </p>
