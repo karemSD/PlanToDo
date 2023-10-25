@@ -55,6 +55,7 @@ class TaskWidget extends StatelessWidget {
         icon = Icons.schedule;
         color = Colors.grey;
         statusText = AppConstants.not_started_key.tr;
+        break;
     }
 
     return Row(
@@ -250,7 +251,7 @@ class _CardTaskState extends State<CardTask> {
                           "${AppConstants.description_key.tr} : ${widget.task.description}"),
                       StreamBuilder(
                         stream: statusController.getStatusByIdStream(
-                            idk: widget.task.statusId),
+                            idk: widget.task.statusId).asBroadcastStream(),
                         //.asBroadcastStream(),
                         builder: (context,
                             AsyncSnapshot<DocumentSnapshot<StatusModel>>

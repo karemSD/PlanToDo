@@ -514,11 +514,11 @@ checkProjectMainTasksToSendNotifications(
             List<ProjectSubTaskModel> subtasks =
                 await ProjectSubTaskController()
                     .getSubTasksForAMainTask(mainTaskId: element.id);
-            subtasks.forEach((element) {
+            for (var element in subtasks) {
               if (element.statusId == statusNotDoneModel.id) {
                 isDone = false;
               }
-            });
+            }
 
             if (isDone) {
               await ProjectSubTaskController().updateSubTask(
@@ -567,11 +567,11 @@ checkSubTasksToSendNotification() async {
     list.forEach((element) async {
       List<ProjectSubTaskModel> minisubtasklist = await projectSubTaskController
           .getMemberSubTasks(memberId: element.id);
-      minisubtasklist.forEach((subtask) {
+      for (var subtask in minisubtasklist) {
         if (subtask.statusId == statusNotStartedModel.id) {
           allsubtasklist.add(subtask);
         }
-      });
+      }
     });
     allsubtasklist.forEach((ProjectSubTaskModel element) async {
       DateTime taskStartdate = element.startDate;
@@ -581,10 +581,7 @@ checkSubTasksToSendNotification() async {
           taskStartdate.month == now.month &&
           taskStartdate.year == now.year) {
         DateTime firebaseNow = firebaseTime(DateTime.now());
-        print("start date" +
-            taskStartdate.toString() +
-            "end date" +
-            taskEnddate.toString());
+        print("start date ${taskStartdate} end date$taskEnddate");
         if (taskStartdate.isAtSameMomentAs(firebaseNow) &&
             element.statusId == statusNotStartedModel.id) {
           await projectSubTaskController.updateSubTask(
