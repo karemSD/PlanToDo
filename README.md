@@ -1,6 +1,6 @@
 # Edit_PlanToDo-
 
-<p align="center">A productivity mobile application UI kit built with Flutter</p>
+<p align="center">A productivity mobile application UI kit built with Flutter And Full backend made with Firebase  </p>
 
 ### Show some :heart: and star the repo to support the project
 
