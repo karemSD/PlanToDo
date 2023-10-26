@@ -16,7 +16,6 @@
   <img src="screenshots/sample-2.png" width="100%" title="sample-2">
   </p>
 </div>
-<a href="https://www.behance.net/gallery/108149857/TaskEz-Productivity-App-iOS-UI-Kit"> Taskez UI Designs.</a>
 <p align="center">
   <!-- <img src="screenshots/screenshot-1.png" width="100%" title="homescreen1"> -->
   <img src="screenshots/screenshot-2.png" width="100%" title="homescreen2">
