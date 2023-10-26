@@ -55,20 +55,22 @@ class DashboardNav extends StatelessWidget {
         //     )
         //   ]),
         // ),
-        SizedBox(
-            width: Utils.screenWidth * 0.08), // Adjust the percentage as needed
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: Utils.screenWidth * 0.05),
-          child: CircleGradientIcon(
-            onTap: () {
-              Get.to(const TodaysTaskScreen());
-            },
-            icon: Icons.calendar_month,
-            color: Colors.purple,
-            iconSize: 24,
-            size: 50,
-          ),
-        ),
+
+        // SizedBox(
+        //     width: Utils.screenWidth * 0.08), // Adjust the percentage as needed
+        // Padding(
+        //   padding: EdgeInsets.symmetric(horizontal: Utils.screenWidth * 0.05),
+        //   child: CircleGradientIcon(
+        //     onTap: () {
+        //       Get.to(const TodaysTaskScreen());
+        //     },
+        //     icon: Icons.calendar_month,
+        //     color: Colors.purple,
+        //     iconSize: 24,
+        //     size: 50,
+        //   ),
+        // ),
+        
         InkWell(
           onTap: onImageTapped,
           child: GestureDetector(

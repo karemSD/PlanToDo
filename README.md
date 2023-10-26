@@ -12,7 +12,7 @@
 <div>
   <p>Screenshots</p>
   <p align="center">
-  <img src="screenshots/sample-1.png" width="100%" title="sample-1">
+  <img src="screenshots/GooglePlayAr.png" width="100%" title="sample-1">
   <img src="screenshots/sample-2.png" width="100%" title="sample-2">
   </p>
 </div>
