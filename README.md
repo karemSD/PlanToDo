@@ -19,10 +19,11 @@
 <p align="center">
   <!-- <img src="screenshots/screenshot-1.png" width="100%" title="homescreen1"> -->
    <!-- <img src="screenshots/1.png" width="25%" title="homescreen2">  -->
-  <img src="screenshots/2.png" width="27%" title="homescreen3">
+  <img src="screenshots/2.png" width="27%" title="homescreen2">
    <img src="screenshots/3.png" width="26%" title="homescreen3">
    <img src="screenshots/3.1.png" width="27%" title="homescreen4">
    <img src="screenshots/4.png" width="27%" title="homescreen5">
    <img src="screenshots/5.png" width="27%" title="homescreen6">
+      <img src="screenshots/6.png" width="27%" title="homescreen7">
 </p>
 
