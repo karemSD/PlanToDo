@@ -20,7 +20,7 @@
   <!-- <img src="screenshots/screenshot-1.png" width="100%" title="homescreen1"> -->
    <!-- <img src="screenshots/1.png" width="25%" title="homescreen2">  -->
   <img src="screenshots/2.png" width="27%" title="homescreen3">
-   <img src="screenshots/3.png" width="26%" title="homescreen3">
+   <img src="screenshots/3.png" width="25%" title="homescreen3">
   <!-- <img src="screenshots/screenshot-4.png" width="100%" title="homescreen4">
   <img src="screenshots/screenshot-5.png" width="100%" title="homescreen5">
   <img src="screenshots/screenshot-6.png" width="100%" title="homescreen6">
