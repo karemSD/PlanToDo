@@ -291,28 +291,32 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               obscureText: false,
                               label: AppConstants.your_name_key.tr),
                           AppSpaces.verticalSpace20,
-                          LabelledFormInput(
-                              onChanged: (value) {
-                                setState(() {
-                                  userName = value;
-                                });
-                              },
-                              onClear: () {
-                                setState(() {
-                                  userName = "";
-                                  userNameController.text = "";
-                                });
-                              },
-                              autovalidateMode:
-                                  AutovalidateMode.onUserInteraction,
-                              readOnly: false,
-                              placeholder: widget.user!.userName == null
-                                  ? ""
-                                  : widget.user!.userName!,
-                              keyboardType: "text",
-                              controller: userNameController,
-                              obscureText: false,
-                              label: AppConstants.your_username_key.tr),
+                          Visibility(
+                            visible: !AuthService
+                                .instance.firebaseAuth.currentUser!.isAnonymous,
+                            child: LabelledFormInput(
+                                onChanged: (value) {
+                                  setState(() {
+                                    userName = value;
+                                  });
+                                },
+                                onClear: () {
+                                  setState(() {
+                                    userName = "";
+                                    userNameController.text = "";
+                                  });
+                                },
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                readOnly: false,
+                                placeholder: widget.user!.userName == null
+                                    ? ""
+                                    : widget.user!.userName!,
+                                keyboardType: "text",
+                                controller: userNameController,
+                                obscureText: false,
+                                label: AppConstants.your_username_key.tr),
+                          ),
                           AppSpaces.verticalSpace20,
                           Visibility(
                             visible: !AuthService

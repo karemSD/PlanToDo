@@ -35,6 +35,8 @@
                      <img src="screenshots/14.png" width="27%" title="homescreen15">
                      <img src="screenshots/15.png" width="27%" title="homescreen16">
                       <img src="screenshots/16.png" width="27%" title="homescreen17">
+                       <img src="screenshots/17.png" width="27%" title="homescreen18">
+                        <img src="screenshots/18.png" width="27%" title="homescreen19">
 
 </p>
 
