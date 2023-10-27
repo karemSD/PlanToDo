@@ -32,8 +32,9 @@
         <img src="screenshots/11.png" width="27%" title="homescreen12">
              <img src="screenshots/12.png" width="27%" title="homescreen13">
  <img src="screenshots/13.png" width="27%" title="homescreen14">
-                     <img src="screenshots/14.png" width="27%" title="homescreen14">
-                     <img src="screenshots/15.png" width="27%" title="homescreen14">
+                     <img src="screenshots/14.png" width="27%" title="homescreen15">
+                     <img src="screenshots/15.png" width="27%" title="homescreen16">
+                      <img src="screenshots/16.png" width="27%" title="homescreen17">
 
 </p>
 
