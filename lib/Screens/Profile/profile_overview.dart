@@ -364,7 +364,7 @@ void showPasswordAndEmailDialog(BuildContext context) {
                 },
                 onClear: (() {
                   obscureText.value = !obscureText.value;
-                }), 
+                }),
                 onChanged: (value) {
                   password = value;
                 },

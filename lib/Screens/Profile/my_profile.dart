@@ -171,21 +171,21 @@ class _ProfilePageState extends State<ProfilePage> {
                         icon: FeatherIcons.share2,
                         margin: 5.0,
                       ),
-                      AppSpaces.verticalSpace10,
-                      ProfileTextOption(
-                        inTap: () {
-                          CustomDialog.userInfoDialog(
-                            name: widget.user.name!,
-                            userName: widget.user.userName!,
-                            imageUrl: widget.user.imageUrl,
-                            bio: widget.user.bio,
-                          );
-                          print("to nour");
-                        },
-                        label: '$tabSpace ${AppConstants.all_task_key.tr}',
-                        icon: Icons.check_circle_outline,
-                        margin: 6.0,
-                      ),
+                      //AppSpaces.verticalSpace10,
+                      // ProfileTextOption(
+                      //   inTap: () {
+                      //     CustomDialog.userInfoDialog(
+                      //       name: widget.user.name!,
+                      //       userName: widget.user.userName!,
+                      //       imageUrl: widget.user.imageUrl,
+                      //       bio: widget.user.bio,
+                      //     );
+                      //     print("to nour");
+                      //   },
+                      //   label: '$tabSpace ${AppConstants.all_task_key.tr}',
+                      //   icon: Icons.check_circle_outline,
+                      //   margin: 6.0,
+                      // ),
                       AppSpaces.verticalSpace20,
                     ],
                   ),
