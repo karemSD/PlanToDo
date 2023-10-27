@@ -416,6 +416,8 @@
   "the_user_invited_successfully": "the user Invited Successfully",
   "projects": "Projects",
   "No_tasks_found" : "No tasks found",
+  "No_teams_found_Add_team_to_get_started" : "No teams found \n Add team to get started",
+
   "Search_in" : "Search in",
   "Not_Started" : "Not started",
   "Cannot_edit_time_of_done_or_doing_task" : "Cannot edit a start time and end time of a done or doing task",

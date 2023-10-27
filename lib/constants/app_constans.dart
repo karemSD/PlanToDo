@@ -608,6 +608,7 @@ class AppConstants {
   static const String total_categories_key = "total_categories";
   static const String total_projects_key = "total_projects";
   static const String total_teams_key = "total_teams";
+  static const String no_teams_found_add_team_to_get_started_key = "No_teams_found_Add_team_to_get_started";
   static const String is_completed_key = "is_completed";
   static const String daily_goal_key = "daily_goal";
   static const String you_marked_key = "you_marked";

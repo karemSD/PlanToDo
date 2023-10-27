@@ -266,7 +266,7 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
                   child: StreamBuilder<QuerySnapshot<TeamModel>?>(
                     stream: TeamController().getTeamsOfUserStream(
                         userId:
-                            AuthService.instance.firebaseAuth.currentUser!.uid), 
+                            AuthService.instance.firebaseAuth.currentUser!.uid),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         List<TeamModel> teams = snapshot.data!.docs
@@ -290,15 +290,33 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
                         if (!sortAscending) {
                           teams = teams.reversed.toList();
                         }
-
-                        // // Create a list of TeamInfo objects
-                        // List<TeamInfo> teamInfos = teams.map((team) {
-                        //   // Calculate the number of members for each team here
-                        //   int membersCount;
-                        //   // Replace this with your actual logic
-
-                        //   return TeamInfo(team, null);
-                        // }).toList();
+                        if (teams.isEmpty) {
+                          return Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Icon(
+                                  Icons.task,
+                                  size: Utils.screenWidth * 0.3,
+                                  color: HexColor.fromHex("#999999"),
+                                ),
+                                AppSpaces.verticalSpace10,
+                                Text(
+                                  AppConstants
+                                      .no_teams_found_add_team_to_get_started_key
+                                      .tr,
+                                  style: GoogleFonts.poppins(
+                                    textStyle: TextStyle(
+                                      color: HexColor.fromHex("#999999"),
+                                      fontSize: Utils.screenWidth * 0.065,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        }
                         return MediaQuery.removePadding(
                           context: context,
                           removeTop: true,
@@ -321,7 +339,7 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
                                     //     teams: teamInfos,
                                     //     sortOption: selectedSortOption,
                                     //     ascending: sortAscending);
-                                    print("sadsdsdasdasdasdasdasda");
+
                                     return Padding(
                                       padding: const EdgeInsets.all(3),
                                       child: Slidable(
