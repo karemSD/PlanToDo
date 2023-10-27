@@ -42,7 +42,7 @@ class _DailyGoalCardState extends State<DailyGoalCard> {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(20.0),
-      height: Utils.screenHeight2 * 0.3, // Adjust percentage as needed,
+      height: Utils.screenHeight2 * 0.2, // Adjust percentage as needed,
       decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(20.0)),
           color: AppColors.primaryBackgroundColor),
@@ -176,34 +176,34 @@ class dailygoal extends StatelessWidget {
                   fontSize: Utils.screenWidth * 0.047,
                   fontWeight: FontWeight.w500),
             ),
-            AppSpaces.verticalSpace20,
-            SizedBox(
-              width: Utils.screenWidth * 0.3, // Adjust the percentage as needed
-              height:
-                  Utils.screenHeight * 0.08, // Adjust the percentage as needed
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(
-                      HexColor.fromHex("C25FFF")),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50.0),
-                      side: BorderSide(
-                        color: HexColor.fromHex("C25FFF"),
-                      ),
-                    ),
-                  ),
-                ),
-                child: Text(
-                  AppConstants.all_task_key.tr,
-                  style: GoogleFonts.lato(
-                      fontSize: Utils.screenHeight * 0.04,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
-                ),
-              ),
-            )
+//            AppSpaces.verticalSpace20,
+            // SizedBox(
+            //   width: Utils.screenWidth * 0.3, // Adjust the percentage as needed
+            //   height:
+            //       Utils.screenHeight * 0.08, // Adjust the percentage as needed
+            //   child: ElevatedButton(
+            //     onPressed: () {},
+            //     style: ButtonStyle(
+            //       backgroundColor: MaterialStateProperty.all<Color>(
+            //           HexColor.fromHex("C25FFF")),
+            //       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            //         RoundedRectangleBorder(
+            //           borderRadius: BorderRadius.circular(50.0),
+            //           side: BorderSide(
+            //             color: HexColor.fromHex("C25FFF"),
+            //           ),
+            //         ),
+            //       ),
+            //     ),
+            //     child: Text(
+            //       AppConstants.all_task_key.tr,
+            //       style: GoogleFonts.lato(
+            //           fontSize: Utils.screenHeight * 0.04,
+            //           fontWeight: FontWeight.bold,
+            //           color: Colors.white),
+            //     ),
+            //   ),
+            // )
           ],
         ),
         Stack(
