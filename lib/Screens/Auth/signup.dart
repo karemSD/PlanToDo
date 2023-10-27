@@ -388,6 +388,7 @@ class _SignUpState extends State<SignUp> {
                                   authserviceDone.fold((left) {
                                     CustomSnackBar.showError(
                                         "${left.toString()} ");
+                                    Navigator.of(context).pop();
                                   },
                                       (right) => {
                                             Navigator.of(context).pop(),
@@ -396,10 +397,11 @@ class _SignUpState extends State<SignUp> {
                                                   .welcome_in_our_team_Plans_to_do_team_happy_in_you_key
                                                   .tr,
                                               // "Welcome in our team \n Plans to do team happy in you "
-                                            )
+                                            ),
+                                            Get.to(() =>
+                                                const VerifyEmailAddressScreen())
                                           });
                                 }
-                                Get.to(() => const VerifyEmailAddressScreen());
                               } on Exception catch (e) {
                                 Navigator.of(context).pop();
                                 CustomSnackBar.showError(e.toString());

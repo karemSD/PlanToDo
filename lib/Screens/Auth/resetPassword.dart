@@ -110,8 +110,9 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                 await AuthService.instance
                                     .resetPassword(email: email);
                                 Get.key.currentState!.pop();
-                                CustomSnackBar.showSuccess(
-                                    "We have send the reset password link");
+                                CustomSnackBar.showSuccess(AppConstants
+                                    .we_have_sent_the_reset_password_link_key
+                                    .tr);
                               } on Exception catch (e) {
                                 Get.key.currentState!.pop();
                                 CustomSnackBar.showError(e.toString());

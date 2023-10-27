@@ -144,6 +144,7 @@
   "task_start_prompt": "That start in this time \n Would you Like To add Task Any Way?",
   "task already exist in main task": "sub task already exist in main task",
   "task": "task",
+  "We_have_sent_the_reset_password_link" : "We have sent the reset password link",
   "added_successfully": "added successfully",
   "main_task_already_exist_in_project": "main task already exist in project",
   "updated_successfully": "Updated successfully",

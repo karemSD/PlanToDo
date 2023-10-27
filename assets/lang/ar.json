@@ -98,6 +98,7 @@
   "category_already_been_added": "الفئة تمت إضافتها بالفعل",
   "task_time_error": "خطأ في وقت المهمة",
   "there_is": "هناك",
+  "We_have_sent_the_reset_password_link" : "لقد أرسلنا رابط إعادة تعيين كلمة المرور",
   "task_start_prompt": "تبدأ في هذا الوقت \n هل تود إضافة مهمة على أي حال؟",
   "task already exist in main task": "المهمة الفرعية موجودة بالفعل في المهمة الرئيسية",
   "task": "مهمة",

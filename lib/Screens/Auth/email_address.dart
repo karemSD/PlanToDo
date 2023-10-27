@@ -61,12 +61,12 @@ class _EmailAddressScreenState extends State<EmailAddressScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const NavigationBack(),
-                      const SizedBox(height: 40),
+                      SizedBox(height: Utils.screenHeight * 0.12),
                       Text(AppConstants.whats_your_email_address_key.tr,
                           //"What's your\nemail\naddress?",
                           style: GoogleFonts.lato(
                               color: Colors.white,
-                              fontSize: 40,
+                              fontSize: Utils.screenWidth * 0.12,
                               fontWeight: FontWeight.bold)),
                       AppSpaces.verticalSpace20,
                       LabelledFormInput(
@@ -99,7 +99,7 @@ class _EmailAddressScreenState extends State<EmailAddressScreen> {
                       AppSpaces.verticalSpace40,
                       SizedBox(
                         //width: 180,
-                        height: 60,
+                        height: Utils.screenWidth * 0.14,
                         child: ElevatedButton(
                           onPressed: () async {
                             if (formKey.currentState!.validate()) {

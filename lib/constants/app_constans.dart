@@ -216,6 +216,7 @@ class AppConstants {
   static const String task_start_prompt_key = "task_start_prompt";
   static const String sub_task_already_exist_in_main_task_key =
       "task already exist in main task";
+      static const String we_have_sent_the_reset_password_link_key = "We_have_sent_the_reset_password_link";
   static const String task_key = "task";
   static const String added_successfully_key = "added_successfully";
   static const String main_task_already_exist_in_project_key =
