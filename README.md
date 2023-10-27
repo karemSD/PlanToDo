@@ -45,9 +45,9 @@
                              <img src="screenshots/24.png" width="27%" title="homescreen25">
                                <img src="screenshots/25.png" width="27%" title="homescreen25">  
                                <img src="screenshots/26.png" width="27%" title="homescreen25">
-                               <img src="screenshots/27.png" width="27%" title="homescreen25">
-
-
-
+                               <img src="screenshots/27.png" width="27%" title="homescreen25">  
+                               <img src="screenshots/28.png" width="27%" title="homescreen25">
+         <img src="screenshots/29.png" width="27%" title="homescreen25">
+         <img src="screenshots/30.png" width="27%" title="homescreen25">
 </p>
 
