@@ -250,8 +250,9 @@ class _CardTaskState extends State<CardTask> {
                       buildLabel(
                           "${AppConstants.description_key.tr} : ${widget.task.description}"),
                       StreamBuilder(
-                        stream: statusController.getStatusByIdStream(
-                            idk: widget.task.statusId).asBroadcastStream(),
+                        stream: statusController
+                            .getStatusByIdStream(idk: widget.task.statusId)
+                            .asBroadcastStream(),
                         //.asBroadcastStream(),
                         builder: (context,
                             AsyncSnapshot<DocumentSnapshot<StatusModel>>
@@ -372,7 +373,7 @@ class _CardTaskState extends State<CardTask> {
     if (dateTime.year == now.year &&
         dateTime.month == now.month &&
         dateTime.day == now.day) {
-      return "Today ${DateFormat('h:mma').format(dateTime)}";
+      return "${AppConstants.today_key.tr} ${DateFormat('h:mma').format(dateTime)}";
     } else {
       return DateFormat('dd/MM/yy h:mma').format(dateTime);
     }

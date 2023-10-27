@@ -217,6 +217,8 @@ class AppConstants {
   static const String sub_task_already_exist_in_main_task_key =
       "task already exist in main task";
       static const String we_have_sent_the_reset_password_link_key = "We_have_sent_the_reset_password_link";
+      static const String uncompleted_tasks_key = "Uncompleted_tasks";
+
   static const String task_key = "task";
   static const String added_successfully_key = "added_successfully";
   static const String main_task_already_exist_in_project_key =
@@ -602,7 +604,7 @@ class AppConstants {
   static const String total_task_key = "total_task";
   static const String to_do_today_key = "to_do_today";
   static const String working_on_key = "working_on";
-  static const String completed_task_key = "completed_task";
+  static const String completed_tasks_key = "completed_tasks";
   static const String total_categories_key = "total_categories";
   static const String total_projects_key = "total_projects";
   static const String total_teams_key = "total_teams";

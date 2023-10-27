@@ -43,11 +43,11 @@ class _CategoryCardVerticalState extends State<CategoryCardVertical> {
   void initState() {
     super.initState();
     //TaskCategoryController userTaskCategoryController =
-        Get.put(TaskCategoryController());
+    Get.put(TaskCategoryController());
     //UserTaskController userTaskController = Get.put(UserTaskController());
   }
 
-  @override
+  @override 
   Widget build(BuildContext context) {
     UserTaskController userTaskController = Get.find();
 
@@ -66,9 +66,9 @@ class _CategoryCardVerticalState extends State<CategoryCardVertical> {
     );
     return FocusedMenu(
       onClick: () {
-        Get.to(CategoryTasks(
-          categoryModel: widget.userTaskCategoryModel,
-        ));
+        Get.to(() => CategoryTasks(
+              categoryModel: widget.userTaskCategoryModel,
+            ));
         print("clicked");
       },
       deleteButton: () async {

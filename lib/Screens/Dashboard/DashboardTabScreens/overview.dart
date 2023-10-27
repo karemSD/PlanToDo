@@ -30,6 +30,7 @@ class _DashboardOverviewState extends State<DashboardOverview> {
   final ValueNotifier<bool> _totalTaskToDoTrigger = ValueNotifier(true);
 
   final ValueNotifier<bool> _totalCompletedTrigger = ValueNotifier(true);
+  final ValueNotifier<bool> _totalNotDoneTrigger = ValueNotifier(true);
 
   final ValueNotifier<bool> _totalCategoriesTrigger = ValueNotifier(true);
 
@@ -49,6 +50,7 @@ class _DashboardOverviewState extends State<DashboardOverview> {
     int catNumber = 0;
     int totalTaskNumber = 0;
     int toDoTaskNumber = 0;
+    int NotDoneTaskNumber = 0;
     int completedtaskNumber = 0;
     int projectNumber = 0;
     int teamsNumber = 0;
@@ -127,8 +129,20 @@ class _DashboardOverviewState extends State<DashboardOverview> {
                             AuthService.instance.firebaseAuth.currentUser!.uid,
                         status: statusDone)
                     .asBroadcastStream(),
-                name: AppConstants.completed_task_key.tr,
+                name: AppConstants.completed_tasks_key.tr,
                 colorHex: "7FBC69",
+                imageUrl: "assets/task_done.png"),
+            triggerShow(
+                valueListenable: _totalNotDoneTrigger,
+                number: NotDoneTaskNumber,
+                stream: userTaskController
+                    .getUserTasksForAStatusStream(
+                        userId:
+                            AuthService.instance.firebaseAuth.currentUser!.uid,
+                        status: statusNotDone)
+                    .asBroadcastStream(),
+                name: AppConstants.uncompleted_tasks_key.tr,
+                colorHex: "FF0000", 
                 imageUrl: "assets/task_done.png"),
             triggerShow(
                 valueListenable: _totalCategoriesTrigger,

@@ -3,6 +3,7 @@ part of values;
 class Utils {
   static final double screenWidth = Get.width;
   static final double screenHeight = Get.width;
+ static final screenHeight2 = Get.size.height;
 }
 
 class SineCurve extends Curve {

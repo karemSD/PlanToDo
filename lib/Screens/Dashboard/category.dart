@@ -229,6 +229,36 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     );
                   }
                 }
+                if (!snapshot.hasData) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      //
+                      Icon(
+                        Icons.search_off,
+                        //   Icons.heart_broken_outlined,
+                        color: Colors.lightBlue,
+                        size: Utils.screenWidth * 0.27,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: Utils.screenWidth *
+                              0.1, // Adjust the percentage as needed
+                          vertical: Utils.screenHeight * 0.05,
+                        ),
+                        child: Center(
+                          child: Text(
+                            AppConstants.loading_key.tr,
+                            style: GoogleFonts.fjallaOne(
+                              color: Colors.white,
+                              fontSize: Utils.screenWidth * 0.1,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                }
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Center(
                     child: CircularProgressIndicator(
@@ -237,14 +267,31 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     ),
                   );
                 }
-                return Center(
-                  child: Text(
-                    AppConstants.no_categories_found_key.tr,
-                    style: GoogleFonts.lato(
-                      color: Colors.white,
-                      fontSize: Utils.screenWidth * 0.095,
+
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.search_off,
+                      //   Icons.heart_broken_outlined,
+                      color: Colors.red,
+                      size: Utils.screenWidth * 0.30,
                     ),
-                  ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: Utils.screenWidth *
+                            0.02, // Adjust the percentage as needed
+                        vertical: Utils.screenHeight * 0.05,
+                      ),
+                      child: Text(
+                        AppConstants.no_categories_found_key.tr,
+                        style: GoogleFonts.lato(
+                          color: Colors.white,
+                          fontSize: Utils.screenWidth * 0.095,
+                        ),
+                      ),
+                    ),
+                  ],
                 );
               },
             ),

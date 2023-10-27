@@ -38,12 +38,11 @@ class _DailyGoalCardState extends State<DailyGoalCard> {
       0,
       0,
     );
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
+
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(20.0),
-      height: screenHeight * 0.3, // Adjust percentage as needed,
+      height: Utils.screenHeight2 * 0.3, // Adjust percentage as needed,
       decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(20.0)),
           color: AppColors.primaryBackgroundColor),
@@ -56,7 +55,7 @@ class _DailyGoalCardState extends State<DailyGoalCard> {
             userId: AuthService.instance.firebaseAuth.currentUser!.uid),
         builder: (context, allTasks) {
           if (allTasks.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
           if (allTasks.hasError) {
             return Text('Error: ${allTasks.error}');
@@ -223,14 +222,14 @@ class dailygoal extends StatelessWidget {
               child: Center(
                 child: Container(
                   width: Utils.screenWidth *
-                      0.3, // Adjust the percentage as needed
-                  height: Utils.screenWidth * 0.1,
+                      0.4, // Adjust the percentage as needed
+                  height: Utils.screenWidth * 0.15,
                   decoration: const BoxDecoration(shape: BoxShape.circle),
                   child: const ClipOval(
                     child: Image(
                       fit: BoxFit.contain,
                       image: AssetImage(
-                        "assets/small-logo.png",
+                        "assets/icon/logo.png",
                       ),
                     ),
                   ),
