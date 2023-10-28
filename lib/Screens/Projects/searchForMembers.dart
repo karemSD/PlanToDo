@@ -78,7 +78,9 @@ class _SearchForMembersState extends State<SearchForMembers> {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(right: 20, left: 20),
+                  padding: EdgeInsets.only(
+                      right: Utils.screenWidth * 0.04,
+                      left: Utils.screenWidth * 0.04),
                   child: TaskezAppHeader(
                     title: AppConstants.search_members_key.tr,
                     widget: GestureDetector(
@@ -197,15 +199,19 @@ class _SearchForMembersState extends State<SearchForMembers> {
                                                 .searchQuery.value.isEmpty ||
                                             controller.searchController.text
                                                 .isEmpty) {
-                                          return Center(
-                                            child: Text(
-                                              AppConstants
-                                                  .please_enter_username_to_search_key
-                                                  .tr,
-                                              style: TextStyle(
-                                                  fontSize:
-                                                      Utils.screenWidth * 0.06,
-                                                  color: Colors.white),
+                                          return Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Center(
+                                              child: Text(
+                                                AppConstants
+                                                    .please_enter_username_to_search_key
+                                                    .tr,
+                                                style: TextStyle(
+                                                    fontSize:
+                                                        Utils.screenWidth *
+                                                            0.07,
+                                                    color: Colors.white),
+                                              ),
                                             ),
                                           );
                                         }

@@ -33,14 +33,10 @@ class ProjectCardVertical extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // width: 150,
-
-      //margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       padding: EdgeInsets.symmetric(
-        horizontal: Utils.screenWidth * 0.03, // Adjust the percentage as needed
-        vertical: Utils.screenHeight * 0.02, // Adjust the percentage as needed
+        horizontal: Utils.screenWidth * 0.03,
+        vertical: Utils.screenHeight * 0.02,
       ),
-      // padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
       decoration: BoxDecoration(
         color: HexColor.fromHex("20222A"),
         borderRadius: BorderRadius.circular(20),
@@ -59,7 +55,7 @@ class ProjectCardVertical extends StatelessWidget {
         Row(children: [
           InkWell(
             child: Text(
-              AppConstants.team_key.tr,
+              "${AppConstants.team_key.tr} : ",
               style: TextStyle(
                 color: HexColor.fromHex("246CFE"),
               ),

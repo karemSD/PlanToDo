@@ -292,7 +292,7 @@ class TeamProjectOverview extends StatelessWidget {
                 mainAxisSpacing: 10,
 
                 //change height 125
-                mainAxisExtent: 220,
+                mainAxisExtent: 240,
                 crossAxisSpacing: 10,
               ),
               itemCount: snapshotProject.data!.size,

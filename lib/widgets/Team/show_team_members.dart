@@ -298,6 +298,7 @@ class ShowTeamMembers extends StatelessWidget {
                                                                                 showDialogMethod(context);
                                                                                 await WaitingMamberController().deleteWaitingMamberDoc(waitingMemberId: snapShotWatingUsers.data!.docs[index].data().id);
                                                                                 Get.key.currentState!.pop();
+                                                                                print(snapShotWatingUsers.data!.docs[index].data().userId);
                                                                                 print("object dlete waitiing member");
                                                                               },
                                                                               label: AppConstants.delete_key.tr,
@@ -370,6 +371,9 @@ class ShowTeamMembers extends StatelessWidget {
                                                                 ? ActiveEmployeeCard(
                                                                     onTap: () {
                                                                       CustomDialog.userInfoDialog(
+                                                                          title: AppConstants
+                                                                              .member_key
+                                                                              .tr,
                                                                           imageUrl: snapshotUsers
                                                                               .data!
                                                                               .docs[
@@ -432,8 +436,9 @@ class ShowTeamMembers extends StatelessWidget {
                                                                       onTap:
                                                                           () {
                                                                         CustomDialog.userInfoDialog(
-                                                                            imageUrl:
-                                                                                snapshotUsers.data!.docs[index].data().imageUrl,
+                                                                            title:
+                                                                                AppConstants.invited_not_a_member_yet_key.tr,
+                                                                            imageUrl: snapshotUsers.data!.docs[index].data().imageUrl,
                                                                             name: snapshotUsers.data!.docs[index].data().name!,
                                                                             userName: snapshotUsers.data!.docs[index].data().userName!,
                                                                             bio: snapshotUsers.data!.docs[index].data().bio);

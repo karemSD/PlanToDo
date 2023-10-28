@@ -231,7 +231,7 @@ class CustomDialog {
             // Handle button action
             Get.back(); // Close the dialog
           },
-          child: const Text('Close'),
+          child: Text(AppConstants.close_key.tr),
         ),
       ],
     );

@@ -322,6 +322,8 @@
   "working_on": "تعمل على",
   "completed_tasks": "المهام المكتملة",
   "No_teams_found_Add_team_to_get_started" : "لا توجد فرق، قم بإضافة فريق للبدء",
+  "Invited_not_a_member_yet" : "مدعو (ليس عضوًا بعد)",
+  "member" : "عضو",
   "total_projects": "مجموع المشاريع",
   "total_teams": "مجموع الفرق",
   "is_completed": "تم الانتهاء",

@@ -158,6 +158,7 @@ class AppConstants {
   static const String by_team_key = "by_team";
   static const String status_key = "status";
   static const String projects_key = "projects";
+  static const String member_key = "member";
   static const String task_assigned_successfully_key =
       "task_assigned_successfully";
   static const String due_date_validation_key = "due_date";
@@ -521,7 +522,7 @@ class AppConstants {
   static const String mark_as_read_key = "mark_as_read";
 
   static const String no_member_found_key = "no_member_found";
-  static const String search_members_key = "search_members";
+  static const String search_members_key = "search_for_members";
   static const String no_search_found_key = "no_search_found";
   static const String to_be_a_member_in_team_key = "to_be_a_member_in_team";
   static const String do_something_when_your_item_deleted_key =
@@ -609,6 +610,7 @@ class AppConstants {
   static const String total_projects_key = "total_projects";
   static const String total_teams_key = "total_teams";
   static const String no_teams_found_add_team_to_get_started_key = "No_teams_found_Add_team_to_get_started";
+static const String invited_not_a_member_yet_key = "Invited_not_a_member_yet";
   static const String is_completed_key = "is_completed";
   static const String daily_goal_key = "daily_goal";
   static const String you_marked_key = "you_marked";
