@@ -20,7 +20,7 @@ const String defaultUserImageProfile =
     "https://firebasestorage.googleapis.com/v0/b/email-password-64698.appspot.com/o/images%2Fdummy-profile.png?alt=media&token=c427fea0-7448-42db-ac00-ba93faa2ed3b";
 
 const String defaultProjectImage =
-    "https://firebasestorage.googleapis.com/v0/b/email-password-64698.appspot.com/o/images%2Fproject.jpg?alt=media&token=439ee72f-a606-4a42-abc2-b919fb418a49";
+    "https://firebasestorage.googleapis.com/v0/b/graduation-plans-to-do.appspot.com/o/projectImage.jpg?alt=media&token=f474772f-5100-4467-9e18-3fa756566099";
 
 extension Unique<E, Id> on List<E> {
   List<E> unique([Id Function(E element)? id, bool inplace = true]) {

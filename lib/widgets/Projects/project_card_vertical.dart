@@ -38,7 +38,7 @@ class ProjectCardVertical extends StatelessWidget {
       //margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       padding: EdgeInsets.symmetric(
         horizontal: Utils.screenWidth * 0.03, // Adjust the percentage as needed
-        vertical: Utils.screenHeight * 0 , // Adjust the percentage as needed
+        vertical: Utils.screenHeight * 0.02, // Adjust the percentage as needed
       ),
       // padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
       decoration: BoxDecoration(
