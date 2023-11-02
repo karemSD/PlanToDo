@@ -7,10 +7,13 @@
   Show some <span style="color: red;">:heart:</span> and star the repo to support the project
 </p>
 
-<br>
-
-
-
+<div>
+ 
+  <p align="center">
+  <img src="screenshots/GooglePlayAr.png" width="100%" title="sample-1">
+  <img src="screenshots/GooglePlayEn.png" width="100%" title="sample-2">
+  </p>
+</div>
 
 ## :sparkles: Features
 
@@ -30,13 +33,9 @@
 ## More Coming
 
 
-<div>
-  <p>Screenshots</p>
-  <p align="center">
-  <img src="screenshots/GooglePlayAr.png" width="100%" title="sample-1">
-  <img src="screenshots/GooglePlayEn.png" width="100%" title="sample-2">
-  </p>
-</div>
+<br>
+
+## Screenshots
 <p align="center">
   <!-- <img src="screenshots/screenshot-1.png" width="100%" title="homescreen1"> -->
    <!-- <img src="screenshots/1.png" width="25%" title="homescreen2">  -->
@@ -91,4 +90,3 @@
 
    
 </p>
-
