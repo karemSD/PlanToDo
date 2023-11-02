@@ -28,9 +28,16 @@
 - ## Task Management
   - Users can define personalized workspace categories (e.g., work, sports, or study) tailored to their unique needs and customize them with colors and icons. They can also create and manage tasks within each category, facilitating goal breakdown, and monitor their progress using a progress bar, providing insights into their productivity and accomplishments.
   - After adding categories, users can create tasks with various details, including task name, description, priority, start date, and end date, enabling task management and organization in fast and great way.
+  - When a user creates a task with all its details, an additional attribute,  Status, is assigned based on a comparison between the task's start date and end date. There are four status types: 'Not Started' if the start time is in the future, 'In Progress' if the start time is the same as or after the current time, 'Not Done' if the current time is past the end time and the task is unfinished, and 'Done' if the user completes the task before the end time.
+  - One of our amazing features is task notification assistance. The app automatically sends notifications to all your devices using the same account. Five minutes before the task's start time, it reminds you of the upcoming task with all the necessary details. Additionally, at the task's end time, you receive another notification, prompting you to confirm whether the task has been completed or not..
+  - "In the individual use of the app, the dashboard offers an insightful overview of your task management. It presents not only the total number of your tasks but also the following key statistics:
+  Total Categories: Displays the number of categories you've created.
+  Completed Tasks: Shows the count of tasks you've successfully completed.
+Unfinished Tasks: Indicates the number of tasks that remain incomplete and have reached their end time.
+In Progress Tasks: Provides a snapshot of tasks currently in progress.
+Today's Tasks: Lists the tasks scheduled for the current day, ensuring a quick view of your daily agenda."
 
-
-## More Coming
+## 🔴 More Coming
 
 
 <br>
