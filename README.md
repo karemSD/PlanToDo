@@ -46,6 +46,8 @@ Today's Tasks: Lists the tasks scheduled for the current day, ensuring a quick v
 <p align="center">
   <!-- <img src="screenshots/screenshot-1.png" width="100%" title="homescreen1"> -->
    <!-- <img src="screenshots/1.png" width="25%" title="homescreen2">  -->
+    <img src="screenshots/OnStartL.png" width="27%" title="homescreen0">
+     <img src="screenshots/OnStartR.png" width="27%" title="homescreen1">
   <img src="screenshots/2.png" width="27%" title="homescreen2">
    <img src="screenshots/3.png" width="26%" title="homescreen3">
    <img src="screenshots/3.1.png" width="27%" title="homescreen4">
