@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:mytest/constants/app_constans.dart';
 import 'package:mytest/widgets/Dashboard/select_color_dialog.dart';
 
 import '../../Values/values.dart';
@@ -126,10 +127,10 @@ class _CreateMainTaskState extends State<CreateMainTask> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("importance", style: AppTextStyles.header2),
+                Text(AppConstants.importance_key.tr, style: AppTextStyles.header2),
                 AppSpaces.horizontalSpace10,
                 DropdownButton<String>(
-                  icon: Icon(Icons.label_important_outline_rounded),
+                  icon: const Icon(Icons.label_important_outline_rounded),
                   dropdownColor: HexColor.fromHex("#181a1f"),
                   style: AppTextStyles.header2,
                   value: selectedDashboardOption.toString(),
@@ -178,11 +179,11 @@ class _CreateMainTaskState extends State<CreateMainTask> {
                   child: LabelledFormInput(
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "pls enter name";
+                        return AppConstants.enter_name_key.tr;
                       }
                       if (value.isNotEmpty) {
                         if (isTaked) {
-                          return "Please use another taskName";
+                          return AppConstants.please_use_another_taskName_key.tr;
                         }
                       }
                       return null;
@@ -194,10 +195,10 @@ class _CreateMainTaskState extends State<CreateMainTask> {
                       });
                     },
                     onChanged: onChanged,
-                    label: "Name",
+                    label: AppConstants.name_key.tr,
                     readOnly: false,
                     autovalidateMode: AutovalidateMode.always,
-                    placeholder: "Task Name ....",
+                    placeholder: AppConstants.task_name_key.tr,
                     keyboardType: "text",
                     controller: _taskNameController,
                     obscureText: false,
@@ -209,7 +210,7 @@ class _CreateMainTaskState extends State<CreateMainTask> {
             LabelledFormInput(
               validator: (p0) {
                 if (p0 == " ") {
-                  return "description cannot be empy spaces";
+                  return AppConstants.description_cannot_be_empty_spaces_key.tr;
                 }
                 return null;
               },
@@ -222,10 +223,10 @@ class _CreateMainTaskState extends State<CreateMainTask> {
                   _taskDescController.text = "";
                 });
               },
-              label: "Description",
+              label: AppConstants.description_key.tr,
               readOnly: false,
               autovalidateMode: AutovalidateMode.always,
-              placeholder: "Task Description ....",
+              placeholder: "${AppConstants.task_description_key.tr}...",
               keyboardType: "text",
               controller: _taskDescController,
               obscureText: false,
@@ -238,7 +239,7 @@ class _CreateMainTaskState extends State<CreateMainTask> {
                 cardBackgroundColor: HexColor.fromHex("7DBA67"),
                 textAccentColor: HexColor.fromHex("A9F49C"),
                 value: formattedStartDate,
-                label: 'Start Date',
+                label: AppConstants.start_date_key.tr,
               ),
               NewSheetGoToCalendarWidget(
                 onSelectedDayChanged: handleDueDayChanged,
@@ -246,7 +247,7 @@ class _CreateMainTaskState extends State<CreateMainTask> {
                 cardBackgroundColor: HexColor.fromHex("BA67A3"),
                 textAccentColor: HexColor.fromHex("BA67A3"),
                 value: formattedDueDate,
-                label: 'Due Date',
+                label:AppConstants.end_date_key.tr,
               )
             ]),
             // Spacer(),
@@ -281,7 +282,7 @@ class _CreateMainTaskState extends State<CreateMainTask> {
     if (dateTime.year == now.year &&
         dateTime.month == now.month &&
         dateTime.day == now.day) {
-      return "Today ${DateFormat('h:mma').format(dateTime)}";
+      return  "${AppConstants.today_key.tr} ${DateFormat('h:mma').format(dateTime)}";
     } else {
       return DateFormat('dd/MM h:mma').format(dateTime);
     }
@@ -305,7 +306,7 @@ class _CreateMainTaskState extends State<CreateMainTask> {
   void handleStartDayChanged(DateTime selectedDay) {
     setState(() {
       // Update the selectedDay variable in the first screen
-      print(selectedDay.toString() + "the selected day");
+      print("${selectedDay}the selected day");
       startDate = selectedDay;
       formattedStartDate = formatDateTime(startDate);
     });

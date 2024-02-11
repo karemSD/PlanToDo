@@ -20,9 +20,7 @@ import 'package:mytest/services/auth_service.dart';
 import 'package:mytest/widgets/Snackbar/custom_snackber.dart';
 import 'package:mytest/widgets/active_employee_card.dart';
 import 'package:mytest/widgets/inactive_employee_card.dart';
-import '../../Data/data_model.dart';
 import '../../Screens/Profile/profile_overview.dart';
-import '../../Screens/Profile/team_details2.dart';
 import '../../Values/values.dart';
 import '../../controllers/teamController.dart';
 import '../../models/team/Project_model.dart';
@@ -30,10 +28,7 @@ import '../../models/team/TeamMembers_model.dart';
 import '../../services/notification_service.dart';
 import '../../widgets/Buttons/primary_buttons.dart';
 import '../../widgets/DarkBackground/darkRadialBackground.dart';
-
 import '../../widgets/Navigation/app_header.dart';
-
-import '../Dashboard/common_main_tasks.dart';
 import '../dummy/profile_dummy.dart';
 
 class ShowTeamMembers extends StatelessWidget {
@@ -47,20 +42,6 @@ class ShowTeamMembers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final dynamic data = AppData.employeeData;
-    // List<Widget> cards = List.generate(
-    //   AppData.employeeData.length,
-    //   (index) => Padding(
-    //     padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 6),
-    //     child: InactiveEmployeeCard(
-    //       onTap: null,
-    //       userImage: data[index]['userImage'],
-    //       userName: data[index]['userName'],
-    //       color: null,
-    //       bio: data[index]["bio"],
-    //     ),
-    //   ),
-    // );
     return Scaffold(
       body: Stack(children: [
         DarkRadialBackground(
@@ -315,54 +296,7 @@ class ShowTeamMembers extends StatelessWidget {
                                                                         teamModel.managerId ==
                                                                             userAsManager?.id
                                                                     ? null
-                                                                    // ActionPane(
-                                                                    //     motion:
-                                                                    //         const ScrollMotion(),
-                                                                    //     children: [
-                                                                    //         SlidableAction(
-                                                                    //           borderRadius: BorderRadius.circular(16),
-                                                                    //           backgroundColor: Colors.blueAccent,
-                                                                    //           onPressed: (context) {
-                                                                    //             // TeamMemberModel teamMemberModel = snapshotTeamMembers.data!.docs[index].data();
-                                                                    //             // Get.to(TeamDetails2(
-                                                                    //             //   me: null,
-                                                                    //             //   partner: teamMemberModel.id,
-                                                                    //             //   team: teamModel,
-                                                                    //             //   title: "",
-                                                                    //             //   userAsManager: userAsManager,
-                                                                    //             // ));
-
-                                                                    //             print("see tasks as manager");
-                                                                    //           },
-                                                                    //           label: AppConstants.tasks_key.tr,
-                                                                    //           icon: FontAwesomeIcons.listCheck,
-                                                                    //         ),
-                                                                    //       ])
                                                                     : null
-                                                                //to see the taks of this user uncomment this code
-                                                                // ActionPane(
-                                                                //     motion:
-                                                                //         const ScrollMotion(),
-                                                                //     children: [
-                                                                //         SlidableAction(
-                                                                //           borderRadius: BorderRadius.circular(16),
-                                                                //           backgroundColor: Colors.blueAccent,
-                                                                //           onPressed: (context) async {
-                                                                //             // TeamMemberModel teamMemberModel = snapshotTeamMembers.data!.docs[index].data();
-                                                                //             // TeamMemberModel me = await TeamMemberController().getMemberByTeamIdAndUserId(teamId: teamModel.id, userId: AuthService.instance.firebaseAuth.currentUser!.uid);
-                                                                //             // Get.to(TeamDetails2(
-                                                                //             //   me: me.id,
-                                                                //             //   partner: teamMemberModel.id,
-                                                                //             //   team: teamModel,
-                                                                //             //   title: "",
-                                                                //             //   userAsManager: userAsManager,
-                                                                //             // ));
-                                                                //             print("see tasks as parnter in main tasks");
-                                                                //           },
-                                                                //           label: AppConstants.tasks_key.tr,
-                                                                //           icon: FontAwesomeIcons.listCheck,
-                                                                //         ),
-                                                                //       ])
                                                                 : null,
                                                             child: index <
                                                                     snapshotTeamMembers

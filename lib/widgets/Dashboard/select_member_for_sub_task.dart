@@ -11,7 +11,6 @@ import 'package:mytest/widgets/Forms/search_box2.dart';
 
 import 'package:mytest/widgets/inactive_employee_card.dart';
 
-import '../../Data/data_model.dart';
 import '../../Screens/Dashboard/search_bar_animation.dart';
 import '../../Screens/Profile/profile_overview.dart';
 import '../../Values/values.dart';
@@ -27,7 +26,6 @@ import '../../widgets/dummy/profile_dummy.dart';
 import '../Buttons/primary_progress_button.dart';
 import '../Navigation/app_header2.dart';
 import '../User/employee_card_sub_task.dart';
-
 
 // class Search extends GetxController {
 //   final selectedUser = Rx<UserModel?>(null);
@@ -81,253 +79,322 @@ class _SearchForMembersSubTaskState extends State<SearchForMembersSubTask> {
             color: HexColor.fromHex("#181a1f"),
             position: "topLeft",
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 60.0),
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 20, left: 20),
-                  child: SafeArea(
-                    child: TaskezAppHeader2(
-                      title: " search for members",
-                      widget: MySearchBarWidget(
-                        searchWord: AppConstants.members_key.tr,
-                        editingController: searchController,
-                        onChanged: (String value) {
-                          setState(() {
-                            print(search);
-                            search = value;
-                          });
-                        },
-                      ),
+          Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(
+                    right: Utils.screenWidth * 0.04,
+                    left: Utils.screenWidth * 0.04),
+                child: SafeArea(
+                  child: TaskezAppHeader(
+                    title: AppConstants.search_members_key.tr,
+                    widget: MySearchBarWidget(
+                      searchWord: AppConstants.members_key.tr,
+                      editingController: searchController,
+                      onChanged: (String value) {
+                        setState(() {
+                          print(search);
+                          search = value;
+                        });
+                      },
                     ),
                   ),
                 ),
-                AppSpaces.verticalSpace40,
-                Expanded(
-                  flex: 1,
-                  child: Container(
-                    width: double.infinity,
-                    height: double.infinity,
-                    decoration: BoxDecorationStyles.fadingGlory,
-                    child: Padding(
-                      padding: const EdgeInsets.all(3.0),
-                      child: DecoratedBox(
-                        decoration: BoxDecorationStyles.fadingInnerDecor,
-                        child: Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              AppSpaces.verticalSpace20,
-                              Expanded(
-                                child: MediaQuery.removePadding(
-                                  context: context,
-                                  removeTop: true,
-                                  child: StreamBuilder<
-                                      QuerySnapshot<TeamMemberModel>>(
-                                    stream: TeamMemberController()
-                                        .getMembersInTeamIdStream(
-                                      teamId: widget.teamModel!.id,
-                                    ),
-                                    builder: (context, snapshotMembers) {
-                                      if (snapshotMembers.hasData) {
-                                        List<String> listIds = [];
-                                        List<
-                                                QueryDocumentSnapshot<
-                                                    TeamMemberModel>> list =
-                                            snapshotMembers.data!.docs;
-                                        list.forEach((element) {
-                                          listIds.add(element.data().userId);
-                                        });
-                                        if (listIds.isEmpty) {
-                                          return Center(
-                                            child: Text(
-                                              "No membeers found",
-                                              style: GoogleFonts.lato(
-                                                color: Colors.white,
-                                                fontSize: 20,
+              ),
+              AppSpaces.verticalSpace40,
+              Expanded(
+                flex: 1,
+                child: Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  decoration: BoxDecorationStyles.fadingGlory,
+                  child: Padding(
+                    padding: const EdgeInsets.all(3.0),
+                    child: DecoratedBox(
+                      decoration: BoxDecorationStyles.fadingInnerDecor,
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            AppSpaces.verticalSpace20,
+                            Expanded(
+                              child: MediaQuery.removePadding(
+                                context: context,
+                                removeTop: true,
+                                child: StreamBuilder<
+                                    QuerySnapshot<TeamMemberModel>>(
+                                  stream: TeamMemberController()
+                                      .getMembersInTeamIdStream(
+                                    teamId: widget.teamModel!.id,
+                                  ),
+                                  builder: (context, snapshotMembers) {
+                                    if (snapshotMembers.hasData) {
+                                      List<String> listIds = [];
+                                      List<
+                                              QueryDocumentSnapshot<
+                                                  TeamMemberModel>> list =
+                                          snapshotMembers.data!.docs;
+                                      list.forEach((element) {
+                                        listIds.add(element.data().userId);
+                                      });
+                                      if (listIds.isEmpty) {
+                                        return Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            //
+                                            Icon(
+                                              Icons.search_off,
+                                              //   Icons.heart_broken_outlined,
+                                              color: Colors.red,
+                                              size: Utils.screenWidth * 0.27,
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                horizontal: Utils.screenWidth *
+                                                    0.1, // Adjust the percentage as needed
+                                                vertical:
+                                                    Utils.screenHeight * 0.03,
+                                              ),
+                                              child: Center(
+                                                child: Text(
+                                                  AppConstants
+                                                      .no_members_found_for_team_on_project_key
+                                                      .tr,
+                                                  style: GoogleFonts.fjallaOne(
+                                                    color: Colors.white,
+                                                    fontSize:
+                                                        Utils.screenWidth *
+                                                            0.09,
+                                                  ),
+                                                ),
                                               ),
                                             ),
-                                          );
-                                        }
-                                        return StreamBuilder<
-                                            QuerySnapshot<UserModel>>(
-                                          stream: UserController()
-                                              .getUsersWhereInIdsStream(
-                                            usersId: listIds,
-                                          ),
-                                          builder: (context, snapshotUsers) {
-                                            if (snapshotUsers.hasData) {
-                                              int taskCount = snapshotUsers
-                                                  .data!.docs.length;
-                                              List<UserModel> users = [];
-                                              if (taskCount > 0) {
-                                                if (search.isNotEmpty) {
-                                                  print(search + "helli");
-                                                  snapshotUsers.data!.docs
-                                                      .forEach((element) {
-                                                    UserModel taskModel =
-                                                        element.data();
-                                                    if (taskModel.userName!
-                                                        .toLowerCase()
-                                                        .contains(search)) {
-                                                      users.add(taskModel);
-                                                    }
-                                                  });
-                                                } else {
-                                                  snapshotUsers.data!.docs
-                                                      .forEach((element) {
-                                                    UserModel
-                                                        taskCategoryModel =
-                                                        element.data();
+                                          ],
+                                        );
+                                      }
+                                      return StreamBuilder<
+                                          QuerySnapshot<UserModel>>(
+                                        stream: UserController()
+                                            .getUsersWhereInIdsStream(
+                                          usersId: listIds,
+                                        ),
+                                        builder: (context, snapshotUsers) {
+                                          if (snapshotUsers.hasData) {
+                                            int taskCount =
+                                                snapshotUsers.data!.docs.length;
+                                            List<UserModel> users = [];
+                                            if (taskCount > 0) {
+                                              if (search.isNotEmpty) {
+                                                print(search + "helli");
+                                                snapshotUsers.data!.docs
+                                                    .forEach((element) {
+                                                  UserModel taskModel =
+                                                      element.data();
+                                                  if (taskModel.userName!
+                                                      .toLowerCase()
+                                                      .contains(search)) {
+                                                    users.add(taskModel);
+                                                  }
+                                                });
+                                              } else {
+                                                snapshotUsers.data!.docs
+                                                    .forEach((element) {
+                                                  UserModel taskCategoryModel =
+                                                      element.data();
 
-                                                    users
-                                                        .add(taskCategoryModel);
-                                                  });
-                                                }
-                                                if (selectedUserNotifier
-                                                        .value ==
-                                                    null) {
-                                                  selectedUserNotifier.value =
-                                                      users.first;
-                                                }
+                                                  users.add(taskCategoryModel);
+                                                });
                                               }
-                                              return ValueListenableBuilder(
-                                                  valueListenable:
-                                                      selectedUserNotifier,
-                                                  builder: (context, value, _) {
-                                                    return ListView.separated(
-                                                      padding: EdgeInsets.only(
-                                                          bottom: 20),
-                                                      itemBuilder:
-                                                          (context, index) {
-                                                        return GestureDetector(
-                                                          onTap: () {
-                                                            selectedUserNotifier
-                                                                    .value =
-                                                                users[index];
-                                                          },
-                                                          child:
-                                                              EmployeeCardSubTask(
-                                                            activated:
-                                                                selectedUserNotifier
-                                                                        .value!
-                                                                        .id ==
-                                                                    users[index]
-                                                                        .id,
-                                                            backgroundColor:
-                                                                Colors.white,
-                                                            Image: users[index]
-                                                                .imageUrl,
-                                                            Name: users[index]
-                                                                    .userName ??
-                                                                "",
-                                                            bio: users[index]
-                                                                    .bio ??
-                                                                "",
-                                                          ),
-                                                        );
-                                                      },
-                                                      separatorBuilder:
-                                                          (context, index) {
-                                                        return SizedBox(
-                                                          height: 10,
-                                                        );
-                                                      },
-                                                      itemCount: users.length,
-                                                    );
-                                                  });
+                                              selectedUserNotifier.value ??=
+                                                  users.first;
                                             }
-                                            if (snapshotUsers.connectionState ==
-                                                ConnectionState.waiting) {
-                                              return Center(
-                                                child:
-                                                    CircularProgressIndicator(
-                                                  color: AppColors
-                                                      .lightMauveBackgroundColor,
-                                                  backgroundColor: AppColors
-                                                      .primaryBackgroundColor,
-                                                ),
-                                              );
-                                            }
+                                            return ValueListenableBuilder(
+                                                valueListenable:
+                                                    selectedUserNotifier,
+                                                builder: (context, value, _) {
+                                                  return ListView.separated(
+                                                    padding: EdgeInsets.only(
+                                                        bottom: 20),
+                                                    itemBuilder:
+                                                        (context, index) {
+                                                      return GestureDetector(
+                                                        onTap: () {
+                                                          selectedUserNotifier
+                                                                  .value =
+                                                              users[index];
+                                                        },
+                                                        child:
+                                                            EmployeeCardSubTask(
+                                                          activated:
+                                                              selectedUserNotifier
+                                                                      .value!
+                                                                      .id ==
+                                                                  users[index]
+                                                                      .id,
+                                                          backgroundColor:
+                                                              Colors.white,
+                                                          Image: users[index]
+                                                              .imageUrl,
+                                                          Name: users[index]
+                                                                  .userName ??
+                                                              "",
+                                                          bio: users[index]
+                                                                  .bio ??
+                                                              "",
+                                                        ),
+                                                      );
+                                                    },
+                                                    separatorBuilder:
+                                                        (context, index) {
+                                                      return SizedBox(
+                                                        height: 10,
+                                                      );
+                                                    },
+                                                    itemCount: users.length,
+                                                  );
+                                                });
+                                          }
+                                          if (snapshotUsers.connectionState ==
+                                              ConnectionState.waiting) {
                                             return Center(
-                                              child: Text(
-                                                "No members found",
-                                                style: GoogleFonts.lato(
-                                                  color: Colors.white,
-                                                  fontSize: 20,
-                                                ),
+                                              child: CircularProgressIndicator(
+                                                color: AppColors
+                                                    .lightMauveBackgroundColor,
+                                                backgroundColor: AppColors
+                                                    .primaryBackgroundColor,
                                               ),
                                             );
-                                          },
-                                        );
-                                      }
-                                      if (snapshotMembers.connectionState ==
-                                          ConnectionState.waiting) {
-                                        return Center(
-                                          child: CircularProgressIndicator(
-                                            color: AppColors
-                                                .lightMauveBackgroundColor,
-                                            backgroundColor: AppColors
-                                                .primaryBackgroundColor,
-                                          ),
-                                        );
-                                      }
+                                          }
+
+                                          return Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              //
+                                              Icon(
+                                                Icons.search_off,
+                                                //   Icons.heart_broken_outlined,
+                                                color: Colors.red,
+                                                size: Utils.screenWidth * 0.27,
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                  horizontal: Utils
+                                                          .screenWidth *
+                                                      0.1, // Adjust the percentage as needed
+                                                  vertical:
+                                                      Utils.screenHeight * 0.05,
+                                                ),
+                                                child: Center(
+                                                  child: Text(
+                                                    AppConstants
+                                                        .no_members_found_for_team_on_project_key
+                                                        .tr,
+                                                    style:
+                                                        GoogleFonts.fjallaOne(
+                                                      color: Colors.white,
+                                                      fontSize:
+                                                          Utils.screenWidth *
+                                                              0.1,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    }
+                                    if (snapshotMembers.connectionState ==
+                                        ConnectionState.waiting) {
                                       return Center(
-                                        child: Text(
-                                          "No Members found",
-                                          style: GoogleFonts.lato(
-                                            color: Colors.white,
-                                            fontSize: 20,
-                                          ),
+                                        child: CircularProgressIndicator(
+                                          color: AppColors
+                                              .lightMauveBackgroundColor,
+                                          backgroundColor:
+                                              AppColors.primaryBackgroundColor,
                                         ),
                                       );
-                                    },
-                                  ),
+                                    }
+                                    return Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        //
+                                        Icon(
+                                          Icons.search_off,
+                                          //   Icons.heart_broken_outlined,
+                                          color: Colors.red,
+                                          size: Utils.screenWidth * 0.27,
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(
+                                            horizontal: Utils.screenWidth *
+                                                0.1, // Adjust the percentage as needed
+                                            vertical: Utils.screenHeight * 0.05,
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              AppConstants
+                                                  .no_members_found_for_team_on_project_key
+                                                  .tr,
+                                              style: GoogleFonts.fjallaOne(
+                                                color: Colors.white,
+                                                fontSize:
+                                                    Utils.screenWidth * 0.1,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  },
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
                   ),
                 ),
-                AppSpaces.verticalSpace20,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        Get.back();
-                      },
-                      child: Text(
-                        'Cancel',
-                        style: GoogleFonts.lato(
-                          color: HexColor.fromHex("F49189"),
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        ),
+              ),
+              AppSpaces.verticalSpace10,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: Text(
+                      AppConstants.cancel_key.tr,
+                      style: GoogleFonts.lato(
+                        color: HexColor.fromHex("F49189"),
+                        fontSize: Utils.screenWidth * 0.04,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                    PrimaryProgressButton(
-                      width: Get.width > 600 ? 110 : 120,
-                      height: Get.height > 500 ? 70 : 90,
-                      label: "Done",
-                      callback: () {
-                        print(selectedUserNotifier.value!.name);
-                        if (selectedUserNotifier.value != null) {
-                          widget.onSelectedUserChanged(
-                              userModel: selectedUserNotifier.value!);
-                        }
-                        Get.back();
-                      },
-                    )
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                  PrimaryProgressButton(
+                    width: Utils.screenWidth * 0.25,
+                    height: Utils.screenHeight2 * 0.07,
+                    label: AppConstants.done_key.tr,
+                    callback: () {
+                      print(selectedUserNotifier.value!.name);
+                      if (selectedUserNotifier.value != null) {
+                        widget.onSelectedUserChanged(
+                            userModel: selectedUserNotifier.value!);
+                      }
+                      Get.back();
+                    },
+                  )
+                ],
+              ),
+              AppSpaces.verticalSpace10,
+            ],
           ),
         ],
       ),

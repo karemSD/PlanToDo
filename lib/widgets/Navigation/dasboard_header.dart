@@ -70,7 +70,7 @@ class DashboardNav extends StatelessWidget {
         //     size: 50,
         //   ),
         // ),
-        
+
         InkWell(
           onTap: onImageTapped,
           child: GestureDetector(
@@ -92,7 +92,8 @@ class DashboardNav extends StatelessWidget {
                     color: Colors.white.withOpacity(0),
                     dummyType: ProfileDummyType.Image,
                     image: snapshot.data!.data()!.imageUrl,
-                    scale: 1.2,
+                    scale: Utils.screenWidth * 0.004,
+                    //scale: 1.2,
                   );
                 }),
           ),

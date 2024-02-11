@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mytest/Data/data_model.dart';
 import 'package:mytest/constants/app_constans.dart';
 
 import 'dart:math' as math;
@@ -46,7 +45,6 @@ class OnboardingStart extends StatelessWidget {
               image: AppConstants.dir_key.tr == 'ar'
                   ? "assets/karem2R.png"
                   : "assets/karem2.png",
-              // : "assets/man-head.png",
               gradient: [
                 HexColor.fromHex("92ECEC"),
                 HexColor.fromHex("92ECEC"),

@@ -9,9 +9,9 @@
         <!-- <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/> -->
         <!-- this is for the notifications and background -->
    <application
-        android:label="Karem-plans"
+        android:label="@string/AppName"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         <!-- this is for the working on background -->    
         <service
     android:name="dev.fluttercommunity.plus.androidalarmmanager.AlarmService"

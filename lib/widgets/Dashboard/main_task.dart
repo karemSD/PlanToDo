@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mytest/constants/app_constans.dart';
 import 'package:mytest/constants/back_constants.dart';
 import 'package:mytest/controllers/manger_controller.dart';
 import 'package:mytest/controllers/project_sub_task_controller.dart';
@@ -132,8 +133,10 @@ class _brogressState extends State<brogress> {
       userSubscription = userModelStream.listen((userSnapshot) {
         UserModel user = userSnapshot.data()!;
         bool updatedIsManager;
-        if (user.id != AuthService.instance. firebaseAuth.currentUser!.uid) {
-          print(user.id + "/////" + AuthService.instance. firebaseAuth.currentUser!.uid);
+        if (user.id != AuthService.instance.firebaseAuth.currentUser!.uid) {
+          print(user.id +
+              "/////" +
+              AuthService.instance.firebaseAuth.currentUser!.uid);
           updatedIsManager = false;
         } else {
           updatedIsManager = true;
@@ -155,10 +158,10 @@ class _brogressState extends State<brogress> {
             onClick: () {
               print(widget.taskModel.projectId);
               print("hello pls go");
-              Get.to(SubTaskScreen(
-                projectId: widget.taskModel.projectId,
-                mainTaskId: widget.taskModel.id,
-              ));
+              Get.to(() => SubTaskScreen(
+                    projectId: widget.taskModel.projectId,
+                    mainTaskId: widget.taskModel.id,
+                  ));
             },
             deleteButton: () async {
               print(1);
@@ -199,18 +202,19 @@ class _brogressState extends State<brogress> {
                     if ((userTaskModel.startDate != startDate ||
                             userTaskModel.endDate != dueDate) &&
                         taskStatus != statusNotStarted) {
-                      CustomSnackBar.showError(
-                          "Cannot edit a start time and end time of not dont or done or doing task");
+                      CustomSnackBar.showError(AppConstants
+                          .cannot_edit_time_of_done_or_doing_task_key.tr);
                       return;
                     }
                     if (startDate.isAfter(dueDate) ||
                         startDate.isAtSameMomentAs(dueDate)) {
-                      CustomSnackBar.showError(
-                          "start date cannot be after end date");
+                      CustomSnackBar.showError(AppConstants
+                          .start_date_cannot_be_after_end_date_key.tr);
                       return;
                     }
 
                     try {
+                      print("edit main task working");
                       await ProjectMainTaskController().updateMainTask(
                           isfromback: false,
                           data: {
@@ -223,6 +227,7 @@ class _brogressState extends State<brogress> {
                           },
                           id: widget.taskModel.id);
                     } catch (e) {
+                      print("edit main task error");
                       CustomSnackBar.showError(e.toString());
                     }
                   },
@@ -243,10 +248,10 @@ class _brogressState extends State<brogress> {
                   border: Border.all(
                     color: HexColor.fromHex(widget.taskModel
                         .hexcolor), // Set the second color for the border
-                    width: 5, // Adjust the width of the border as needed
+                    width: 6, // Adjust the width of the border as needed
                   ),
                 ),
-                height: 150,
+                height: 100,
                 child: Stack(
                   children: [
                     // const Positioned(
@@ -255,7 +260,7 @@ class _brogressState extends State<brogress> {
                     //   child: Icon(Icons.task_alt_sharp),
                     // ),
                     Positioned(
-                      top: 30,
+                      top: 10,
                       bottom: 20,
                       right: 10,
                       left: 20,
@@ -264,7 +269,7 @@ class _brogressState extends State<brogress> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SingleChildScrollView(
-                            physics: AlwaysScrollableScrollPhysics(),
+                            physics: const AlwaysScrollableScrollPhysics(),
                             scrollDirection: Axis.horizontal,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -274,7 +279,7 @@ class _brogressState extends State<brogress> {
                                       .name!, // Use the name property of taskModel
                                   style: GoogleFonts.lato(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 25,
+                                      fontSize: Utils.screenWidth * 0.06,
                                       color: Colors.black),
                                 ),
                                 AppSpaces.horizontalSpace10,
@@ -291,7 +296,7 @@ class _brogressState extends State<brogress> {
                                       print(snapshot.data);
                                       StatusModel statusModel =
                                           snapshot.data!.data() as StatusModel;
-                                      taskStatus = statusModel!.name!;
+                                      taskStatus = statusModel.name!;
                                       return TaskWidget(
                                           status: getStatus(taskStatus));
                                     }
@@ -304,21 +309,21 @@ class _brogressState extends State<brogress> {
                               ],
                             ),
                           ),
-                          AppSpaces.verticalSpace10,
+                          //AppSpaces.verticalSpace10,
                           Text(
-                            '${widget.completed.toInt()} out of ${widget.all.toInt()} is completed', // Use the rating property of taskModel
+                            '${widget.completed.toInt()} ${AppConstants.out_of_key.tr} ${widget.all.toInt()} ${AppConstants.is_completed_key.tr}', // Use the rating property of taskModel
                             style: GoogleFonts.lato(
                               fontWeight: FontWeight.w500,
-                              fontSize: 16,
+                              fontSize: Utils.screenWidth * 0.04,
                             ),
                           ),
-                          AppSpaces.verticalSpace10,
+                          //  AppSpaces.verticalSpace10,
                           Row(
                             children: [
                               Expanded(
                                 flex: 3,
                                 child: Container(
-                                  height: 15,
+                                  height: Utils.screenHeight2 * 0.03,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(25),
                                       color: Colors.white),
@@ -355,16 +360,13 @@ class _brogressState extends State<brogress> {
                               ),
                             ],
                           ),
-                          AppSpaces.verticalSpace10,
+                          //AppSpaces.verticalSpace10,
                           buildLabel(
-                              "Description: ${widget.taskModel.description}"),
+                              "${AppConstants.description_key.tr} : ${widget.taskModel.description}"),
                           buildLabel(
-                              "Start:${formatDateTime(widget.taskModel.startDate)}"),
+                              "${AppConstants.start_date_key.tr}:${formatDateTime(widget.taskModel.startDate)}"),
                           buildLabel(
-                              "End:${formatDateTime(widget.taskModel.endDate!)}"),
-                          const SizedBox(
-                            height: 10,
-                          ),
+                              "${AppConstants.end_date_key.tr}:${formatDateTime(widget.taskModel.endDate!)}"),
                         ],
                       ),
                     ),
@@ -404,7 +406,7 @@ class _brogressState extends State<brogress> {
                     //   child: Icon(Icons.task_alt_sharp),
                     // ),
                     Positioned(
-                      top: 30,
+                      top: 10,
                       bottom: 20,
                       right: 10,
                       left: 20,
@@ -423,7 +425,7 @@ class _brogressState extends State<brogress> {
                                       .name!, // Use the name property of taskModel
                                   style: GoogleFonts.lato(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 25,
+                                      fontSize: Utils.screenWidth * 0.06,
                                       color: Colors.black),
                                 ),
                                 AppSpaces.horizontalSpace10,
@@ -440,7 +442,7 @@ class _brogressState extends State<brogress> {
                                       print(snapshot.data);
                                       StatusModel statusModel =
                                           snapshot.data!.data() as StatusModel;
-                                      taskStatus = statusModel!.name!;
+                                      taskStatus = statusModel.name!;
                                       return TaskWidget(
                                           status: getStatus(taskStatus));
                                     }
@@ -455,10 +457,10 @@ class _brogressState extends State<brogress> {
                           ),
                           AppSpaces.verticalSpace10,
                           Text(
-                            '${widget.completed.toInt()} out of ${widget.all.toInt()} is completed', // Use the rating property of taskModel
+                            '${widget.completed.toInt()}  ${widget.all.toInt()}  ${AppConstants.is_completed_key.tr}', // Use the rating property of taskModel
                             style: GoogleFonts.lato(
                               fontWeight: FontWeight.w500,
-                              fontSize: 16,
+                              fontSize: Utils.screenWidth * 0.03,
                             ),
                           ),
                           AppSpaces.verticalSpace10,
@@ -506,11 +508,11 @@ class _brogressState extends State<brogress> {
                           ),
                           AppSpaces.verticalSpace10,
                           buildLabel(
-                              "Description: ${widget.taskModel.description}"),
+                              "${AppConstants.description_key.tr}: ${widget.taskModel.description}"),
                           buildLabel(
-                              "Start:${formatDateTime(widget.taskModel.startDate)}"),
+                              "${AppConstants.start_date_key.tr}:${formatDateTime(widget.taskModel.startDate)}"),
                           buildLabel(
-                              "End:${formatDateTime(widget.taskModel.endDate!)}"),
+                              "${AppConstants.end_date_key.tr}:${formatDateTime(widget.taskModel.endDate!)}"),
                           const SizedBox(
                             height: 10,
                           ),
@@ -554,7 +556,7 @@ class _brogressState extends State<brogress> {
     if (dateTime.year == now.year &&
         dateTime.month == now.month &&
         dateTime.day == now.day) {
-      return "Today ${DateFormat('h:mma').format(dateTime)}";
+      return "${AppConstants.today_key.tr} ${DateFormat('h:mma').format(dateTime)}";
     } else {
       return DateFormat('dd/MM/yy h:mma').format(dateTime);
     }
@@ -628,21 +630,21 @@ class TaskWidget extends StatelessWidget {
       case TaskStatus.notDone:
         icon = Icons.clear;
         color = Colors.red;
-        statusText = 'Not Done';
+        statusText = AppConstants.not_done_key.tr;
         break;
       case TaskStatus.inProgress:
         icon = Icons.access_time;
         color = Colors.orange;
-        statusText = 'In Progress';
+        statusText = AppConstants.in_progress_key.tr;
         break;
       case TaskStatus.done:
         icon = Icons.check;
         color = Colors.green;
-        statusText = 'Done';
+        statusText = AppConstants.done_key.tr;
       case TaskStatus.notstarted:
         icon = Icons.schedule;
         color = Colors.grey;
-        statusText = "not started";
+        statusText = AppConstants.not_started_key.tr;
         break;
     }
 

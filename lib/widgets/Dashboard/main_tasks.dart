@@ -25,7 +25,6 @@ import '../../models/User/User_task_Model.dart';
 import '../../models/statusmodel.dart';
 import '../../models/team/Manger_model.dart';
 import '../../models/team/Project_model.dart';
-import '../../pages/home.dart';
 
 import '../../widgets/Navigation/app_header.dart';
 import '../Snackbar/custom_snackber.dart';
@@ -126,10 +125,6 @@ class _MainTaskScreenState extends State<MainTaskScreen> {
         }
         print(updatedIsManager);
         isManager.value = updatedIsManager;
-        // Update the state and trigger a rebuild
-        // setState(() {
-        //   isManager = updatedIsManager;
-        // });
       });
     });
   }
@@ -153,11 +148,6 @@ class _MainTaskScreenState extends State<MainTaskScreen> {
       backgroundColor: HexColor.fromHex("#181a1f"),
       body: Column(
         children: [
-          // TextButton(
-          //     onPressed: () {
-          //       Get.to(NotificationScreen());
-          //     },
-          //     child: Text("gome")),
           SafeArea(
             child: TaskezAppHeader(
               title: AppConstants.main_tasks_key.tr,
@@ -185,7 +175,7 @@ class _MainTaskScreenState extends State<MainTaskScreen> {
                   padding: EdgeInsets.symmetric(
                       horizontal: Utils.screenWidth * 0.04),
                   child: SingleChildScrollView(
-                    physics: AlwaysScrollableScrollPhysics(),
+                    physics: const AlwaysScrollableScrollPhysics(),
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -346,7 +336,7 @@ class _MainTaskScreenState extends State<MainTaskScreen> {
                           crossAxisCount:
                               crossAxisCount, // Use the variable for crossAxisCount
                           mainAxisSpacing: 10,
-                          mainAxisExtent: 290,
+                          mainAxisExtent: 260,
                           crossAxisSpacing: 10,
                         ),
                         itemBuilder: (_, index) {

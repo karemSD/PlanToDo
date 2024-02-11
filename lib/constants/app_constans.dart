@@ -157,6 +157,7 @@ class AppConstants {
   static const String no_projects_you_are_in_key = "No_Projects_you_Are_In";
   static const String by_team_key = "by_team";
   static const String status_key = "status";
+  // the Developer karem saad
   static const String projects_key = "projects";
   static const String member_key = "member";
   static const String task_assigned_successfully_key =
@@ -210,6 +211,17 @@ class AppConstants {
       "Sorry but there is Anthor Category with the same name";
   static const String Sorry_the_user_id_cannot_be_found_key =
       "Sorry the user id cannot be found";
+  static const String out_of_key = "out_of";
+  static const String sub_task_dates_between_main_task_dates_key =
+      "Sub_task_dates_between_main_task_dates";
+  static const String no_sub_tasks_found_key = "No_Sub_tasks_found";
+  static const String you_have_a_task_key = "You_have_a_task";
+  static const String sent_to_member_successfully_key =
+      "Sent_to_member_successfully";
+  static const String please_select_a_member_key = "Please_Select_A_member";
+  static const String please_choose_member_to_assign_task_key =
+      "Please_choose_member_to_assign_task";
+
   static const String category_already_been_added_key =
       "category_already_been_added";
   static const String task_time_error_key = "task_time_error";
@@ -217,8 +229,9 @@ class AppConstants {
   static const String task_start_prompt_key = "task_start_prompt";
   static const String sub_task_already_exist_in_main_task_key =
       "task already exist in main task";
-      static const String we_have_sent_the_reset_password_link_key = "We_have_sent_the_reset_password_link";
-      static const String uncompleted_tasks_key = "Uncompleted_tasks";
+  static const String we_have_sent_the_reset_password_link_key =
+      "We_have_sent_the_reset_password_link";
+  static const String uncompleted_tasks_key = "Uncompleted_tasks";
 
   static const String task_key = "task";
   static const String added_successfully_key = "added_successfully";
@@ -395,6 +408,7 @@ class AppConstants {
       waiting_team_member_updating_time_before_create_error_key =
       "waiting_team_member_updating_time_before_create_error";
   static const String name_not_empty_key = "name_not_empty";
+  // the Developer karem saad
   static const String name_min_length_key = "name_min_length";
   static const String name_letters_only_key = "name_letters_only";
   static const String username_not_empty_key = "username_not_empty";
@@ -532,6 +546,9 @@ class AppConstants {
       "please_enter_any_username_to_search_for";
   static const String no_user_found_with_username_key =
       "No_User_Found_With_This_UserName";
+  static const String no_members_found_for_team_on_project_key =
+      "No_members_found_for_team_on_project";
+
   static const String you_are_not_member_of_any_team_yet_key =
       "you_are_not_member_of_any_team_yet";
   static const String created_by_key = "created_by";
@@ -609,8 +626,9 @@ class AppConstants {
   static const String total_categories_key = "total_categories";
   static const String total_projects_key = "total_projects";
   static const String total_teams_key = "total_teams";
-  static const String no_teams_found_add_team_to_get_started_key = "No_teams_found_Add_team_to_get_started";
-static const String invited_not_a_member_yet_key = "Invited_not_a_member_yet";
+  static const String no_teams_found_add_team_to_get_started_key =
+      "No_teams_found_Add_team_to_get_started";
+  static const String invited_not_a_member_yet_key = "Invited_not_a_member_yet";
   static const String is_completed_key = "is_completed";
   static const String daily_goal_key = "daily_goal";
   static const String you_marked_key = "you_marked";
@@ -741,7 +759,7 @@ static const String invited_not_a_member_yet_key = "Invited_not_a_member_yet";
   static const String enter_new_password_key = "Enter_The_New_Password";
   static const String password_updated_successfully_key =
       "Password_updated_successfully";
-      static const String you_key = "You";
+  static const String you_key = "You";
 
   static const String send_reset_password_link_key = "Send_Reset_Password_Link";
   static const Whats_your_email_address_to_send_reset_password_Link_key =

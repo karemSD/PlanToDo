@@ -15,7 +15,6 @@ import 'package:mytest/models/team/Team_model.dart';
 import 'package:mytest/services/auth_service.dart';
 import 'package:mytest/widgets/Team/active_team_cardK.dart';
 
-import '../../Data/data_model.dart';
 import '../../Values/values.dart';
 import '../../models/team/Manger_model.dart';
 import '../../services/notification_service.dart';
@@ -43,7 +42,6 @@ class SelectTeamScreen extends StatefulWidget {
 }
 
 class _SelectTeamScreenState extends State<SelectTeamScreen> {
-  final dynamic data = AppData.employeeData;
 
   @override
   void initState() {

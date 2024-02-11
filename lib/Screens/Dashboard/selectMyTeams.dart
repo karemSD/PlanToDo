@@ -20,7 +20,6 @@ import 'package:mytest/widgets/Dashboard/dashboard_meeting_details.dart';
 import 'package:mytest/widgets/Snackbar/custom_snackber.dart';
 import 'package:mytest/widgets/Team/active_team_cardK.dart';
 
-import '../../Data/data_model.dart';
 import '../../Values/values.dart';
 import '../../controllers/manger_controller.dart';
 import '../../controllers/userController.dart';
@@ -90,7 +89,6 @@ class SelectMyTeamScreen extends StatefulWidget {
 }
 
 class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
-  final dynamic data = AppData.employeeData;
 
   @override
   void initState() {

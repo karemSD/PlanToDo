@@ -112,6 +112,7 @@ class ProjectMainTaskController extends ProjectAndTaskController {
         status: status);
   }
 
+// the Developer karem saad (KaremSD)
   Future<double> getPercentOfMainTasksInAProjectForAStatusBetweenTowStartTime({
     required String status,
     required String projectId,
@@ -513,8 +514,9 @@ class ProjectMainTaskController extends ProjectAndTaskController {
       {required Map<String, dynamic> data,
       required String id,
       required bool isfromback}) async {
+    print("filering2");
     DocumentSnapshot snapshot =
-        await getDocById(reference: usersTasksRef, id: id);
+        await getDocById(reference: projectMainTasksRef, id: id);
     ProjectMainTaskModel projectMainTaskModel =
         snapshot.data() as ProjectMainTaskModel;
     ProjectModel? project = await ProjectController()
@@ -541,6 +543,7 @@ class ProjectMainTaskController extends ProjectAndTaskController {
       int over = 0;
       List<ProjectMainTaskModel> list =
           await getProjectMainTasks(projectId: projectMainTaskModel.projectId);
+      print("filering");
       list.removeWhere((element) => element.id == id);
       for (ProjectMainTaskModel existingTask in list) {
         if (data[startDateK].isBefore(existingTask.endDate) &&
@@ -575,6 +578,7 @@ class ProjectMainTaskController extends ProjectAndTaskController {
             },
             navigatorKey: _navigatorKey);
       } else {
+        print("update working");
         print(data[nameK]);
         await updateTask(
             reference: projectSubTasksRef,
@@ -589,6 +593,8 @@ class ProjectMainTaskController extends ProjectAndTaskController {
         Get.key.currentState!.pop();
       }
     } else {
+      print("update working");
+
       await updateTask(
           reference: projectSubTasksRef,
           data: data,

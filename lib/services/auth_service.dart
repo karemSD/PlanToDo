@@ -176,7 +176,7 @@ class AuthService extends GetxController {
   Future<void> resetPassword({required String email}) async {
     await firebaseAuth.sendPasswordResetEmail(email: email);
   }
-
+// the Developer karem saad 
   Future<UserCredential> sigInWithEmailAndPassword({
     required String email,
     required String password,
@@ -504,6 +504,7 @@ void signUpUser() async {
         errorMessage(ex.code);
       }
     }
+// the Developer karem saad 
   }
 ووقت بتعمل signout 
 IconButton(

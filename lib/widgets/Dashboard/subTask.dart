@@ -6,10 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 import 'package:get/get.dart';
 import 'package:mytest/Values/values.dart';
+import 'package:mytest/constants/app_constans.dart';
 import 'package:mytest/controllers/categoryController.dart';
 import 'package:mytest/controllers/project_sub_task_controller.dart';
 import 'package:mytest/controllers/statusController.dart';
 import 'package:mytest/controllers/team_member_controller.dart';
+// the Developer karem saad (KaremSD)
 import 'package:mytest/controllers/user_task_controller.dart';
 import 'package:mytest/models/statusmodel.dart';
 import 'package:mytest/models/team/Project_sub_task_Model.dart';
@@ -45,7 +47,6 @@ import '../Snackbar/custom_snackber.dart';
 import '../User/focused_menu_item.dart';
 import '../User/inactive_employee_card_sub_task.dart';
 
-
 enum TaskStatus {
   notDone,
   inProgress,
@@ -68,21 +69,21 @@ class TaskWidget extends StatelessWidget {
       case TaskStatus.notDone:
         icon = Icons.clear;
         color = Colors.red;
-        statusText = 'Not Done';
+        statusText = AppConstants.not_done_key.tr;
         break;
       case TaskStatus.inProgress:
         icon = Icons.access_time;
         color = Colors.orange;
-        statusText = 'In Progress';
+        statusText = AppConstants.in_progress_key.tr;
         break;
       case TaskStatus.done:
         icon = Icons.check;
         color = Colors.green;
-        statusText = 'Done';
+        statusText = AppConstants.done_key.tr;
       case TaskStatus.notStarted:
         icon = Icons.schedule;
         color = Colors.grey;
-        statusText = 'not started';
+        statusText = AppConstants.not_started_key.tr;
         break;
     }
 
@@ -92,7 +93,7 @@ class TaskWidget extends StatelessWidget {
           icon,
           color: color,
         ),
-        SizedBox(width: 8),
+        const SizedBox(width: 8),
         Text(
           statusText,
           style: TextStyle(
@@ -162,8 +163,10 @@ class _SubTaskCardState extends State<SubTaskCard> {
       userSubscription = userModelStream.listen((userSnapshot) {
         UserModel user = userSnapshot.data()!;
         bool updatedIsManager;
-        if (user.id != AuthService.instance. firebaseAuth.currentUser!.uid) {
-          print(user.id + "/////" + AuthService.instance. firebaseAuth.currentUser!.uid);
+        if (user.id != AuthService.instance.firebaseAuth.currentUser!.uid) {
+          print(user.id +
+              "/////" +
+              AuthService.instance.firebaseAuth.currentUser!.uid);
           updatedIsManager = false;
         } else {
           updatedIsManager = true;
@@ -247,8 +250,8 @@ class _SubTaskCardState extends State<SubTaskCard> {
                             .isAfter(mainTask.startDate) ||
                         !projectSubTaskModel.endDate!
                             .isBefore(mainTask.endDate!)) {
-                      throw Exception(
-                          "sub task start and end date should be between start and end date of the main task");
+                      throw Exception(AppConstants
+                          .sub_task_dates_between_main_task_dates_key.tr);
                     }
                     TeamMemberModel memberModelold =
                         await TeamMemberController().getMemberById(
@@ -272,8 +275,9 @@ class _SubTaskCardState extends State<SubTaskCard> {
                     }
                     if (startDate.isAfter(dueDate) ||
                         startDate.isAtSameMomentAs(dueDate)) {
-                      CustomSnackBar.showError(
-                          "start date cannot be after end date");
+                      CustomSnackBar.showError(AppConstants
+                          .start_date_cannot_be_after_end_date_or_in_the_same_time_or_before_the_current_date_key
+                          .tr);
                       return;
                     }
                     if (memberModelold.id != newteamMemberModel.id) {
@@ -561,7 +565,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
                       child: Padding(
                         padding: const EdgeInsets.all(20),
                         child: SingleChildScrollView(
-                          physics: AlwaysScrollableScrollPhysics(),
+                          physics: const AlwaysScrollableScrollPhysics(),
                           scrollDirection: Axis.vertical,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -574,13 +578,13 @@ class _SubTaskCardState extends State<SubTaskCard> {
                                         snapshot.data!.data()!;
                                     name = userModel.name ?? "";
                                     bio = userModel.bio ?? "";
-                                    image = userModel.imageUrl ?? "";
+                                    image = userModel.imageUrl;
                                     return GlowContainer(
                                       borderRadius: BorderRadius.circular(25),
                                       glowColor: Colors.lightBlueAccent,
                                       child: InactiveEmployeeCardSubTask(
                                         onTap: () {},
-                                        bio: userModel!.bio!,
+                                        bio: userModel.bio!,
                                         color: Colors.white,
                                         userImage: userModel.imageUrl,
                                         userName: userModel.userName!,
@@ -616,12 +620,13 @@ class _SubTaskCardState extends State<SubTaskCard> {
                                             ),
                                           );
                                   }
-                                  return CircularProgressIndicator.adaptive();
+                                  return const CircularProgressIndicator
+                                      .adaptive();
                                 },
                               ),
                               AppSpaces.verticalSpace10,
                               SingleChildScrollView(
-                                physics: AlwaysScrollableScrollPhysics(),
+                                physics: const AlwaysScrollableScrollPhysics(),
                                 scrollDirection: Axis.horizontal,
                                 child: Row(
                                   mainAxisAlignment:
@@ -635,7 +640,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
                               ),
                               const SizedBox(height: 20),
                               buildLabel(
-                                  "Description: ${widget.task.description ?? "no description"}"),
+                                  "${AppConstants.description_key.tr}: ${widget.task.description ?? "no description"}"),
                               StreamBuilder(
                                 stream: statusController
                                     .getStatusByIdStream(
@@ -657,9 +662,9 @@ class _SubTaskCardState extends State<SubTaskCard> {
                                 },
                               ),
                               buildLabel(
-                                  "Start Date:${formatDateTime(widget.task.startDate)}"),
+                                  "${AppConstants.start_date_key.tr}:${formatDateTime(widget.task.startDate)}"),
                               buildLabel(
-                                  "End date:${formatDateTime(widget.task.endDate!)}"),
+                                  "${AppConstants.end_date_key.tr}:${formatDateTime(widget.task.endDate!)}"),
                             ],
                           ),
                         ),
@@ -689,7 +694,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
                     child: Padding(
                       padding: const EdgeInsets.all(20),
                       child: SingleChildScrollView(
-                        physics: AlwaysScrollableScrollPhysics(),
+                        physics: const AlwaysScrollableScrollPhysics(),
                         scrollDirection: Axis.vertical,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -710,7 +715,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
                                         borderRadius:
                                             BorderRadius.circular(16)),
                                     width: double.infinity,
-                                    child: Center(
+                                    child: const Center(
                                       child: CircularProgressIndicator(),
                                     ),
                                   );
@@ -722,19 +727,20 @@ class _SubTaskCardState extends State<SubTaskCard> {
                                     glowColor: Colors.lightBlueAccent,
                                     child: InactiveEmployeeCardSubTask(
                                       onTap: () {},
-                                      bio: userModel!.bio!,
+                                      bio: userModel.bio!,
                                       color: Colors.white,
                                       userImage: userModel.imageUrl,
                                       userName: userModel.userName!,
                                     ),
                                   );
                                 }
-                                return CircularProgressIndicator.adaptive();
+                                return const CircularProgressIndicator
+                                    .adaptive();
                               },
                             ),
                             AppSpaces.verticalSpace20,
                             SingleChildScrollView(
-                              physics: AlwaysScrollableScrollPhysics(),
+                              physics: const AlwaysScrollableScrollPhysics(),
                               scrollDirection: Axis.horizontal,
                               child: Row(
                                 mainAxisAlignment:
@@ -747,7 +753,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
                             ),
                             const SizedBox(height: 20),
                             buildLabel(
-                                "Description: ${widget.task.description}"),
+                                "${AppConstants.description_key.tr}: ${widget.task.description}"),
                             StreamBuilder(
                               stream: statusController
                                   .getStatusByIdStream(
@@ -769,9 +775,9 @@ class _SubTaskCardState extends State<SubTaskCard> {
                               },
                             ),
                             buildLabel(
-                                "Start Date:${formatDateTime(widget.task.startDate)}"),
+                                "${AppConstants.start_date_key.tr}:${formatDateTime(widget.task.startDate)}"),
                             buildLabel(
-                                "End date:${formatDateTime(widget.task.endDate!)}"),
+                                "${AppConstants.end_date_key.tr}:${formatDateTime(widget.task.endDate!)}"),
                           ],
                         ),
                       ),
@@ -876,7 +882,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
     if (dateTime.year == now.year &&
         dateTime.month == now.month &&
         dateTime.day == now.day) {
-      return "Today ${DateFormat('h:mma').format(dateTime)}";
+      return "${AppConstants.today_key.tr} ${DateFormat('h:mma').format(dateTime)}";
     } else {
       return DateFormat('dd/MM/yy h:mma').format(dateTime);
     }

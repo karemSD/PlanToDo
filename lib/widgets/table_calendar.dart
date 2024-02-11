@@ -8,7 +8,7 @@ const kBlueCircleForCalendar = BoxDecoration(
   color: Color(0xFF246CFD),
   shape: BoxShape.circle,
 );
-
+// the Developer karem saad (KaremSD)
 class CalendarView extends StatefulWidget {
   const CalendarView({super.key});
 
@@ -55,7 +55,6 @@ class _CalendarViewState extends State<CalendarView> {
         // range of calendar time
         firstDay: DateTime.utc(DateTime.now().year, DateTime.now().month, 1),
         lastDay: DateTime.utc(DateTime.now().year, DateTime.december, 31),
-
         locale: 'en_US',
         focusedDay: _focusedDay,
         calendarFormat: _calendarFormat,

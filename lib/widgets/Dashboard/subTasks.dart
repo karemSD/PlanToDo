@@ -35,7 +35,6 @@ import '../../models/team/Manger_model.dart';
 import '../../models/team/Project_model.dart';
 import '../../models/team/Project_sub_task_Model.dart';
 import '../../models/team/Team_model.dart';
-import '../../pages/home.dart';
 
 import '../../services/auth_service.dart';
 import '../../services/notification_service.dart';
@@ -76,17 +75,17 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
   String _getSortOptionText(TaskSortOption option) {
     switch (option) {
       case TaskSortOption.name:
-        return 'Name';
+        return AppConstants.name_key.tr;
       case TaskSortOption.updatedDate:
-        return 'Updated Date';
+        return AppConstants.updated_Date_key.tr;
       case TaskSortOption.createDate:
-        return 'Created Date';
+        return AppConstants.created_date_key.tr;
       case TaskSortOption.startDate:
-        return 'Start Date';
+        return AppConstants.start_date_key.tr;
       case TaskSortOption.endDate:
-        return 'End Date';
+        return AppConstants.end_date_key.tr;
       case TaskSortOption.importance:
-        return 'Importance';
+        return AppConstants.importance_key.tr;
       // Add cases for more sorting options if needed
       default:
         return '';
@@ -166,11 +165,11 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
       backgroundColor: HexColor.fromHex("#181a1f"),
       body: Column(
         children: [
-          TextButton(
-              onPressed: () {
-                Get.to(NotificationScreen());
-              },
-              child: Text("gome")),
+          // TextButton(
+          //     onPressed: () {
+          //       Get.to(() => NotificationScreen());
+          //     },
+          //     child: Text("gome")),
           SafeArea(
             child: TaskezAppHeader(
               title: AppConstants.sub_tasks_key.tr,
@@ -189,8 +188,18 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                margin: const EdgeInsets.only(right: 20.0, left: 20.0),
-                padding: const EdgeInsets.only(right: 20.0, left: 20.0),
+                margin: EdgeInsets.only(
+                  right: Utils.screenWidth *
+                      0.05, // Adjust the percentage as needed
+                  left: Utils.screenWidth *
+                      0.05, // Adjust the percentage as needed
+                ),
+                padding: EdgeInsets.only(
+                  right: Utils.screenWidth *
+                      0.04, // Adjust the 0percentage as needed
+                  left: Utils.screenWidth *
+                      0.04, // Adjust the percentage as needed
+                ),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
@@ -216,22 +225,33 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
                   }).toList(),
 
                   // Add extra styling
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.arrow_drop_down,
-                    size: 35,
+                    size: Utils.screenWidth * 0.07,
                   ),
                   underline: const SizedBox(),
                 ),
               ),
-              IconButton(
-                icon: Icon(
-                  sortAscending ? Icons.arrow_upward : Icons.arrow_downward,
-                  color: Colors.white,
+              Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.transparent,
+                  border: Border.all(
+                    width: 2,
+                    color: HexColor.fromHex("616575"),
+                  ),
                 ),
-                onPressed: toggleSortOrder, // Toggle the sort order
+                child: IconButton(
+                  icon: Icon(
+                    sortAscending ? Icons.arrow_upward : Icons.arrow_downward,
+                    color: Colors.white,
+                  ),
+                  onPressed: toggleSortOrder, // Toggle the sort order
+                ),
               ),
               IconButton(
-                icon: const Icon(
+                icon: Icon(
+                  size: Utils.screenWidth * 0.07,
                   Icons.grid_view,
                   color: Colors.white,
                 ),
@@ -240,10 +260,12 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
               ),
             ],
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: Utils.screenHeight * 0.04),
+
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              padding:
+                  EdgeInsets.symmetric(horizontal: Utils.screenWidth * 0.04),
               child: StreamBuilder(
                 stream: ProjectSubTaskController()
                     .getSubTasksForAMainTaskStream(
@@ -325,14 +347,33 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
                       ),
                     );
                   }
-                  return Center(
-                    child: Text(
-                      "No Sub tasks found",
-                      style: GoogleFonts.lato(
-                        color: Colors.white,
-                        fontSize: 20,
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      //
+                      Icon(
+                        Icons.search_off,
+                        //   Icons.heart_broken_outlined,
+                        color: Colors.red,
+                        size: Utils.screenWidth * 0.30,
                       ),
-                    ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: Utils.screenWidth *
+                              0.07, // Adjust the percentage as needed
+                          vertical: Utils.screenHeight * 0.05,
+                        ),
+                        child: Center(
+                          child: Text(
+                            AppConstants.no_sub_tasks_found_key.tr,
+                            style: GoogleFonts.fjallaOne(
+                              color: Colors.white,
+                              fontSize: Utils.screenWidth * 0.1,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   );
                 },
               ),
@@ -360,15 +401,18 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
               required String userIdAssignedTo}) async {
             if (startDate.isAfter(dueDate) ||
                 startDate.isAtSameMomentAs(dueDate)) {
-              CustomSnackBar.showError("start date cannot be after end date");
+              CustomSnackBar.showError(AppConstants
+                  .start_date_cannot_be_after_end_date_or_in_the_same_time_or_before_the_current_date_key
+                  .tr);
               return;
             }
             ProjectMainTaskModel mainTask = await ProjectMainTaskController()
                 .getProjectMainTaskById(id: widget.mainTaskId);
             if (!startDate.isAfter(mainTask.startDate) ||
                 !dueDate.isBefore(mainTask.endDate!)) {
-              throw Exception(
-                  "sub task start and end date should be between start and end date of the main task");
+              CustomSnackBar.showError(
+                  AppConstants.sub_task_dates_between_main_task_dates_key.tr);
+              return;
             }
             UserModel userModel =
                 await UserController().getUserById(id: userIdAssignedTo);
@@ -425,7 +469,7 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
               final GlobalKey<NavigatorState> _navigatorKey =
                   GlobalKey<NavigatorState>();
               Get.defaultDialog(
-                  title: "Task Time Error",
+                  title: AppConstants.task_time_error_key.tr,
                   middleText:
                       "There is ${over} That start in this time \n for the assigned user \n Would you Like To assign the Task Any Way?",
                   onConfirm: () async {
@@ -435,13 +479,13 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
                         Get.put(FcmNotifications());
                     await fcmNotifications.sendNotificationAsJson(
                         fcmTokens: userModel.tokenFcm,
-                        title: "you have a task ",
+                        title: AppConstants.you_have_a_task_key.tr,
                         data: {"id": waitingid},
                         body:
                             "the project ${projectModel.name}. The task is titled ${projectSubTaskModel.name}. Please review the task details and take necessary action.",
                         type: NotificationType.taskRecieved);
                     CustomSnackBar.showSuccess(
-                        "task ${taskName} sended to member successfully");
+                        "${AppConstants.task_key.tr} ${taskName}  ${AppConstants.sent_to_member_successfully_key.tr}");
                     Get.key.currentState!.pop();
                     Get.key.currentState!.pop();
                   },
@@ -456,13 +500,13 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
               FcmNotifications fcmNotifications = Get.put(FcmNotifications());
               await fcmNotifications.sendNotificationAsJson(
                   fcmTokens: userModel.tokenFcm,
-                  title: "you have a task ",
+                  title: AppConstants.you_have_a_task_key.tr,
                   data: {"id": waitingid},
                   body:
-                      "the project ${projectModel.name}. The task is titled ${projectSubTaskModel.name}. Please review the task details and take necessary action.",
+                      " ${projectModel.name}. The task is titled ${projectSubTaskModel.name}. Please review the task details and take necessary action.",
                   type: NotificationType.taskRecieved);
               CustomSnackBar.showSuccess(
-                  "task ${taskName} sended to member successfully");
+                  "${AppConstants.task_key.tr} ${taskName} ${AppConstants.sent_to_member_successfully_key.tr}");
               Get.key.currentState!.pop();
             }
             // await waitingSubTaskController.addWatingSubTask(

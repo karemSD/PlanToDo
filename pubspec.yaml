@@ -78,9 +78,13 @@ dependencies:
   day_night_time_picker: ^1.2.0+2
   sizer: ^2.0.15
 dev_dependencies:
+  flutter_launcher_icons: ^0.13.1
   flutter_test:
     sdk: flutter
-
+flutter_icons:
+  android: "launcher_icon"
+  ios: false
+  image_path: "assets/icon/logo.png"
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
@@ -103,7 +107,6 @@ flutter:
   assets:
     - assets/
     - assets/icon/
-    - assets/memoji/
     - lib/images/
     - assets/lang/
 

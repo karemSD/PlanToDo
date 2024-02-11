@@ -14,6 +14,7 @@ import 'package:mytest/controllers/userController.dart';
 import 'package:mytest/controllers/waitingMamberController.dart';
 import 'package:mytest/controllers/waitingSubTasks.dart';
 import 'package:mytest/models/User/User_model.dart';
+import 'package:mytest/models/team/Project_main_task_Model.dart';
 import 'package:mytest/models/team/TeamMembers_model.dart';
 import 'package:mytest/models/team/Team_model.dart';
 import 'package:mytest/models/team/waitingMamber.dart';
@@ -33,7 +34,6 @@ import '../../widgets/Search/active_task_card.dart';
 import '../../widgets/Search/task_card.dart';
 import '../../widgets/Shapes/app_settings_icon.dart';
 import '../../widgets/dummy/profile_dummy.dart';
-import '../Chat/chat_screen.dart';
 import '../Profile/profile_overview.dart';
 import 'DashboardTabScreens/boxController.dart';
 
@@ -276,6 +276,8 @@ class Invitions extends StatelessWidget {
                                             snapshotOfWaitngSubTasks.data!.docs
                                                 .map((doc) => doc.data())
                                                 .toList();
+                                        print(
+                                            "numbers ${listWaitingSubTasks.length}");
                                         if (snapshotOfWaitngSubTasks
                                             .data!.docs.isEmpty) {
                                           return Column(
@@ -333,68 +335,77 @@ class Invitions extends StatelessWidget {
                                                         snapshotOfProjectMainTask
                                                             .data!
                                                             .data();
-                                                    return Column(children: [
-                                                      ActiveTaskCard(
-                                                          onPressedEnd:
-                                                              (p0) async {
-                                                            try {
-                                                              showDialogMethod(
-                                                                  context);
-                                                              await WatingSubTasksController().rejectSubTask(
-                                                                  waitingSubTaskId:
-                                                                      listWaitingSubTasks[
-                                                                              index]
-                                                                          .id,
-                                                                  rejectingMessage:
-                                                                      "rejectingMessage");
-                                                              Navigator.of(
-                                                                      context)
-                                                                  .pop();
-                                                            } on Exception catch (e) {
-                                                              CustomSnackBar
-                                                                  .showError(e
-                                                                      .toString());
-                                                            }
-                                                          },
-                                                          onPressedStart:
-                                                              (p0) async {
-                                                            try {
-                                                              showDialogMethod(
-                                                                  context);
-                                                              await WatingSubTasksController()
-                                                                  .accpetSubTask(
-                                                                waitingSubTaskId:
-                                                                    listWaitingSubTasks[
-                                                                            index]
-                                                                        .id,
-                                                              );
-                                                              Get.key
-                                                                  .currentState!
-                                                                  .pop();
-                                                              // Navigator.of(
-                                                              //         context)
-                                                              //     .pop();
-                                                            } on Exception catch (e) {
-                                                              Navigator.of(
-                                                                      context)
-                                                                  .pop();
-                                                              CustomSnackBar
-                                                                  .showError(e
-                                                                      .toString());
-                                                            }
-                                                          },
-                                                          imageUrl:
-                                                              projectModel!
-                                                                  .imageUrl,
-                                                          header: AppConstants
-                                                              .team_name_key.tr,
-                                                          subHeader: AppConstants
-                                                              .team_manager_key
-                                                              .tr,
-                                                          date:
-                                                              " ${formatFromDate(dateTime: DateTime.now(), fromat: "MMM")}  ${DateTime.now().day}"),
-                                                      AppSpaces.verticalSpace10
-                                                    ]);
+                                                    return StreamBuilder(
+                                                        stream: ProjectMainTaskController()
+                                                            .getProjectMainTaskByIdStream(
+                                                                id: listWaitingSubTasks[
+                                                                        index]
+                                                                    .projectSubTaskModel
+                                                                    .mainTaskId),
+                                                        builder: (context,
+                                                            snapshotOfMainTask) {
+                                                          ProjectMainTaskModel
+                                                              projectMainTaskModel =
+                                                              snapshotOfMainTask
+                                                                  .data!
+                                                                  .data()!;
+                                                          return Column(
+                                                              children: [
+                                                                ActiveTaskCard(
+                                                                    onPressedEnd:
+                                                                        (p0) async {
+                                                                      try {
+                                                                        showDialogMethod(
+                                                                            context);
+                                                                        await WatingSubTasksController().rejectSubTask(
+                                                                            waitingSubTaskId:
+                                                                                listWaitingSubTasks[index].id,
+                                                                            rejectingMessage: "rejectingMessage");
+                                                                        Navigator.of(context)
+                                                                            .pop();
+                                                                      } on Exception catch (e) {
+                                                                        CustomSnackBar.showError(
+                                                                            e.toString());
+                                                                      }
+                                                                    },
+                                                                    onPressedStart:
+                                                                        (p0) async {
+                                                                      try {
+                                                                        showDialogMethod(
+                                                                            context);
+                                                                        await WatingSubTasksController()
+                                                                            .accpetSubTask(
+                                                                          waitingSubTaskId:
+                                                                              listWaitingSubTasks[index].id,
+                                                                        );
+                                                                        Get.key
+                                                                            .currentState!
+                                                                            .pop();
+                                                                        // Navigator.of(
+                                                                        //         context)
+                                                                        //     .pop();
+                                                                      } on Exception catch (e) {
+                                                                        Navigator.of(context)
+                                                                            .pop();
+                                                                        CustomSnackBar.showError(
+                                                                            e.toString());
+                                                                      }
+                                                                    },
+                                                                    imageUrl:
+                                                                        projectModel!
+                                                                            .imageUrl,
+                                                                    header:
+                                                                        projectMainTaskModel
+                                                                            .name!,
+                                                                    subHeader:
+                                                                        projectModel
+                                                                            .name!,
+                                                                    date:
+                                                                        " ${formatFromDate(dateTime: listWaitingSubTasks[index].createdAt, fromat: "MMM")}  ${listWaitingSubTasks[index].createdAt.day}"),
+                                                                AppSpaces
+                                                                    .verticalSpace10
+                                                              ]);
+                                                        });
                                                   }),
                                         );
                                       }

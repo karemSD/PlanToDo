@@ -4,7 +4,6 @@ import 'package:mytest/constants/back_constants.dart';
 import 'package:mytest/controllers/user_task_controller.dart';
 
 import 'package:tcard/tcard.dart';
-import '../../../Data/data_model.dart';
 import '../../../Values/values.dart';
 import '../../../constants/app_constans.dart';
 import '../../../services/auth_service.dart';
@@ -29,16 +28,8 @@ class _DashboardProductivityState extends State<DashboardProductivity> {
       DateTime.now().month,
       DateTime.now().day,
     );
-    final dynamic data = AppData.progressIndicatorList;
     UserTaskController userTaskController = Get.put(UserTaskController());
-    List<Widget> cards = List.generate(
-        5,
-        (index) => TaskProgressCard(
-              cardTitle: data[index]['cardTitle'],
-              rating: data[index]['rating'],
-              progressFigure: data[index]['progress'],
-              percentageGap: int.parse(data[index]['progressBar']),
-            ));
+    
 
     return Column(
       children: [

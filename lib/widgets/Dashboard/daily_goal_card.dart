@@ -41,7 +41,7 @@ class _DailyGoalCardState extends State<DailyGoalCard> {
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(13.0),
       height: Utils.screenHeight2 * 0.2, // Adjust percentage as needed,
       decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(20.0)),
@@ -167,13 +167,13 @@ class dailygoal extends StatelessWidget {
                 ),
               ],
             ),
-            AppSpaces.verticalSpace10,
+            // AppSpaces.verticalSpace10,
             Text(
               //    "${AppConstants.you_marked_key.tr}  $first $second $message  ${AppConstants.are_done_key.tr}  ",
               "  $first  $message  ${AppConstants.are_done_key.tr}  ",
               style: GoogleFonts.lato(
                   color: HexColor.fromHex("616575"),
-                  fontSize: Utils.screenWidth * 0.047,
+                  fontSize: Utils.screenWidth * 0.040,
                   fontWeight: FontWeight.w500),
             ),
 //            AppSpaces.verticalSpace20,

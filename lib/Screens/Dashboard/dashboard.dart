@@ -16,7 +16,6 @@ import '../../widgets/BottomSheets/dashboard_settings_sheet.dart';
 import '../../widgets/Buttons/primary_tab_buttons.dart';
 import '../../widgets/Navigation/dasboard_header.dart';
 import '../../widgets/Shapes/app_settings_icon.dart';
-import '../Chat/chat_screen.dart';
 import '../Profile/profile_overview.dart';
 import 'DashboardTabScreens/overview.dart';
 import 'DashboardTabScreens/productivity.dart';

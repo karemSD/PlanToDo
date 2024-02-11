@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:mytest/constants/app_constans.dart';
 import 'package:mytest/controllers/userController.dart';
 import 'package:mytest/models/team/Project_model.dart';
 import 'package:mytest/widgets/Dashboard/select_color_dialog.dart';
@@ -23,7 +24,6 @@ import '../User/inactive_employee_card_sub_task.dart';
 import '../User/new_sheet_goto_calender.dart';
 import '../add_sub_icon.dart';
 import '../inactive_employee_card.dart';
-
 
 // ignore: must_be_immutable
 class CreateSubTask extends StatefulWidget {
@@ -186,7 +186,7 @@ class _CreateSubTaskState extends State<CreateSubTask> {
                         ),
                         child: Center(
                           child: Text(
-                            'Please Select A member ',
+                            AppConstants.please_select_a_member_key.tr,
                             style: GoogleFonts.lato(
                               color: Colors.white,
                               fontWeight: FontWeight.w600,
@@ -208,11 +208,12 @@ class _CreateSubTaskState extends State<CreateSubTask> {
                     print(projectModel!.teamId!);
                     TeamModel teamModel = await TeamController()
                         .getTeamById(id: projectModel!.teamId!);
-                    Get.to(SearchForMembersSubTask(
-                      onSelectedUserChanged: onSelectedUserChanged,
-                      userModel: null,
-                      teamModel: teamModel,
-                    ));
+                        // the Developer karem saad (KaremSD)
+                    Get.to(() => SearchForMembersSubTask(
+                          onSelectedUserChanged: onSelectedUserChanged,
+                          userModel: null,
+                          teamModel: teamModel,
+                        ));
                   },
                   child: Container(
                     width: double.infinity,
@@ -224,7 +225,7 @@ class _CreateSubTaskState extends State<CreateSubTask> {
                     ),
                     child: Center(
                       child: Text(
-                        'Please Select A member ',
+                        AppConstants.please_select_a_member_key.tr,
                         style: GoogleFonts.lato(
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
@@ -237,10 +238,11 @@ class _CreateSubTaskState extends State<CreateSubTask> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("importance", style: AppTextStyles.header2),
+                  Text(AppConstants.importance_key.tr,
+                      style: AppTextStyles.header2),
                   AppSpaces.horizontalSpace10,
                   DropdownButton<String>(
-                    icon: Icon(Icons.label_important_outline_rounded),
+                    icon: const Icon(Icons.label_important_outline_rounded),
                     dropdownColor: HexColor.fromHex("#181a1f"),
                     style: AppTextStyles.header2,
                     value: selectedDashboardOption.toString(),
@@ -289,11 +291,12 @@ class _CreateSubTaskState extends State<CreateSubTask> {
                     child: LabelledFormInput(
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return "pls enter name";
+                          return AppConstants.enter_name_key.tr;
                         }
                         if (value.isNotEmpty) {
                           if (isTaked) {
-                            return "Please use another taskName";
+                            return AppConstants
+                                .please_use_another_taskName_key.tr;
                           }
                         }
                         return null;
@@ -307,10 +310,10 @@ class _CreateSubTaskState extends State<CreateSubTask> {
                       onChanged: (String name) async {
                         await onChanged(name);
                       },
-                      label: "Name",
+                      label: AppConstants.name_key.tr,
                       readOnly: false,
                       autovalidateMode: AutovalidateMode.always,
-                      placeholder: "Task Name ....",
+                      placeholder: "${AppConstants.task_name_key.tr} ....",
                       keyboardType: "text",
                       controller: _taskNameController,
                       obscureText: false,
@@ -322,7 +325,8 @@ class _CreateSubTaskState extends State<CreateSubTask> {
               LabelledFormInput(
                 validator: (p0) {
                   if (p0 == " ") {
-                    return "description cannot be empy spaces";
+                    return AppConstants
+                        .description_cannot_be_empty_spaces_key.tr;
                   }
                   return null;
                 },
@@ -335,10 +339,10 @@ class _CreateSubTaskState extends State<CreateSubTask> {
                     _taskDescController.text = "";
                   });
                 },
-                label: "Description",
+                label: AppConstants.description_key.tr,
                 readOnly: false,
                 autovalidateMode: AutovalidateMode.always,
-                placeholder: "Task Description ....",
+                placeholder: "${AppConstants.task_description_key.tr} ....",
                 keyboardType: "text",
                 controller: _taskDescController,
                 obscureText: false,
@@ -351,7 +355,7 @@ class _CreateSubTaskState extends State<CreateSubTask> {
                   cardBackgroundColor: HexColor.fromHex("7DBA67"),
                   textAccentColor: HexColor.fromHex("A9F49C"),
                   value: formattedStartDate,
-                  label: 'Start Date',
+                  label: AppConstants.start_date_key.tr,
                 ),
                 NewSheetGoToCalendarWidget(
                   onSelectedDayChanged: handleDueDayChanged,
@@ -359,7 +363,7 @@ class _CreateSubTaskState extends State<CreateSubTask> {
                   cardBackgroundColor: HexColor.fromHex("BA67A3"),
                   textAccentColor: HexColor.fromHex("BA67A3"),
                   value: formattedDueDate,
-                  label: 'Due Date',
+                  label: AppConstants.end_date_key.tr,
                 )
               ]),
               // Spacer(),
@@ -373,8 +377,8 @@ class _CreateSubTaskState extends State<CreateSubTask> {
                   callback: () {
                     if (formKey.currentState!.validate()) {
                       if (assignedToUserId == null) {
-                        CustomSnackBar.showError(
-                            "please choose a member to assign the task to");
+                        CustomSnackBar.showError(AppConstants
+                            .please_choose_member_to_assign_task_key.tr);
                         return;
                       }
                       widget.addTask(
@@ -402,7 +406,7 @@ class _CreateSubTaskState extends State<CreateSubTask> {
     if (dateTime.year == now.year &&
         dateTime.month == now.month &&
         dateTime.day == now.day) {
-      return "Today ${DateFormat('h:mma').format(dateTime)}";
+      return "${AppConstants.today_key.tr} ${DateFormat('h:mma').format(dateTime)}";
     } else {
       return DateFormat('dd/MM h:mma').format(dateTime);
     }

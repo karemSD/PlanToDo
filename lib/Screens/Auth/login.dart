@@ -85,7 +85,7 @@ class _LoginState extends State<Login> {
                       autovalidateMode: AutovalidateMode.disabled,
                       validator: (value) {
                         if (!EmailValidator.validate(value!)) {
-                          return AppConstants.Please_Enter_Valid_Email_key.tr;
+                          return AppConstants.enter_valid_email_key.tr;
                           // "Enter Valid Email";
                         } else {
                           return null;
@@ -262,3 +262,4 @@ class _LoginState extends State<Login> {
     );
   }
 }
+// the Developer karem saad 
